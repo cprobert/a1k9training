@@ -30,6 +30,18 @@
       </p>
       {{/if}}
   </div>
+  {{#if model.videoId}}
+  <div class="mb-8 aspect-video overflow-hidden rounded-card">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/{{model.videoId}}"
+      title="{{model.videoTitle}}"
+      width="100%" height="100%"
+      loading="lazy"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      class="size-full border-0"></iframe>
+  </div>
+  {{/if}}
   <div class="grid gap-8 lg:grid-cols-3">
     <div class="prose-site lg:col-span-2">
       {{#if  model.components.details}}

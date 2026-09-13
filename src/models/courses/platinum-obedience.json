@@ -17,5 +17,10 @@
     "details": "courses/platinum/you-will-learn",
     "testimonial": "courses/platinum/testimonial"
   },
-  "faqs": "../models/faqs/platinum.json"
+  "faqIds": [
+    "platinum-skip",
+    "platinum-after",
+    "booking-required",
+    "what-to-bring"
+  ]
 }

@@ -216,6 +216,7 @@ const SECTIONS = {
   courses: { label: 'Courses', id: 'courses/index', child: 'courses/course' },
   about: { label: 'About Us', id: 'about/index', child: 'about' },
   contact: { label: 'Contact', id: 'contact', child: null },
+  faqs: { label: 'FAQs', id: 'faqs', child: null },
 }
 
 // The breadcrumb trail for the page being rendered, derived from that page's own
@@ -365,7 +366,15 @@ kiss
     model: {
       image: '/images/consultations/consultations-v1.webp',
       caption: 'right',
-      faqs: '../models/faqs/consultations.json',
+      // The handful of answers this page shows inline; every answer, including
+      // these, is on /faqs/. Ids live in src/models/faqs/*.json.
+      faqIds: [
+        'cons-too-late',
+        'cons-what-happens',
+        'cons-referral',
+        'cons-after',
+        'cons-where',
+      ],
     },
     controller: 'faqMapper.js',
     title: 'Dog Behavioural Consultations in South Wales by Gaynor Probert',
@@ -388,7 +397,14 @@ kiss
     model: {
       image: '/images/courses/classes-v1.1.webp',
       caption: 'left',
-      faqs: '../models/faqs/courses.json',
+      faqIds: [
+        'course-prices',
+        'which-course',
+        'service-triage',
+        'booking-required',
+        'venue',
+        'vaccinations',
+      ],
     },
     controller: 'faqMapper.js',
     title: 'Dog Training Classes in South Wales with Gaynor Probert',
@@ -473,6 +489,23 @@ kiss
     ignoreLlms: true,
   })
 
+  // Every FAQ on the site, on one page. The course and consultation pages each
+  // show the few answers their own visitors ask for, but this is where the full
+  // set lives — one URL for a person to search, and the only page carrying
+  // FAQPage JSON-LD, so an answer is marked up once rather than seven times.
+  .page({
+    view: 'faqs.hbs',
+    model: { noHero: true },
+    controller: 'faqHub.js',
+    title: 'Dog Training FAQs | A1K9 Training near Swansea',
+    description:
+      'Answers about dog training courses and behavioural consultations with Gaynor Probert near Swansea: prices, start dates, which course suits your dog, vaccinations and what to bring.',
+    path: 'faqs',
+    slug: 'index',
+    sitemapPriority: '0.70',
+    sitemapChangefreq: 'monthly',
+  })
+
   .generate()
   .sitemap()
   // llms.txt (llmstxt.org): the index answer engines read first. kiss derives
@@ -489,6 +522,7 @@ kiss
       'behavioural-consultations': 'Behavioural consultations',
       about: 'About',
       contact: 'Home and contact',
+      faqs: 'Frequently asked questions',
     },
   })
 

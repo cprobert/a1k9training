@@ -18,5 +18,11 @@
     "details": "courses/silver/you-will-learn",
     "testimonial": "courses/silver/testimonial"
   },
-  "faqs": "../models/faqs/silver.json"
+  "faqIds": [
+    "silver-distractions",
+    "silver-skip",
+    "booking-required",
+    "what-to-bring",
+    "rain"
+  ]
 }

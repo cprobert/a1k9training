@@ -21,5 +21,12 @@
     "details": "courses/puppy/you-will-learn",
     "testimonial": "courses/puppy/testimonial"
   },
-  "faqs": "../models/faqs/puppy.json"
+  "faqIds": [
+    "puppy-socialise-safely",
+    "puppy-nipping",
+    "puppy-booking",
+    "puppy-children",
+    "vaccinations",
+    "missed-week"
+  ]
 }

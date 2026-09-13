@@ -19,5 +19,11 @@
     "testimonial": "courses/junior/testimonial"
   },
   "captionOffset": true,
-  "faqs": "../models/faqs/junior.json"
+  "faqIds": [
+    "junior-pull-recall",
+    "which-course",
+    "booking-required",
+    "what-to-bring",
+    "missed-week"
+  ]
 }

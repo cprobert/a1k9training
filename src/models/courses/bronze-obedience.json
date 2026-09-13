@@ -18,5 +18,11 @@
     "details": "courses/bronze/you-will-learn",
     "testimonial": "courses/bronze/testimonial"
   },
-  "faqs": "../models/faqs/bronze.json"
+  "faqIds": [
+    "bronze-pull-recall",
+    "which-course",
+    "booking-required",
+    "what-to-bring",
+    "missed-week"
+  ]
 }

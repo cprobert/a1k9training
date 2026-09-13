@@ -1,22 +1,16 @@
-import { createRequire } from 'node:module'
-import 'colors'
+import { faqsByIds } from './faqLib.js'
 
-// The faqs path in a model is relative to this file, so the require has to
-// resolve from here — createRequire(import.meta.url) keeps that unchanged
-// now the controller is ESM.
-const require = createRequire(import.meta.url)
-
-export default ({ model }) => {
-  if (model.faqs) {
-    console.log('Loading faqs:'.grey, model.faqs)
-    const faqs = require(model.faqs)
-    model.faqs = faqs.faqs
-  }
-
-  return {
-    slug: model.slug,
-    title: model.title,
-    description: model.description,
-    model: model,
-  }
-}
+// Runs once per record in src/models/courses for the /courses/* fan-out.
+// A record names the FAQs its page shows inline as `faqIds`; the answers
+// themselves live in src/models/faqs/*.json and are resolved by faqLib, so the
+// same answer appears on the course page and on /faqs/ without being written
+// twice. An id nothing defines fails the build.
+export default ({ model }) => ({
+  slug: model.slug,
+  title: model.title,
+  description: model.description,
+  model: {
+    ...model,
+    faqs: faqsByIds(model.faqIds, `the ${model.slug} course record`),
+  },
+})

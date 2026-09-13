@@ -14,5 +14,9 @@
     "details": "courses/one-to-one/you-will-learn",
     "testimonial": "courses/one-to-one/testimonial"
   },
-  "faqs": "../models/faqs/one-to-one.json"
+  "faqIds": [
+    "one-to-one-what",
+    "service-triage",
+    "venue"
+  ]
 }

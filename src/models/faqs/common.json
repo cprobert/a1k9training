@@ -1,0 +1,82 @@
+{
+  "faqs": [
+    {
+      "id": "course-prices",
+      "group": "booking",
+      "q": "How much do the courses cost, and do the later courses cost the same?",
+      "a": "Each course page shows its price just under the heading. At the moment [PRICES]. One-to-one sessions and behavioural consultations are arranged to suit you and your dog, so Gaynor comes back to you with times and prices when you get in touch."
+    },
+    {
+      "id": "booking-required",
+      "group": "booking",
+      "q": "Do I have to book a place on a course, or can we just turn up?",
+      "a": "Every course needs booking before you attend. The Junior, Bronze, Silver, Gold and Platinum obedience courses run for six consecutive weeks, so the group is set before the course starts, and Puppy Socialisation also needs a place booked in advance — get in touch and Gaynor will arrange it."
+    },
+    {
+      "id": "deposit-payment",
+      "group": "booking",
+      "q": "Do we have to pay in advance when we book an obedience course?",
+      "a": "A non-refundable £50 deposit by bank transfer secures your place (this isn't required for the Puppy Socialisation course). Any remaining balance is paid on the first week when you arrive."
+    },
+    {
+      "id": "missed-week",
+      "group": "booking",
+      "q": "If I miss a week of a course, can it be credited to another course?",
+      "a": "Sorry, no. Classes can't be carried over or credited to another course, on any course including Puppy Socialisation, as the courses run over six consecutive weeks and you have paid for those dates."
+    },
+    {
+      "id": "which-course",
+      "group": "choosing",
+      "q": "Which course should my dog start on: Puppy Socialisation, Junior or Bronze?",
+      "a": "It depends on your dog's age. Puppy Socialisation is for pups up to 6 months, the Junior course is for young dogs aged 6 to 12 months, and Bronze is for dogs 12 months of age and upward. Junior through to Platinum is a step-by-step progression, and Puppy Socialisation is a standalone class, so your puppy does not need it before starting Junior. If you're not sure, tell Gaynor a little about your dog and she will come back to you with whether it's the right course to start on."
+    },
+    {
+      "id": "service-triage",
+      "group": "choosing",
+      "q": "Do I need a group course, a one to one, or a behavioural consultation?",
+      "a": "Group courses are for obedience and everyday manners — lead walking, recall, sit and down, stays — taught step by step over six weeks. A one to one is a bespoke session on whatever you are finding difficult, and suits owners who work shifts or can't commit to a weekly class, who want to get further than a class will take them, who feel self-conscious training in front of others, or whose dog's temperament doesn't suit a class. A behavioural consultation is for a behaviour problem rather than a training gap: aggression towards dogs or people, growling or biting, destruction, boisterousness you can't control, or a dog you can't leave alone. If you're not sure, tell Gaynor a little about your dog when you get in touch and she will say where to start."
+    },
+    {
+      "id": "breeds",
+      "group": "choosing",
+      "q": "Do you train all breeds of dogs?",
+      "a": "Yes, we have experience of training almost all breeds of dogs."
+    },
+    {
+      "id": "venue",
+      "group": "practical",
+      "q": "Where are the courses held?",
+      "a": "We now run from two venues near Swansea: the A1K9 Training Grounds, and Llys Nini Animal Centre (RSPCA), Penllergaer, for indoor sessions. Gaynor will confirm which one your session is at, usually depending on the weather. (See directions on website)"
+    },
+    {
+      "id": "rain",
+      "group": "practical",
+      "q": "If it is raining will the class be cancelled?",
+      "a": "No, it will be held indoors at Llys Nini Animal Centre (RSPCA), Penllergaer, instead."
+    },
+    {
+      "id": "what-to-bring",
+      "group": "practical",
+      "q": "What do I need to bring to a class, and what sort of lead?",
+      "a": "A collar, lead and some treats that your dog likes to eat. Bring whatever lead you have and Gaynor will advise you what is best to use with your dog. A1K9 also sells good quality training equipment at the training grounds, and buying there means you are shown how to use it correctly."
+    },
+    {
+      "id": "what-to-wear",
+      "group": "practical",
+      "q": "What should I wear to a class?",
+      "a": "You should wear warm clothes and sturdy shoes as we will work outdoors whenever possible."
+    },
+    {
+      "id": "children-obedience",
+      "group": "practical",
+      "q": "Can children come to the obedience courses?",
+      "a": "Because the people in the obedience courses are constantly on the move and changing direction, children have to sit on the side and watch. Many do, and they are welcome. The puppy socialisation classes are different — there, children are encouraged to come and take part."
+    },
+    {
+      "id": "vaccinations",
+      "group": "practical",
+      "q": "Does my dog need to have had kennel cough vaccination to come to classes?",
+      "a": "No, your dog does not need to have kennel cough vaccination to come to training classes, but their yearly vaccinations need to be up to date. A puppy needs all its vaccinations before it can attend the Puppy Socialisation course."
+    }
+  ]
+}

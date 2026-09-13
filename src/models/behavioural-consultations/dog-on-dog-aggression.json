@@ -12,5 +12,11 @@
     "intro": "behavioural-consultations/dog-on-dog-aggression/intro",
     "details": "behavioural-consultations/dog-on-dog-aggression/details"
   },
-  "faqs": "../models/faqs/consultations.json"
+  "faqIds": [
+    "cons-dog-aggression",
+    "cons-what-happens",
+    "cons-referral",
+    "cons-where",
+    "cons-too-late"
+  ]
 }

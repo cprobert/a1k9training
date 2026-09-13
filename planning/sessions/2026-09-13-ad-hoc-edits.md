@@ -241,6 +241,44 @@ none yet recurring across sessions):
   --summary generate.js` — `ok`, 19 pages, 0 failed; built the real site and
   read back both corrected strings.
 
+- **2026-09-13, edit 7 — distilled Gaynor's Junior enquiry-reply email into
+  the site.** Operator forwarded the email Gaynor actually sends people who
+  ask about the Junior course. Cross-checked against the site first: price
+  (£119.99), format (6 weeks, 1 hour) and next start (Sun 11 Oct, 2pm)
+  already matched exactly (set in edit 1). What was genuinely new:
+  - **Declined to publish, on purpose:** the email includes Gaynor's bank
+    name, sort code and account number for bank-transfer payment. Not
+    added to the site in any form — publishing real account details on a
+    public page is a standing security anti-pattern (scraper/fraud
+    exposure), independent of anything asked. No replacement wording added
+    either, since none was requested.
+  - **Non-refundable deposit** — confirmed with the operator this applies
+    to all courses (not Junior-only), so `faqs/courses.json`, `gold.json`,
+    `silver.json` and `platinum.json` all gained "non-refundable" on their
+    £50-deposit answer.
+  - **Curriculum gap on `junior/you-will-learn.html`** — the page covered
+    4 of the 9 topics in Gaynor's own teaching list. Added the missing
+    five, in the site's existing third-person voice (not the email's
+    first-person "I will…"): Recall, Sit/down/stand, Stay, Examine your
+    pup, and off-lead play worked into the closing callout alongside class
+    size (~10 puppies/course) and the Junior-award outcome. Deliberately
+    skipped the email's closing sales paragraph about trained dogs being
+    welcome in hotels/kennels — judged as promotional flourish rather than
+    course information, and out of step with the page's terser style.
+  - Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages,
+    0 failed. Rendered pages read back visually in a real browser.
+
+- **2026-09-13, edit 8 — the Puppy course video.** Operator supplied
+  https://youtu.be/B9IWqEXo2eA. Added `videoId`/`videoTitle` to
+  `puppy-socialisation.json` and a responsive `youtube-nocookie.com` iframe
+  block in `course.hbs`, guarded by `{{#if model.videoId}}` so every other
+  course page is unaffected — a normal clickable player (no autoplay/mute
+  facade; that pattern is `layout-video.hbs`'s home-page hero, a different
+  use case per the brainstorm). Verified by loading the built page in a
+  real browser: thumbnail and title ("Puppy class: Having fun with the
+  pup" — Gaynor Probert, Canine Behaviour Training Academy) confirm it's
+  the right video and the embed is live.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

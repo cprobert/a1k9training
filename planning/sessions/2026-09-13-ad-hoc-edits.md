@@ -192,6 +192,37 @@ none yet recurring across sessions):
   --summary generate.js` — `ok`, 19 pages, 0 failed, 513 links none broken;
   built the real site and read back the rendered card heading.
 
+- **2026-09-13, edit 5 — external links open in a new tab with an icon.**
+  Operator asked that every link to an external site open in a new tab with
+  an appropriate `rel` and a small icon hooked on that `rel`. Surveyed the
+  whole site first (`grep` across `src/pages`, `src/layouts`, `src/partials`,
+  including `.md` partials for markdown-syntax links) rather than editing
+  page by page — found every external link was already raw HTML with
+  `target="_blank"`/`_new`/`fb` and `rel="noopener"`, no markdown-authored
+  external links existed at all, so no Remarkable renderer changes were
+  needed. Standardised all ~30 across four files (`contact.hbs`,
+  `index.hbs`, `associations.hbs`, `vet-referrals.hbs`) to
+  `target="_blank" rel="noopener external"` — the non-standard `target="_new"`
+  (Google Maps) and `target="fb"` (Facebook) both silently reused a single
+  named browsing context across every click, so every click after the first
+  landed in the same stale tab; `_blank` fixes that as a side effect.
+  Kept `noopener` without adding `noreferrer`, since these are Gaynor's own
+  outbound links to her accreditation bodies and Facebook, who may value
+  seeing that the traffic came from her site.
+  Added one CSS rule to `src/styles/site.css`'s `@layer components`:
+  `a[rel~='external']:not(:has(img))::after` with a `mask-image` (Heroicons'
+  "arrow-top-right-on-square", MIT-licensed) on `background-color: currentColor`,
+  so the glyph always matches the link's own colour rather than needing a
+  colour per context. The `:not(:has(img))` exclusion is deliberate: an
+  image-wrapped link (a logo, the Facebook icon) would otherwise get the mark
+  floating stray on its own line beneath the full-width image.
+  Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages,
+  0 failed; `node qa/no-bootstrap.mjs docs` — clean. Screenshotted the built
+  home page in a real browser (Chrome via claude-in-chrome) — icon shows on
+  the "Gaynor is…" text links, the "Website" buttons and "Open Page »", and
+  is correctly absent on every internal link and the image-wrapped logo/
+  Facebook-icon links.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

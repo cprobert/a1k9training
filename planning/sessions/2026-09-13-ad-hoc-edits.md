@@ -442,6 +442,25 @@ none yet recurring across sessions):
   every page) none broken; `node qa/no-bootstrap.mjs docs` clean; built
   and read back both changes rendering correctly.
 
+- **2026-09-13, edit 14 — the `/faqs/` hub and its navbar link supersede
+  this branch's "no controller refactor" non-goal; logged as good drift,
+  not silently absorbed.** The open's non-goals said "no redesign, no new
+  page/section, no controller refactor — this is small content-level
+  edits unless Gaynor's requests say otherwise." The operator explicitly
+  directed a larger piece of work mid-branch — "I have opus critiquing our
+  work. Its moving the FAQs to a searchable page" — which
+  `a1k9training-aa` built (commit `1c8e305`): a new page (`/faqs/`), a new
+  controller (`faqHub.js`) and a new non-page module (`faqLib.js`), plus
+  edits to the existing `course.js`, `behavioural-consultations.js` and
+  `faqMapper.js` controllers. A separate agent session (Claude Opus 5,
+  co-authoring directly as the operator, commit `5553bca`) then added
+  FAQs to the top navigation after finding the footer-only link
+  insufficient ("the operator could not find the page"). Both are real,
+  deliberate scope expansion — not scope creep — done at the operator's
+  explicit direction outside this conversation, and both are captured
+  here because this file is this branch's one record even for work this
+  session didn't perform.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

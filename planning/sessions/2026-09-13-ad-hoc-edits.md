@@ -279,6 +279,34 @@ none yet recurring across sessions):
   pup" — Gaynor Probert, Canine Behaviour Training Academy) confirm it's
   the right video and the embed is live.
 
+- **2026-09-13, edit 9 — the two `a1k9training-aa`-tracked FAQ items,
+  resolved by Gaynor.** Gaynor answered both directly: "No credit moved to
+  next course on any courses now including puppy" (not a Bronze→Junior
+  rename as first assumed — there's no credit mechanism at all any more),
+  and on vet referrals, they're optional — "they can just come to me...
+  it's rare I use a vet referral", needed only to claim via pet insurance
+  (longer consultation, full report, costs more up front, reimbursed by
+  the insurer). `a1k9training-aa` reviewed both and recommended fixing
+  directly rather than waiting for its Pass 4 draft, since these are
+  confirmed factual errors and its own deliverable is a report, not repo
+  edits; it will re-read this branch before drafting. Fixed:
+  - `faqs/puppy.json` — the question itself rested on the old, wrong "5
+    months" move-up age; reworded to "What if we miss some of the puppy
+    classes?" / "Classes can't be carried over or credited to another
+    course, including Junior."
+  - `faqs/consultations.json` — "Do I need a referral from my vet?" now
+    answers plainly: no, come straight to Gaynor, a referral only matters
+    for an insurance claim.
+  - `behavioural-consultations/dog-on-dog-aggression/details.md` and
+    `.../dog-on-person-aggression/details.md` — both had "With a referral
+    from your vet, you are able to come to her…", which reads as a
+    requirement; corrected in both to state no referral is needed.
+  - Left `behavioural-consultations/shared/vet-referrals.hbs` alone — it
+    already says "if you're referred", not "you must be referred", so it
+    was accurate already.
+  Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages,
+  0 failed; built the real site and read back all three corrected strings.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

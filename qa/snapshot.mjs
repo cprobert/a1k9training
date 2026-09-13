@@ -94,7 +94,12 @@ async function extractContent(page) {
       if (!href || href === '#' || href.startsWith('mailto:') || href.startsWith('tel:')) continue
       try {
         const u = new URL(href, location.href)
-        if (u.origin === origin) internalLinks.push(u.pathname + u.search)
+        // Netlify serves /courses and /courses/ as the same page (the first
+        // 301s to the second), so record one spelling: a trailing slash is
+        // dropped everywhere but the root. Without this a link that merely
+        // gained its slash reads as "lost internal link" in qa/compare.mjs.
+        const pathname = u.pathname.length > 1 ? u.pathname.replace(/\/$/, '') : u.pathname
+        if (u.origin === origin) internalLinks.push(pathname + u.search)
       } catch {
         // ignore unparsable hrefs
       }

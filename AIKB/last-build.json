@@ -7,133 +7,140 @@
       "view": "index.hbs",
       "buildTo": "./docs/index.html",
       "ok": true,
-      "hash": "3cc9cff868e2d73ef4cb658bcfb6ffe862b4e145",
+      "hash": "0df0c538e52348809b45ae727c97b4c858c30615",
       "id": "index"
     },
     {
       "view": "contact.hbs",
       "buildTo": "./docs/contact/index.html",
       "ok": true,
-      "hash": "f9ae10fab67e49aefe6133717c8d9f1583be6e0d",
+      "hash": "8dea3ac3d98abcf7c3d0c6625100086ffb30c9f8",
       "id": "contact"
     },
     {
       "view": "thanks.hbs",
       "buildTo": "./docs/thanks/index.html",
       "ok": true,
-      "hash": "2b6b762f48b1dbbbb64bb7614b41c56a4a9cdd23",
+      "hash": "a7520395f882ed93ad49421fc4b228127bcb7aed",
       "id": "thanks"
     },
     {
       "view": "404.hbs",
       "buildTo": "./docs/404.html",
       "ok": true,
-      "hash": "3b85fb8ba2680d21c7cdbb4cf49e23abfd6e1caa",
+      "hash": "063e71713acfa08d91dc59392581b0ad2274a818",
       "id": "404"
     },
     {
       "view": "about.hbs",
       "buildTo": "./docs/about/facilities.html",
       "ok": true,
-      "hash": "3a959379a9d64d53b700c06f1be2b21c52bae482",
+      "hash": "fe27ecfa524e54f33b9205c6865c95a24d64a1ea",
       "id": "about/facilities"
     },
     {
       "view": "behavioural-consultations/index.hbs",
       "buildTo": "./docs/behavioural-consultations/index.html",
       "ok": true,
-      "hash": "ebe854c99dc0acf7358b1a785330de6363d46792",
+      "hash": "174d884336e23b970d5930fb8d72c583b378c311",
       "id": "behavioural-consultations/index"
     },
     {
       "view": "courses/index.hbs",
       "buildTo": "./docs/courses/index.html",
       "ok": true,
-      "hash": "b21091a74e5282fba36782968f7e54376195ea23",
+      "hash": "6341fc9a44b32649529401e541d7e0417bbb45d8",
       "id": "courses/index"
     },
     {
       "view": "behavioural-consultations/consultation.hbs",
       "buildTo": "./docs/behavioural-consultations/dog-on-dog-aggression.html",
       "ok": true,
-      "hash": "4ed72e40d6135e559e1b81a1fcb98db58ff5f1b0",
+      "hash": "69354bd89e4bb82c417efce5b1908ec3a5b76795",
       "id": "behavioural-consultations/consultation/dog-on-dog-aggression"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/bronze-obedience.html",
       "ok": true,
-      "hash": "667f6a2ed0bbaf9da45af2b51b49256b0f1fc89f",
+      "hash": "0702794621b3059ef69316dbe7a0af1c6f657bd5",
       "id": "courses/course/bronze-obedience"
+    },
+    {
+      "view": "faqs.hbs",
+      "buildTo": "./docs/faqs/index.html",
+      "ok": true,
+      "hash": "9f445e7489604565c2927c48a6e2dc01fab85994",
+      "id": "faqs"
     },
     {
       "view": "about.hbs",
       "buildTo": "./docs/about/gaynor-probert.html",
       "ok": true,
-      "hash": "a9e67dde5fe984d797c301950b93f262ce3dd86e",
+      "hash": "6ad8bdb45a2bd0fff293ef88471bd2c9edc58eca",
       "id": "about/gaynor-probert"
     },
     {
       "view": "behavioural-consultations/consultation.hbs",
       "buildTo": "./docs/behavioural-consultations/dog-on-person-aggression.html",
       "ok": true,
-      "hash": "947d3f65b86f79298a6985b779b2f4de72e3d460",
+      "hash": "a45a4f154bca41f2d17fd1078233c0ead69841fe",
       "id": "behavioural-consultations/consultation/dog-on-person-aggression"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/gold-obedience.html",
       "ok": true,
-      "hash": "b69ecb52e1a914db2aabf6d3e22e3f5e722ba4fb",
+      "hash": "6c1ee1eaf727143066ceafa77b77a44c30609104",
       "id": "courses/course/gold-obedience"
     },
     {
       "view": "about.hbs",
       "buildTo": "./docs/about/index.html",
       "ok": true,
-      "hash": "4ced0a9b75c1d44609f75adf0a83dee883988bea",
+      "hash": "aaf51d3f5b2fa48814a58022da4016183ecbb88b",
       "id": "about/index"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/junior-obedience.html",
       "ok": true,
-      "hash": "f0e30550810605a43727ece6fd57ba5525ebce2c",
+      "hash": "38460a40d2f5e9a8ee68b9f2b521f70131ccb458",
       "id": "courses/course/junior-obedience"
     },
     {
       "view": "about.hbs",
       "buildTo": "./docs/about/sara-thomas.html",
       "ok": true,
-      "hash": "3e32f533e7b0021f16206aa7625a9dbffa9031f3",
+      "hash": "a4d9b778ee81ca1a5304374980f2f07b318e35f1",
       "id": "about/sara-thomas"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/one-to-one.html",
       "ok": true,
-      "hash": "007f326cfc4d0299dcd7461383082407e91c2dfc",
+      "hash": "3568f696ab6ad9d9d40e3f014550749f3301350c",
       "id": "courses/course/one-to-one"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/platinum-obedience.html",
       "ok": true,
-      "hash": "a58b025d56acc857f8a40c1fe1f0c19bfb299144",
+      "hash": "6afb624d15fd4a07f59082f4c4ba5a8284715cef",
       "id": "courses/course/platinum-obedience"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/puppy-socialisation.html",
       "ok": true,
-      "hash": "6a76c3a4db0fce5ad0a853e82e82e9f998ad6b94",
+      "hash": "564ca2c13a79a6231b6b9d5c059c35b03273b6d2",
       "id": "courses/course/puppy-socialisation"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/silver-obedience.html",
       "ok": true,
-      "hash": "b0e53438ba2494d1d4354a45e480a24578556bc0",
+      "hash": "ec239cbf4b74baa1561c7d2d7b248814a5af5142",
       "id": "courses/course/silver-obedience"
     }
   ],
@@ -149,7 +156,7 @@
     },
     {
       "source": "css/site.css",
-      "target": "css/site.8fdcf48c.css"
+      "target": "css/site.e7abc083.css"
     },
     {
       "source": "favicon.ico",
@@ -497,7 +504,7 @@
     },
     {
       "source": "js/site.js",
-      "target": "js/site.9e8bff8d.js"
+      "target": "js/site.e575f042.js"
     },
     {
       "source": "robots.txt",
@@ -532,19 +539,25 @@
         "kind": "controllers",
         "id": "behavioural-consultations.js",
         "note": "notes/controllers/behavioural-consultations.md",
-        "hash": "11f8b7629362a8a382d91c9bc8ba7f80df59aff0"
+        "hash": "36351b857c9d43e2b082cf919c3c61cfd6f09585"
       },
       {
         "kind": "controllers",
         "id": "course.js",
         "note": "notes/controllers/course.md",
-        "hash": "877201383d605184398e1913c4137ea16fb74ad3"
+        "hash": "c00a59e9f8de4e8b1866d50203499f3480f6f691"
+      },
+      {
+        "kind": "controllers",
+        "id": "faqHub.js",
+        "note": "notes/controllers/faqhub.md",
+        "hash": "ddfc88d9646cf01dc4b9e886b2bc9accda5baff0"
       },
       {
         "kind": "controllers",
         "id": "faqMapper.js",
         "note": "notes/controllers/faqmapper.md",
-        "hash": "9f34e2fa9adf0d76eb66f601bb264c6f79483542"
+        "hash": "f814ebd8f081db04fe37611c6e48ec29c5e54bc2"
       },
       {
         "kind": "pipeline",
@@ -555,7 +568,7 @@
     ]
   },
   "links": {
-    "checked": 513,
+    "checked": 555,
     "broken": []
   },
   "redirects": {

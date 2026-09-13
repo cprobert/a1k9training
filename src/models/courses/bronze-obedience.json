@@ -17,5 +17,6 @@
     "intro": "courses/bronze/intro",
     "details": "courses/bronze/you-will-learn",
     "testimonial": "courses/bronze/testimonial"
-  }
+  },
+  "faqs": "../models/faqs/bronze.json"
 }

@@ -18,5 +18,6 @@
     "details": "courses/junior/you-will-learn",
     "testimonial": "courses/junior/testimonial"
   },
-  "captionOffset": true
+  "captionOffset": true,
+  "faqs": "../models/faqs/junior.json"
 }

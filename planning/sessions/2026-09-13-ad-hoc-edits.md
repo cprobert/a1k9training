@@ -325,6 +325,56 @@ none yet recurring across sessions):
   real browser (desktop width) — video now roughly matches the testimonial
   card's width instead of spanning edge to edge.
 
+- **2026-09-13, edit 11 — FAQ improvements from the contact-log report that
+  need nothing from Gaynor.** `a1k9training-aa` published its finished
+  analysis (private artifact) of 4 years of contact-form enquiries: 66 draft
+  FAQs across 7 sections, 53 needing a placeholder answer only Gaynor can
+  give. The operator asked what could be added now, before her replies come
+  back. Pulled the drafts marked `new`/`covered`/`improve` with no
+  `needsGaynor` flag — complete answers already, using facts already true
+  on the site — plus one structural fix the report's "Beyond the FAQs"
+  section flagged that needed no new fact either:
+  - **Two pages gained an actual gap-closer.** Bronze and Junior had zero
+    FAQ files at all (`bronze-obedience.json`/`junior-obedience.json`
+    carried no `faqs` field, so `course.hbs`'s FAQ block never rendered on
+    either page) — new `faqs/bronze.json` and `faqs/junior.json`, wired in.
+    Same gap on One-to-one: new `faqs/one-to-one.json`, wired in.
+  - **`faqs/courses.json`** (renders on `/courses/`) — added "How much do
+    the courses cost, and do the later courses cost the same?" (uses the
+    prices added in edit 1), "Which course should my dog start on?" (the
+    age bands already on the home page) and a triage FAQ, "Do I need a
+    group course, a one to one, or a behavioural consultation?" — the
+    report's own three-way split of what each service is for.
+  - **`faqs/puppy.json`** — added "Is puppy class just play, or training
+    too?" and "Will it help with nipping and play biting?"
+  - **`faqs/consultations.json`** — added "We've tried other trainers and
+    nothing has worked — is it too late?", chosen specifically because the
+    report's tone finding was that the most distressed enquirers blame
+    themselves; this answers that directly with warmth, using only the
+    site's own existing "dogs have a far greater ability to change than
+    people do" register.
+  - **`faqs/platinum.json`** — added "What comes after Platinum?" (one to
+    one, per the existing enquiry pattern already answered elsewhere).
+  - **`faqs/silver.json`** — added a Silver-vs-Gold "which one fits my
+    dog" FAQ, on Silver rather than duplicated onto Gold, to avoid the
+    same two paragraphs drifting apart over time.
+  - **`junior/you-will-learn.html`** — the existing "Follow me" section
+    already taught loose-lead walking but never used that phrase; the
+    report found it's the single most common reason 6–12-month owners
+    write in (35 of them), yet the page was unfindable on that exact term.
+    Heading changed to "Follow me — walking on a loose lead"; no change to
+    what it teaches.
+  - **Deliberately left alone**, as agreed at the plan stage: the
+    consultation-page tone rewrite and the "findability in owners' own
+    words" heading changes (both editorial-voice calls flagged for a
+    separate check-in rather than bundled in), and every one of the 53
+    placeholder drafts still waiting on Gaynor.
+  Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages,
+  0 failed, 513 links none broken; `node qa/no-bootstrap.mjs docs` clean;
+  built the site and read back all eleven additions rendering on their
+  correct pages, including confirming Bronze/Junior/One-to-one now render
+  an FAQ section (and its FAQPage JSON-LD) for the first time.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

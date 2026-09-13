@@ -10,6 +10,9 @@
   "level": 3,
   "rung": "Silver",
   "heading": "Develop Your Training Techniques",
+  "price": "£129.99",
+  "priceNote": "6-week course, 1 hour a week",
+  "nextStart": "Saturday 10 October, 2:00pm",
   "components": {
     "intro": "courses/silver/intro",
     "details": "courses/silver/you-will-learn",

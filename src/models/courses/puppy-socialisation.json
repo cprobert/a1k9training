@@ -11,6 +11,9 @@
   "onramp": true,
   "nextLead": "If your puppy is 5 months of age or over it's time to move to the:",
   "heading": "Congratulations! You have a new puppy.",
+  "price": "£59.99",
+  "priceNote": "6 classes, 30 minutes each",
+  "nextStart": "Sunday 11 October, 3:00pm",
   "components": {
     "intro": "courses/puppy/intro",
     "details": "courses/puppy/you-will-learn",

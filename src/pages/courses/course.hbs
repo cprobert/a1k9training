@@ -23,6 +23,12 @@
 {{#content "main"}}
   <div class="page-header">
       <h1>{{model.heading}}</h1>
+      {{#if model.price}}
+      <p class="mt-2 text-lg font-medium text-brand-700">
+        {{model.price}}{{#if model.priceNote}} <span class="text-base font-normal text-ink-600">— {{model.priceNote}}</span>{{/if}}
+        {{#if model.nextStart}}<br><span class="text-base text-ink-600">Next course starts {{model.nextStart}}</span>{{/if}}
+      </p>
+      {{/if}}
   </div>
   <div class="grid gap-8 lg:grid-cols-3">
     <div class="prose-site lg:col-span-2">

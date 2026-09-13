@@ -9,6 +9,9 @@
   "level": 4,
   "rung": "Gold",
   "heading": "Focusing When There Are Distractions",
+  "price": "£129.99",
+  "priceNote": "6-week course, 1 hour a week",
+  "nextStart": "Saturday 10 October, 1:00pm",
   "components": {
     "intro": "courses/gold/intro",
     "details": "courses/gold/you-will-learn",

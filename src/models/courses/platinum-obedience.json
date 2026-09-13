@@ -10,6 +10,8 @@
   "level": 5,
   "rung": "Platinum",
   "heading": "Training to the Highest Standards",
+  "price": "£129.99",
+  "priceNote": "6-week course, 1 hour a week",
   "components": {
     "intro": "courses/platinum/intro",
     "details": "courses/platinum/you-will-learn",

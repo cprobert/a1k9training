@@ -88,6 +88,45 @@ none yet recurring across sessions):
 <!-- Dated notes where the remit legitimately expanded mid-branch. Good drift is
      recorded here and stays on this branch; a new branch is the operator's call. -->
 
+- **2026-09-13, edit 1 — course pricing and next-start dates.** Gaynor sent
+  the next course schedule and prices via the operator. Brainstormed as
+  "bounded" (new data fields on an existing model/view pattern, not a new
+  subsystem) before any code changed; two factual ambiguities in Gaynor's
+  message (a schedule clash, and what "the six one hour long course" price
+  covered) were resolved with the operator before publishing, not assumed.
+  Decided: price + a hand-edited `nextStart` display string on each course
+  model (`price`, `priceNote`, `nextStart`), rendered under the `<h1>` in
+  `src/pages/courses/course.hbs`, guarded by `{{#if model.price}}`; no
+  change to the `/courses/` index (no summary table), no change to
+  One-to-one (stays enquiry-only). The A1K9 Group / personal-protection-dogs
+  note the operator also raised was explicitly declined — "we don't want to
+  promote protection work on this site" — so nothing was added anywhere for
+  that.
+  - `src/models/courses/gold-obedience.json`: price £129.99 (+£10 on the
+    operator's instruction), next start Sat 10 Oct 1:00pm.
+  - `src/models/courses/silver-obedience.json`: price £129.99 (+£10), next
+    start Sat 10 Oct 2:00pm.
+  - `src/models/courses/bronze-obedience.json`: price £119.99, next start
+    Sun 11 Oct 1:00pm.
+  - `src/models/courses/junior-obedience.json`: price £119.99, next start
+    Sun 11 Oct 2:00pm.
+  - `src/models/courses/puppy-socialisation.json`: price £59.99, next start
+    Sun 11 Oct 3:00pm (6 classes, 30 minutes each, not the 6-week/1-hour
+    format the other five use).
+  - `src/models/courses/platinum-obedience.json`: price £129.99 (+£10), no
+    `nextStart` — not in this batch of dates.
+  - `src/pages/courses/course.hbs`: the price/next-start block.
+  - Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages,
+    0 failed, 513 internal references none broken. Built the real site
+    (`npm run build`) and eyeballed the rendered HTML for gold-obedience
+    (price + note + next start all present), puppy-socialisation (same,
+    with its own note text), platinum-obedience (price + note, correctly
+    *no* next-start line), and one-to-one (correctly no price block at all).
+  - Open: Junior/Bronze/Silver/Gold/Platinum's FAQ files still have the
+    stale venue text and the deposit/business-name inconsistencies flagged
+    earlier this session — not touched here, still waiting on Gaynor's
+    answers to those three questions.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

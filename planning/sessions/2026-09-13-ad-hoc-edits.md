@@ -127,6 +127,45 @@ none yet recurring across sessions):
     earlier this session — not touched here, still waiting on Gaynor's
     answers to those three questions.
 
+- **2026-09-13, edit 2 — apply the approved FAQ recommendations.** The
+  operator approved the earlier FAQ recommendations ("remove covid, etc.").
+  Before editing, resolved two of the three previously-open questions
+  without needing to ask Gaynor, by reading the site's own sources of truth
+  rather than guessing:
+  - **Business name — not actually inconsistent, no fix needed.**
+    `generate.js`'s LocalBusiness JSON-LD and `og:site_name` confirm
+    "A1K9 Behaviour and Training Academy" is the business name and
+    "A1K9 Training Grounds" is one of its two *venues* (the other being
+    Llys Nini) — two different things, not a naming conflict.
+  - **Venue text in `gold.json`/`platinum.json`/`silver.json` — updated.**
+    Their "Where are the courses held?" and rain-day answers said "just
+    outside Pontardulais" / "the training barn" — stale versus the current,
+    three-way-corroborated wording in `courses.json`, `contact.hbs` and
+    `footer.hbs` (two venues: A1K9 Training Grounds, and Llys Nini Animal
+    Centre (RSPCA), Penllergaer, for indoor sessions). All three files'
+    two answers rewritten to match `courses.json`'s wording exactly.
+    Cosmetic: also trimmed trailing-space typos in two `q` strings
+    (`gold.json`, `silver.json`) while in these files.
+  - **`puppy.json` — Covid-19 line removed**, as asked. Rewritten to keep
+    the substantive answer (booking is required) without the dead
+    justification or a new claim about walk-ins, since the operator had
+    not confirmed whether walk-ins are now allowed — deliberately the
+    smallest edit that satisfies "remove covid" without inventing a policy.
+  - **New finding, not fixed — flagged instead.** `About > Facilities`
+    (`src/partials/about/facilities/facilities.hbs`) still describes an
+    on-site "large training barn" (with its own photo) as the wet-weather
+    fallback, contradicting the three sources above that all say sessions
+    move to Llys Nini. Left alone — outside the FAQ files, and resolving
+    it would mean guessing whether the on-site barn is still real.
+  - **Still open, unresolved this edit:** the deposit-policy question
+    (`courses.json` mentions a £50 deposit; `gold`/`platinum`/`silver`
+    don't) — genuinely needs Gaynor's answer, not something the site's own
+    content can settle.
+  - Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages,
+    0 failed, 513 internal references none broken. Built the real site and
+    read back the rendered FAQ text on puppy-socialisation, gold-obedience
+    and silver-obedience to confirm the new wording renders as written.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

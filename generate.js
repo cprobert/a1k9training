@@ -104,9 +104,10 @@ const LOCATIONS = [
 // text and image paths go through JSON.stringify's own escaping instead of
 // Handlebars'. Only fields this repo actually sources are included — no
 // street address or opening hours live anywhere in it, so none are invented
-// here. The Facebook link comes from src/pages/index.hbs's "Open Page »" card
-// (tracking query string dropped); the phone number is the site's tel: link.
-// `location` is the LOCATIONS pair above, sourced from src/pages/contact.hbs.
+// here. The social links come from src/partials/layout/footer.hbs (tracking
+// query string dropped from Facebook's); the phone number is the site's
+// tel: link. `location` is the LOCATIONS pair above, sourced from
+// src/pages/contact.hbs.
 kiss.handlebars.registerHelper('localBusiness', function (model) {
   const siteUrl = kiss.config.siteUrl
   const image = (model && model.image) || HOME_HERO_IMAGE
@@ -119,7 +120,11 @@ kiss.handlebars.registerHelper('localBusiness', function (model) {
     telephone: '+447798500390',
     areaServed: 'South Wales',
     image: `${siteUrl}${image}`,
-    sameAs: ['https://www.facebook.com/A1K9PDT'],
+    sameAs: [
+      'https://www.facebook.com/A1K9PDT',
+      'https://www.youtube.com/channel/UCA0GMQkoz1lgjHvo41hqH2A',
+      'https://www.linkedin.com/in/gaynor-probert-b869581a/',
+    ],
     location: LOCATIONS,
   }
 })

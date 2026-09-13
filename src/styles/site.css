@@ -294,8 +294,10 @@
    * currentColor, so it matches whatever colour the link itself is, light or dark
    * surface alike. Skipped when the link's only content is an image (a logo or
    * icon linking out): the mark would float stray beneath a full-width image
-   * rather than sit next to text. */
-  a[rel~='external']:not(:has(img))::after {
+   * rather than sit next to text. Also skipped on `.icon-link` (the footer's
+   * social icons): those are already icon-only brand marks, where a second
+   * little icon reads as clutter rather than a helpful cue. */
+  a[rel~='external']:not(:has(img)):not(.icon-link)::after {
     content: '';
     display: inline-block;
     width: 0.7em;

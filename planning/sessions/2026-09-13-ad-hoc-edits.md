@@ -375,6 +375,36 @@ none yet recurring across sessions):
   correct pages, including confirming Bronze/Junior/One-to-one now render
   an FAQ section (and its FAQPage JSON-LD) for the first time.
 
+- **2026-09-13, edit 12 — social links in the footer.** Operator asked to
+  add social links to the footer; a Facebook link already existed
+  (homepage only) and a YouTube channel URL was supplied
+  (`UCA0GMQkoz1lgjHvo41hqH2A`). No LinkedIn link existed anywhere on the
+  site despite the operator's belief there was one already — asked rather
+  than guessed or searched for a URL, and the operator supplied it. Added
+  a `.social-links` icon row (inline SVG, `currentColor`, `icon-link`
+  class) to the footer's bottom bar next to the copyright line — the
+  3-column grid above it was already full, so the bottom bar avoided a
+  layout change. Extended the external-link CSS rule from edit 5 with a
+  `.icon-link` exclusion: an icon-only brand link doesn't need the arrow
+  marker stacked on top of it the way a text link does. Also added the
+  YouTube and LinkedIn URLs to `generate.js`'s `localBusiness` helper's
+  `sameAs` array, alongside the existing Facebook entry, so the
+  LocalBusiness structured data on every page matches the footer.
+  Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages,
+  0 failed; `node qa/no-bootstrap.mjs docs` clean; built the site and
+  confirmed in a real browser — three distinct brand icons render
+  correctly in the site's green, no double arrow-icon clutter, and the
+  build's own internal-link checker doesn't need to touch them since
+  they're external.
+  **Coordination note:** `a1k9training-aa` claimed a set of files
+  (`src/models/faqs/*`, `src/models/courses/*`, `course.hbs`,
+  `src/pages/faqs.hbs`, `src/partials/faqs.hbs`, `generate.js`'s page
+  registration/SECTIONS/llms sections, `faqMapper.js`) to build a
+  dedicated `/faqs/` hub page with search. This edit's `generate.js`
+  change is to the `localBusiness` helper, a different part of the same
+  file — committed promptly specifically to land before the peer's claim
+  takes effect, to avoid a merge conflict on a shared file.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

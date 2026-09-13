@@ -157,14 +157,22 @@ none yet recurring across sessions):
     fallback, contradicting the three sources above that all say sessions
     move to Llys Nini. Left alone — outside the FAQ files, and resolving
     it would mean guessing whether the on-site barn is still real.
-  - **Still open, unresolved this edit:** the deposit-policy question
-    (`courses.json` mentions a £50 deposit; `gold`/`platinum`/`silver`
-    don't) — genuinely needs Gaynor's answer, not something the site's own
-    content can settle.
   - Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages,
     0 failed, 513 internal references none broken. Built the real site and
     read back the rendered FAQ text on puppy-socialisation, gold-obedience
     and silver-obedience to confirm the new wording renders as written.
+
+- **2026-09-13, edit 3 — deposit policy, confirmed by the operator.** "All
+  courses require a £50 deposit except for the puppy class" — so the
+  deposit-policy question from edit 2 is resolved, not an oversight.
+  `gold.json`, `platinum.json` and `silver.json`'s "Do we have to pay in
+  advance…?" answers ("You pay for the course on the first week…", no
+  deposit mentioned) rewritten to match `courses.json`'s wording ("A £50
+  deposit by bank transfer secures your place. Any remaining balance is
+  paid on the first week when you arrive."). Junior and Bronze have no own
+  FAQ file — they're only covered by `courses.json`'s shared FAQ, which
+  already stated this correctly, so nothing to change there. Verified:
+  `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages, 0 failed.
 
 ## Pulse log
 

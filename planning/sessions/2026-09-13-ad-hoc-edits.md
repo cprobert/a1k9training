@@ -174,6 +174,24 @@ none yet recurring across sessions):
   already stated this correctly, so nothing to change there. Verified:
   `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages, 0 failed.
 
+- **2026-09-13, edit 4 — the About > Facilities "training barn" finding,
+  confirmed and fixed.** The operator confirmed: A1K9 Training no longer
+  uses the on-site barn for wet-weather classes (the operator noted why —
+  not published, per the standing "don't promote protection work on this
+  site" decision from earlier — only the resulting fact is reflected on
+  the page); wet-weather sessions go to Llys Nini, matching what
+  `contact.hbs`/`footer.hbs`/`courses.json` already said.
+  `src/partials/about/facilities/facilities.hbs`'s "Indoor Training" card
+  rewritten to "Wet-Weather Sessions", reusing the existing
+  `llys-nini-cafe-exterior-v1.webp` asset (already on `contact.hbs`, real
+  dimensions 900×675 per `qa/images.json`) rather than the now-inaccurate
+  barn photo. The old barn photo
+  (`src/assets/images/about/facilities/indoor-training-v1.webp`) is no
+  longer referenced anywhere in `src/` — left in place, not deleted (image
+  lifecycle/cleanup wasn't asked for). Verified: `npx kiss-ssg check
+  --summary generate.js` — `ok`, 19 pages, 0 failed, 513 links none broken;
+  built the real site and read back the rendered card heading.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

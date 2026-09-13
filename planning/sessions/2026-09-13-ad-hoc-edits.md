@@ -223,6 +223,24 @@ none yet recurring across sessions):
   is correctly absent on every internal link and the image-wrapped logo/
   Facebook-icon links.
 
+- **2026-09-13, edit 6 — Puppy/Junior age ranges, confirmed by Gaynor.** The
+  `a1k9training-aa` session flagged the age-range inconsistency; the
+  operator relayed Gaynor's answer directly: Puppy is up to 6 months,
+  Junior is 6–12 months. The home page (`index.hbs`) already had this
+  right, so nothing to fix there. Three places didn't:
+  `junior-obedience.json`'s `description` and `junior/intro.md` both said
+  "5 to 9 months" — corrected to "6 to 12 months" — and
+  `puppy-socialisation.json`'s `nextLead` prompt said "5 months of age or
+  over", inconsistent with Junior actually starting at 6 — corrected to
+  "6 months". Deliberately left alone: `faqs/puppy.json`'s credit-answer
+  (which names "the Bronze course" as where unused Puppy credit goes, when
+  the natural next step is Junior) — that file is inside
+  `a1k9training-aa`'s declared no-touch scope (`src/models/faqs/*.json`)
+  while its Pass 4 drafts are still in progress, so flagging it rather than
+  fixing it here to avoid a collision. Verified: `npx kiss-ssg check
+  --summary generate.js` — `ok`, 19 pages, 0 failed; built the real site and
+  read back both corrected strings.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

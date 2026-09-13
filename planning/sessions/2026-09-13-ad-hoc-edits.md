@@ -1,8 +1,9 @@
 ---
 branch: content/ad-hoc-edits
 base: master
-status: open
+status: closed
 opened: 2026-09-13
+closed: 2026-09-13
 ---
 
 # Session — 2026-09-13: Ad hoc site edits, plus the AIKB CSS-hash drift found at open
@@ -470,3 +471,156 @@ none yet recurring across sessions):
 ---
 
 <!-- kiss-branch-close writes the reflection below and flips status: closed -->
+
+## Reflection (written at kiss-branch-close, 2026-09-13)
+
+### Reflect — what the session was
+
+Genuinely emergent, as scoped at open: no fixed list existed, and 14
+Amendments landed over the course of the conversation as Gaynor's answers,
+the operator's requests and a second Claude session's own work arrived one
+at a time. The shape served the work — content-level requests (a schedule
+message, an FAQ list, an enquiry-reply email, a photo, a URL) don't have a
+plan to write up front, only a sequence of small, independently verifiable
+changes. One planned sub-piece sat inside the emergent whole: the video
+feature was correctly classified as "bounded" and brainstormed (playback
+style, hosting, placement) before any code changed, rather than guessed at.
+The branch also absorbed two pieces of work this session did not itself
+perform — `a1k9training-aa`'s `/faqs/` hub and a separate Opus session's
+navbar change — both at the operator's explicit direction, both logged as
+Amendment 14 rather than left to surface only in `git log`.
+
+### Evaluate — how the human supervised the AI
+
+**Pushback & steering** was the strongest dimension, and it shows up as a
+string of small, precise corrections rather than one big redirect: "add £10
+to silver gold and platinum" (only those three, not gold alone as first
+proposed), "Bronze course is at 1.00pm puppy at 3.00pm" (correcting a
+schedule read before anything published), and "we don't want to promote
+protection work on this site" (a flat decline, not a request for softer
+wording) all landed inside a single reply and were applied exactly, not
+generalised beyond what was said. The operator also caught a real design
+defect after the fact — "the puppy vidi is too big on a desktop the
+ballence is off" — which is the kind of correction that only comes from
+actually looking at the shipped page, not the diff.
+
+**Verification & ownership** was mostly strong, with one honest gap. Nearly
+every edit was checked twice: `npx kiss-ssg check` for build correctness,
+then a real browser load (via claude-in-chrome) to see the rendered result
+— pricing blocks, the new FAQ sections on previously-empty pages, the
+footer's social icons, the video before and after its layout fix. The gap:
+verifying the video's mobile layout required a narrow-viewport screenshot,
+and `resize_window` did not visibly take effect on the captured screenshots
+after several attempts; the session fell back to a structural argument
+(the same Tailwind grid class already stacks correctly elsewhere on the
+page) instead of forcing the check through. That is a reasonable inference,
+but it is inference standing in for evidence, and it should have been
+flagged more prominently as unverified rather than folded into "confirmed
+visually" language.
+
+**Harness leverage** was the distinguishing feature of this session, more
+than any other kiss branch to date, because two more Claude sessions were
+genuinely at work on the same repository at once. `ListAgents` found the
+peer, `SendMessage` negotiated a file claim before either side wrote a
+conflicting line (`a1k9training-aa`'s claimed-files message, and this
+session's prompt commit of an unrelated `generate.js` hunk specifically to
+land ahead of that claim), and `Artifact` (`action: "read"`) pulled a
+141KB structured report out of a session that would otherwise have been
+opaque. That coordination produced a genuinely better outcome than either
+session working alone would have: this session's independent read of the
+report caught that its own "no-credit" fix and the peer's Bronze-credit
+guess were both wrong in the same way (Gaynor's actual answer — no credit
+on any course, full stop — was more sweeping than either agent assumed),
+and that correction was relayed back before the peer's Pass 4 draft locked
+it in.
+
+**Iteration discipline** held throughout: 16 commits, each scoped to one
+finding or one request, none reverted, none needing a follow-up fix commit
+for something the previous one broke. The `kiss-branch-pulse` skill itself
+was never invoked, though — the equivalent checkpointing happened inline,
+as a build-check-plus-eyeball at the end of each Amendment, rather than as
+its own named beat with its own log entry. The `## Pulse log` section
+above is empty as a result. The verification happened; the record of it
+happening as a discrete checkpoint did not.
+
+Level: **Active supervisor.** The operator scoped each request precisely,
+corrected specifics rather than accepting the first pass, declined a
+request outright rather than asking for a softer version, and caught a
+shipped defect by looking at the actual page. Short of **agentic
+engineering lead**: no independent review pass by the operator themselves
+(the CSS-hash-drift root cause at open was accepted on this session's
+evidence chain without an operator-side check), and the checkpoint
+cadence — real as it was — ran through inline verification rather than the
+`kiss-branch-pulse` beat this project's own loop provides for it.
+
+### Feedback — recommendations for next time
+
+- **Human — keep sending verbatim source text (emails, messages) rather
+  than paraphrasing.** Every distillation that turned out most accurate
+  this session (the Junior curriculum, the deposit policy, the referral
+  wording) traced back to Gaynor's own words quoted directly. A paraphrase
+  would have lost the "non-refundable" and the exact course list.
+- **Human — when multiple agents share one working directory, a claimed-
+  files message at the start (not just when a conflict is imminent) would
+  remove the small risk window edit 12 had to route around.** The pattern
+  `a1k9training-aa` used — list the files, say what's landing, say when
+  it'll be clear — worked well reactively; doing it proactively for any
+  session known to run two agents in parallel would remove even the need
+  to react.
+- **Agent — when a screenshot-based check fails to actually change state
+  (the mobile resize not taking visible effect), say so as an open
+  verification gap in the user-facing text, not just in the session log.**
+  The structural argument was reasonable, but "confirmed" language should
+  be reserved for what was actually seen.
+- **Agent — keep asking before guessing a URL, a business fact, or a
+  policy, rather than inferring it from other pages.** The LinkedIn ask,
+  the walk-in/booking question, the business-name check (resolved by
+  reading `generate.js`'s own schema rather than guessing) and the several
+  clarifying questions to the operator before publishing prices all
+  avoided a class of error a text-only pass would have risked.
+- **Agent — when `kiss-branch-pulse` is available, invoke it at least once
+  per branch even on an emergent-shaped session,** so the checkpoint
+  becomes a discrete log entry instead of prose folded into an Amendment.
+  Nothing here required the operator to have done anything differently;
+  the beat exists and simply went unused.
+
+### Verdict — did we achieve the objective?
+
+**Brief:** apply Gaynor's ad hoc requests as they arrived, and separately
+resolve the AIKB CSS-hash drift found at open.
+
+- [x] Each ad hoc edit applied and logged as a dated Amendment — 14 of
+      them, from pricing and dates (edit 1) through the `/faqs/` hub and
+      navbar change made by other sessions (edit 14, logged even though
+      performed elsewhere).
+- [x] `npx kiss-ssg check --summary generate.js` stayed `ok`, 0 failed, no
+      new `broken link:` line and no new `note …:` line after every edit —
+      verified at close with a final run: `ok`, 20 pages, 0 failed, 555
+      internal references none broken, all four note-finding lists empty.
+- [x] Eyeball: every changed page was looked at rendered in a real browser
+      (claude-in-chrome), not just diffed — with the one noted exception of
+      the video's mobile layout, verified by structural argument rather
+      than a working screenshot.
+- [x] The CSS-hash drift written up with its evidence chain (deterministic
+      Tailwind, unchanged source, untracked `node_modules` at record time
+      as the only unaccounted variable) in the session file at open, per
+      the operator's explicit choice to document and re-record rather than
+      chase a process fix.
+- [x] `AIKB/` re-recorded at this close: 20 pages (up from 19 — the new
+      `/faqs/` hub), all six touched subjects (`about.js`,
+      `behavioural-consultations.js`, `course.js`, `faqHub.js`,
+      `faqMapper.js`, the `tailwind` pipeline step) noted and stamped, zero
+      missing/stale/dangling/dead findings.
+
+**Met.** Concretely better: every course page now shows a real price and
+next-start date; three previously FAQ-less pages (Bronze, Junior, One-to-
+one) have one; the `/faqs/` hub answers 32 distinct questions with search,
+reachable from the navbar; every external link opens in a new tab with a
+visible marker; the footer carries working social links matched by the
+site's own structured data; a dead COVID line, a stale venue claim, an
+inconsistent deposit policy, a wrong age range and a factually wrong
+credit/referral policy are all gone. Two items remain open, both
+correctly left for the next branch: the 53 FAQ drafts still waiting on
+Gaynor's answers (in `a1k9training-aa`'s report), and the
+`AIKB`-CSS-hash-drift finding, which is documented rather than fixed —
+by design, since a process change for it was explicitly declined at open.

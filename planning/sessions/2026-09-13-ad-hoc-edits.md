@@ -307,6 +307,24 @@ none yet recurring across sessions):
   Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages,
   0 failed; built the real site and read back all three corrected strings.
 
+- **2026-09-13, edit 10 — video was too dominant on desktop, moved into the
+  content column.** Operator reported the puppy video's balance was off on
+  desktop. Root cause: edit 8 placed the embed full-width, above the
+  `grid lg:grid-cols-3` row that holds the details/testimonial split — so
+  on wide screens it spanned the entire page width while the text below it
+  sat in a ~66%-wide column, out of proportion with everything else on the
+  page. Fix: moved the video inside `.prose-site.lg:col-span-2`, the same
+  column the "You Will Learn" text and its images already live in — on
+  desktop it's now naturally sized to that column instead of the full
+  page, and below `lg` it still stacks full-width exactly as before, since
+  that's the same grid behaviour every other element in that column
+  already relies on. Added `not-prose` so the typography plugin's image/
+  spacing rules (meant for `<img>`/text) don't apply to the iframe wrapper.
+  Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 19 pages,
+  0 failed; built the site and confirmed the new proportion visually in a
+  real browser (desktop width) — video now roughly matches the testimonial
+  card's width instead of spanning edge to edge.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

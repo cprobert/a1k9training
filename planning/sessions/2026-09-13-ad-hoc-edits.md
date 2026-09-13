@@ -405,6 +405,43 @@ none yet recurring across sessions):
   file — committed promptly specifically to land before the peer's claim
   takes effect, to avoid a merge conflict on a shared file.
 
+- **2026-09-13, edit 13 — Facebook page check (no useful info retrievable),
+  and cleanup from `a1k9training-aa`'s /faqs/ hub.** The operator asked
+  whether the A1K9 Pet Dog Training Facebook page held anything useful for
+  the site. It's fully login-gated — only the page name and follower count
+  (5.3K followers, 19 following) are visible to a signed-out visitor; no
+  posts, About section or photos. Not logged in (would require entering
+  credentials), so nothing further was retrievable.
+  Meanwhile `a1k9training-aa` finished its claimed work (commit `a4f0e4f`,
+  "Add a /faqs/ hub with search, and write each answer once") and released
+  the file claim from edit 12: `src/models/faqs/courses.json` became
+  `common.json` (61 near-duplicates merged to 32 distinct answers), every
+  FAQ entry now needs `id`/`group`/`q`/`a`, pages reference entries by
+  `faqIds` resolved through the new `src/controllers/faqLib.js`, and a new
+  `/faqs/` page (20th page) carries client-side search and the FAQPage
+  JSON-LD moved off every course page onto that one hub. `npx kiss-ssg
+  check` confirms clean: 20 pages, 0 failed.
+  It left two things, both actioned:
+  - **The Junior heading from edit 5, reconsidered.** It pointed out
+    "Follow me — walking on a loose lead" over-claims: Bronze is where
+    loose-lead heel work is actually taught, and the site's own new Junior
+    FAQ already says so ("Follow me... is the foundation for... loose-lead
+    walking", "Loose-lead heel work... is then Bronze's main subject").
+    Agreed and changed to "Follow me — the foundation for loose-lead
+    walking" — accurate rather than over-promising, at the cost of one
+    search-term-exact word.
+  - **A link to `/faqs/`.** Added to the footer's existing "Explore" list
+    (matching Courses/Consultations/About) rather than the primary navbar
+    — the navbar's own comment states its five destinations are deliberate
+    ("the same five destinations... the Bootstrap 3 navbar carried"), so
+    expanding it felt like a bigger call than what was asked; the footer
+    was the lower-risk, equally-discoverable choice, and every page
+    already reaches `/faqs/` via breadcrumbs per the peer's SECTIONS entry.
+  Verified: `npx kiss-ssg check --summary generate.js` — `ok`, 20 pages,
+  0 failed, 555 internal references (up from 546 — the new footer link on
+  every page) none broken; `node qa/no-bootstrap.mjs docs` clean; built
+  and read back both changes rendering correctly.
+
 ## Pulse log
 
 <!-- Appended by kiss-branch-pulse, one dated line per checkpoint: criteria status,

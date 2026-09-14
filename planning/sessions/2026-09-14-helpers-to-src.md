@@ -94,3 +94,71 @@ already stale before this branch opened; re-recording here would silently
 absorb that drift into a refactor whose whole claim is that nothing changed.
 Re-record it, and refresh `qa/baseline/`, as its own piece of work against
 master.
+
+## Amendments (same branch, after the criteria above were met)
+
+The branch went on past its original objective at the user's direction. Each
+landed as its own commit, each verified the same way — the built site must not
+move.
+
+**1. `generate.js` → `router.js`.** `git mv` plus every reference. The one that
+was load-bearing rather than prose: `scripts/optimise-images.mjs` reads the
+file by name (`ROUTER_JS`, six use sites) to discover image references, so a
+docs-only find-and-replace would have quietly broken the image pipeline. The
+four `AIKB/notes/*.md` cite it in backticks, which the knowledge base's
+dangling-reference check resolves against the tree, so they were updated too.
+`planning/` was left alone — those are dated records of what was true then.
+
+**2. Tailwind was compiling class names out of the repo's prose.** Found while
+doing the rename, and it starts with this branch: the word "invisible", written
+in a sentence added to `CLAUDE.md` in the first commit, emitted a real
+`.invisible` rule into `site.css`, changed its content hash, and so changed the
+`<link href>` on all 20 pages. The first commit's "byte-identical" claim was
+therefore wrong — the build was verified, then `CLAUDE.md` was written, then it
+was committed without re-verifying.
+
+The cause was bigger than the typo. `src/styles/site.css` listed explicit
+`@source` globs under a comment claiming they replaced Tailwind's automatic
+detection. They do not: `@source` only *adds* to the automatic walk of the repo
+root, so `CLAUDE.md`, `README.md`, `planning/` and `AIKB/` were all class-name
+sources for the production stylesheet. `.container`, `.fixed`, `.outline` and
+`.resize` had been riding along the same way, predating this branch.
+`@import 'tailwindcss' source(none)` makes the globs authoritative. Four dead
+rules left the stylesheet and nothing else did; none of the four is used as a
+class on any element in the built output.
+
+**3. Content-bearing page models → `src/models/`.** The consultations index,
+courses index and contact page carried their model inline as a JS object.
+Each is now a `.json` file at the top of `src/models` — *not* inside the
+matching fan-out folders, where it would build a spurious extra page. Besides
+consistency this removes the object-model footgun kiss documents: a plain
+object model is replayed from a shallow snapshot, so one a controller mutates
+in place stays mutated on the next rebuild. The three `{ noHero: true }` models
+stay inline; it is a layout flag, not page data.
+
+**4. Post-build callbacks → `scripts/build-report.mjs`.** The success log, the
+`.qa-pages.json` the QA harness reads, and the non-zero exit on failure are
+build plumbing, not routing. `onBuildComplete` stays a `function` rather than
+an arrow because kiss calls it as `callback.call(this)`. Verified past the
+happy path, since two of its three behaviours never appear in a passing build:
+`npm run check` still does not write `.qa-pages.json` into the real build
+folder, and a build pointed at a missing view still exits 1.
+
+**5. Business facts → `src/config/business.js`.** The phone number was written
+out in seven templates and again in the JSON-LD; the social URLs in the footer
+and again in the JSON-LD; the trading name twice inside `schema.js`. One module
+now holds them, spread into `new Kiss()` as an arbitrary config key so
+templates read `{{config.business.*}}` and helpers read `kiss.config.business`.
+Proved by temporarily changing the number and the Facebook URL in that one
+file: the rebuild moved 32 `tel:` hrefs, 29 visible phone strings, 20 JSON-LD
+telephone entries, 43 Facebook hrefs and 40 JSON-LD `sameAs` entries, and left
+zero copies of the old values in `docs/`.
+
+`router.js` across the whole branch: **570 → 203 lines.**
+
+Still outstanding, and still deliberately not done here: `AIKB/` is not
+re-recorded and `qa/baseline/` is not refreshed. Both were already stale on
+master before this branch opened, which is why `npm run check` reports all 20
+pages `~` and `npm run qa:compare` fails on a clean tree as well as on this
+one. `SECTIONS` also remains duplicated between `src/helpers/navigation.js` and
+the hand-written markup in `navbar.hbs`.

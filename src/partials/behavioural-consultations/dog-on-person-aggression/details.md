@@ -6,6 +6,6 @@ Gaynor has worked with all breeds of dogs and will deal with any dog no matter h
 
 The Canine and Feline Behaviour Association of which Gaynor Probert is a canine behaviour practitioner, is approved by most pet insurance companies.
 
-With a referral from your vet, you are able to come to her for a canine behavioural consultation.
+You don't need a referral from your vet to come to her for a canine behavioural consultation — a referral is only needed if you want to claim the consultation on your pet insurance.
 
 These consultations can be held at A1K9 Behaviour and Training Academy or at your home.

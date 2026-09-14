@@ -3,17 +3,27 @@
 
   "aliases": ["/course-junior/"],
   "title": "Junior Dog Training Course | A1K9 Training",
-  "description": "Engagement training for puppies aged 5-9 months, with a natural progression from puppy socialisation classes for all dog breeds.",
+  "description": "Engagement training for puppies aged 6-12 months, with a natural progression from puppy socialisation classes for all dog breeds.",
   "image": "/images/courses/junior/junior-course-v3.webp",
   "caption": "right",
   "crumb": "Junior Course",
   "level": 1,
   "rung": "Junior",
   "heading": "Engagement Training",
+  "price": "£119.99",
+  "priceNote": "6-week course, 1 hour a week",
+  "nextStart": "Sunday 11 October, 2:00pm",
   "components": {
     "intro": "courses/junior/intro",
     "details": "courses/junior/you-will-learn",
     "testimonial": "courses/junior/testimonial"
   },
-  "captionOffset": true
+  "captionOffset": true,
+  "faqIds": [
+    "junior-pull-recall",
+    "which-course",
+    "booking-required",
+    "what-to-bring",
+    "missed-week"
+  ]
 }

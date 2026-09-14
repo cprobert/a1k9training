@@ -1,21 +1,15 @@
-import { createRequire } from 'node:module'
-import 'colors'
+import { faqsByIds } from './faqLib.js'
 
-// The faqs path in a model is relative to this file, so the require has to
-// resolve from here — mirrors src/controllers/course.js.
-const require = createRequire(import.meta.url)
-
-export default ({ model }) => {
-  if (model.faqs) {
-    console.log('Loading faqs:'.grey, model.faqs)
-    const faqs = require(model.faqs)
-    model.faqs = faqs.faqs
-  }
-
-  return {
-    slug: model.slug,
-    title: model.title,
-    description: model.description,
-    model: model,
-  }
-}
+// Runs once per record in src/models/behavioural-consultations. Mirrors
+// src/controllers/course.js: the record names the FAQs its page shows inline as
+// `faqIds`, and faqLib resolves them from src/models/faqs/*.json so each answer
+// is written once and also appears on /faqs/.
+export default ({ model }) => ({
+  slug: model.slug,
+  title: model.title,
+  description: model.description,
+  model: {
+    ...model,
+    faqs: faqsByIds(model.faqIds, `the ${model.slug} consultation record`),
+  },
+})

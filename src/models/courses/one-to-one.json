@@ -13,5 +13,10 @@
     "intro": "courses/one-to-one/intro",
     "details": "courses/one-to-one/you-will-learn",
     "testimonial": "courses/one-to-one/testimonial"
-  }
+  },
+  "faqIds": [
+    "one-to-one-what",
+    "service-triage",
+    "venue"
+  ]
 }

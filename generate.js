@@ -1,4 +1,5 @@
 import fs from 'node:fs'
+import path from 'node:path'
 import 'colors'
 import Kiss, { utils } from 'kiss-ssg'
 
@@ -104,9 +105,10 @@ const LOCATIONS = [
 // text and image paths go through JSON.stringify's own escaping instead of
 // Handlebars'. Only fields this repo actually sources are included — no
 // street address or opening hours live anywhere in it, so none are invented
-// here. The Facebook link comes from src/pages/index.hbs's "Open Page »" card
-// (tracking query string dropped); the phone number is the site's tel: link.
-// `location` is the LOCATIONS pair above, sourced from src/pages/contact.hbs.
+// here. The social links come from src/partials/layout/footer.hbs (tracking
+// query string dropped from Facebook's); the phone number is the site's
+// tel: link. `location` is the LOCATIONS pair above, sourced from
+// src/pages/contact.hbs.
 kiss.handlebars.registerHelper('localBusiness', function (model) {
   const siteUrl = kiss.config.siteUrl
   const image = (model && model.image) || HOME_HERO_IMAGE
@@ -119,7 +121,11 @@ kiss.handlebars.registerHelper('localBusiness', function (model) {
     telephone: '+447798500390',
     areaServed: 'South Wales',
     image: `${siteUrl}${image}`,
-    sameAs: ['https://www.facebook.com/A1K9PDT'],
+    sameAs: [
+      'https://www.facebook.com/A1K9PDT',
+      'https://www.youtube.com/channel/UCA0GMQkoz1lgjHvo41hqH2A',
+      'https://www.linkedin.com/in/gaynor-probert-b869581a/',
+    ],
     location: LOCATIONS,
   }
 })
@@ -211,6 +217,7 @@ const SECTIONS = {
   courses: { label: 'Courses', id: 'courses/index', child: 'courses/course' },
   about: { label: 'About Us', id: 'about/index', child: 'about' },
   contact: { label: 'Contact', id: 'contact', child: null },
+  faqs: { label: 'FAQs', id: 'faqs', child: null },
 }
 
 // The breadcrumb trail for the page being rendered, derived from that page's own
@@ -360,7 +367,15 @@ kiss
     model: {
       image: '/images/consultations/consultations-v1.webp',
       caption: 'right',
-      faqs: '../models/faqs/consultations.json',
+      // The handful of answers this page shows inline; every answer, including
+      // these, is on /faqs/. Ids live in src/models/faqs/*.json.
+      faqIds: [
+        'cons-too-late',
+        'cons-what-happens',
+        'cons-referral',
+        'cons-after',
+        'cons-where',
+      ],
     },
     controller: 'faqMapper.js',
     title: 'Dog Behavioural Consultations in South Wales by Gaynor Probert',
@@ -383,7 +398,14 @@ kiss
     model: {
       image: '/images/courses/classes-v1.1.webp',
       caption: 'left',
-      faqs: '../models/faqs/courses.json',
+      faqIds: [
+        'course-prices',
+        'which-course',
+        'service-triage',
+        'booking-required',
+        'venue',
+        'vaccinations',
+      ],
     },
     controller: 'faqMapper.js',
     title: 'Dog Training Classes in South Wales with Gaynor Probert',
@@ -468,6 +490,23 @@ kiss
     ignoreLlms: true,
   })
 
+  // Every FAQ on the site, on one page. The course and consultation pages each
+  // show the few answers their own visitors ask for, but this is where the full
+  // set lives — one URL for a person to search, and the only page carrying
+  // FAQPage JSON-LD, so an answer is marked up once rather than seven times.
+  .page({
+    view: 'faqs.hbs',
+    model: { noHero: true },
+    controller: 'faqHub.js',
+    title: 'Dog Training FAQs | A1K9 Training near Swansea',
+    description:
+      'Answers about dog training courses and behavioural consultations with Gaynor Probert near Swansea: prices, start dates, which course suits your dog, vaccinations and what to bring.',
+    path: 'faqs',
+    slug: 'index',
+    sitemapPriority: '0.70',
+    sitemapChangefreq: 'monthly',
+  })
+
   .generate()
   .sitemap()
   // llms.txt (llmstxt.org): the index answer engines read first. kiss derives
@@ -484,6 +523,7 @@ kiss
       'behavioural-consultations': 'Behavioural consultations',
       about: 'About',
       contact: 'Home and contact',
+      faqs: 'Frequently asked questions',
     },
   })
 
@@ -496,6 +536,30 @@ kiss
     console.log('Success'.rainbow)
     if (this.config.dev)
       console.log(`http://${this.config.devHost}:${this.config.port}`.yellow)
+    // qa/pages.mjs's source of truth for "every page on this site": kiss's
+    // own registry, not a directory walk that can't tell a rendered page
+    // apart from an incidental static file copied straight from
+    // src/assets (the Google site-verification stub was the case that
+    // bit us — it lived in docs/ as a .html file, so a raw walk counted
+    // it as a 21st page and both a hardcoded --assert=N in package.json
+    // and a hand-maintained exclusion list in qa/check-axe.mjs had to be
+    // kept in sync by hand). Written once per real (non-dev, non-check)
+    // build, so it is never stale and nothing needs bumping when a page
+    // is added. Skipped in dev and in `check` mode: this is a raw
+    // fs.writeFileSync, not a kiss API call, so it is not staging-aware —
+    // writing it during `check` (report.mode === 'check') would leave a
+    // file behind in the real build folder despite check's "nothing is
+    // written" guarantee.
+    const report = this.report()
+    if (!this.config.dev && report.mode !== 'check') {
+      const pages = (report.pages || [])
+        .filter((p) => p.ok)
+        .map((p) => utils.posixPath(path.relative(report.buildDir, p.buildTo)))
+      fs.writeFileSync(
+        path.join(report.buildDir, '.qa-pages.json'),
+        JSON.stringify(pages, null, 2),
+      )
+    }
   })
   .catch((err) => {
     for (const failure of err.failures ?? [])

@@ -1,7 +1,7 @@
-<script type="application/ld+json">
-{{{stringify (faqPage this)}}}
-</script>
-
+{{!-- A page's inline FAQ block: the handful of questions that page's own
+      visitors ask most, resolved from src/models/faqs/*.json by their ids (see
+      src/controllers/faqLib.js). The FAQPage JSON-LD deliberately lives on
+      /faqs/ alone, so the same answer is not marked up on seven pages. --}}
 <div class="page-header">
   <h2>Frequently Asked Questions</h2>
 </div>
@@ -25,3 +25,7 @@
     </details>
   {{/each}}
 </div>
+
+<p class="mt-4 mb-0">
+  <a href="{{link "faqs" canonical=true}}">All questions and answers &rarr;</a>
+</p>

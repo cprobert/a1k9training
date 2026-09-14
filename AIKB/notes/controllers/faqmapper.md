@@ -1,16 +1,19 @@
 ---
-subject-hash: 9f34e2fa9adf0d76eb66f601bb264c6f79483542
+subject-hash: f814ebd8f081db04fe37611c6e48ec29c5e54bc2
 ---
 
 ## What it does
 
-The controller for the two section index pages, `/courses/` and `/behavioural-consultations/`. Their models are plain objects written inline in `generate.js` (hero image, caption side, and a `faqs` path); this loads the FAQ JSON named by that path, replaces the path with the array, and returns the model. Title and description come from the `.page()` options, not from here.
+For the two section index pages — `/courses/` and `/behavioural-consultations/` — whose models are written inline in `generate.js`. The model names the FAQs that page shows inline as `faqIds`, a list of ids; this controller resolves them through `src/controllers/faqLib.js` and returns a new model with `faqs` set to the entries, which `src/partials/faqs.hbs` renders.
 
 ## Why it is this way
 
-The index pages have no record folder. Each is one page with a handful of fields, so an inline object model is the lightest fit, and this small controller exists only to give them the same FAQ convention (`../models/faqs/<section>.json`, relative to the controller) as the fan-out pages. It is shared by both indexes because they are identical in this respect.
+It used to load a whole FAQ JSON file named by path and swap it into the model in place. That made each page's FAQ block a file, which is why the same answers were copied into five files and why the deposit wording and the wet-weather venue each had to be corrected in four of them, separately, before they agreed.
+
+Now an answer is written once in `src/models/faqs/common.json` (or a course file) with an id, and a page names the ids it wants. The controller also returns a new object rather than mutating `options.model`: these are plain-object models, replayed from a snapshot on every watch rebuild, so an in-place mutation would accumulate across a dev session.
 
 ## Gotchas
 
-- Unlike `course.js`, this one always requires `model.faqs`: an index page without the field would throw, which is deliberate, since both indexes carry an FAQ block and its JSON-LD.
-- It mutates the inline object model in place. The kiss-ssg cheat sheet is explicit that a plain-object model is replayed from a shallow snapshot on every dev-server whole-site rebuild, so the mutated object would come back with `faqs` already an array and the second rebuild would hand `require` an array instead of a path. That has not been reproduced in this repository yet; the fix if it bites is to return a new object with the loaded `faqs` instead of assigning. Production builds are one pass and unaffected.
+- An id nothing defines throws, naming the id and the page — deliberately, so a typo fails the build rather than rendering a page with a missing answer.
+- The order of `faqIds` is the order on the page. Put the question that page's own visitors ask most first.
+- `src/controllers/course.js` and `src/controllers/behavioural-consultations.js` do the same job for the fan-out records; the three must agree on the shape `src/partials/faqs.hbs` expects, which is `[{ id, group, q, a }]`.

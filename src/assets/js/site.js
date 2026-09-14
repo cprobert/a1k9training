@@ -130,4 +130,82 @@
         : 'Course enquiry: ' + who
     })
   })
+
+  /* ---- FAQ search, /faqs/ only -----------------------------------------
+   * Filters the questions already on the page — no index to fetch, no
+   * network. The box is hidden in the markup and revealed here, so with
+   * JavaScript off the page is still every answer in full, which is also
+   * what a crawler reads. */
+  var faqSearch = document.querySelector('[data-faq-search]')
+  var faqInput = document.querySelector('[data-faq-input]')
+
+  if (faqSearch && faqInput) {
+    var faqs = Array.prototype.slice.call(document.querySelectorAll('[data-faq]'))
+    var faqSections = Array.prototype.slice.call(
+      document.querySelectorAll('[data-faq-section]'),
+    )
+    var faqCount = document.querySelector('[data-faq-count]')
+    var faqEmpty = document.querySelector('[data-faq-empty]')
+    var faqJump = document.querySelector('[data-faq-jump]')
+    var faqJumpNav = faqJump ? faqJump.closest('nav') : null
+
+    /* Question and answer text of each entry, lower-cased once up front. */
+    var haystack = faqs.map(function (el) {
+      return el.textContent.toLowerCase().replace(/\s+/g, ' ')
+    })
+
+    var filterFaqs = function (value) {
+      var terms = value.toLowerCase().split(/\s+/).filter(Boolean)
+      var searching = terms.length > 0
+      var shown = 0
+
+      faqs.forEach(function (el, i) {
+        var hit =
+          !searching ||
+          terms.every(function (term) {
+            return haystack[i].indexOf(term) !== -1
+          })
+        el.hidden = !hit
+        /* Open what matched, so the answer is readable without a second
+         * click; collapse everything again when the box is cleared. */
+        el.open = searching && hit
+        if (hit) shown++
+      })
+
+      faqSections.forEach(function (section) {
+        section.hidden = !section.querySelector('[data-faq]:not([hidden])')
+      })
+
+      if (faqJumpNav) faqJumpNav.hidden = searching
+      if (faqEmpty) faqEmpty.hidden = !(searching && shown === 0)
+      if (faqCount) {
+        faqCount.textContent = searching
+          ? shown === 0
+            ? 'No questions match “' + value.trim() + '”'
+            : shown + ' of ' + faqs.length + ' questions match'
+          : ''
+      }
+    }
+
+    faqSearch.hidden = false
+    faqInput.addEventListener('input', function () {
+      filterFaqs(faqInput.value)
+    })
+    /* Escape clears the filter, the convention for a search field. */
+    faqInput.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && faqInput.value) {
+        faqInput.value = ''
+        filterFaqs('')
+      }
+    })
+
+    /* A link to one answer (/faqs/#q-course-prices) opens it on arrival. */
+    var openFromHash = function () {
+      if (!/^#q-/.test(location.hash)) return
+      var target = document.getElementById(location.hash.slice(1))
+      if (target && target.tagName === 'DETAILS') target.open = true
+    }
+    openFromHash()
+    window.addEventListener('hashchange', openFromHash)
+  }
 })()

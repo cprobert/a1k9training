@@ -1,6 +1,8 @@
 {{!--
-  Site navigation. Sticky bar; the same five destinations and the same hrefs the
-  Bootstrap 3 navbar carried.
+  Site navigation. Sticky bar; the five destinations and hrefs the Bootstrap 3
+  navbar carried, plus FAQs — added because the /faqs/ hub answers the questions
+  the contact log shows people ask before booking (price, dates, vaccinations),
+  and a footer link alone left it effectively unfindable.
 
   Desktop (lg+): each dropdown group opens on hover, on focus-within (so Tab alone
   reaches every sub-link) and when its chevron button reports aria-expanded="true".
@@ -185,6 +187,15 @@
                 </a>
               </li>
             </ul>
+          </li>
+        {{/isActive}}
+
+        {{#isActive this href=(link "faqs" canonical=true) active="true"}}
+          <li>
+            <a href="{{href}}" data-active="{{active}}"
+              class="block rounded-pill px-4 py-2 font-medium text-sand-100 no-underline hover:bg-brand-700 hover:text-white data-[active=true]:bg-brand-900 data-[active=true]:text-white">
+              FAQs
+            </a>
           </li>
         {{/isActive}}
 

@@ -50,7 +50,7 @@ jobs:
         if: always()
         run: cat qa/out/preview/report.md >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: preview-qa

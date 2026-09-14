@@ -4,7 +4,7 @@ subject-hash: 56a316d5e0cbd20c0f34670fc23a9e6966bc2624
 
 ## What it does
 
-Compiles `src/styles/site.css` (the Tailwind v4 entry point: design tokens and the small `@layer components` set) into a minified stylesheet under the assets folder, as a kiss asset-pipeline step declared in `generate.js`. Because it is a pipeline step it runs before the asset copy under `npm run build`, `npm run check` and `npm run dev` alike, and kiss then copies and content-hashes the output like any other asset; templates ask for it as `{{asset "css/site.css"}}`. In dev mode the `watch` command keeps it recompiling as templates change.
+Compiles `src/styles/site.css` (the Tailwind v4 entry point: design tokens and the small `@layer components` set) into a minified stylesheet under the assets folder, as a kiss asset-pipeline step declared in `router.js`. Because it is a pipeline step it runs before the asset copy under `npm run build`, `npm run check` and `npm run dev` alike, and kiss then copies and content-hashes the output like any other asset; templates ask for it as `{{asset "css/site.css"}}`. In dev mode the `watch` command keeps it recompiling as templates change.
 
 ## Why it is this way
 

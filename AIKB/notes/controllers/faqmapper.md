@@ -4,7 +4,7 @@ subject-hash: f814ebd8f081db04fe37611c6e48ec29c5e54bc2
 
 ## What it does
 
-For the two section index pages — `/courses/` and `/behavioural-consultations/` — whose models are written inline in `generate.js`. The model names the FAQs that page shows inline as `faqIds`, a list of ids; this controller resolves them through `src/controllers/faqLib.js` and returns a new model with `faqs` set to the entries, which `src/partials/faqs.hbs` renders.
+For the two section index pages — `/courses/` and `/behavioural-consultations/` — whose models are written inline in `router.js`. The model names the FAQs that page shows inline as `faqIds`, a list of ids; this controller resolves them through `src/controllers/faqLib.js` and returns a new model with `faqs` set to the entries, which `src/partials/faqs.hbs` renders.
 
 ## Why it is this way
 

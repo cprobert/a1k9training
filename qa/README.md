@@ -177,7 +177,7 @@ Every check is a pass/fail row (never stops at the first failure):
   is** (`redirect: 'manual'`, fail on any 3xx) — and every `llms.txt` URL
   agree with each other and with the sitemap, and the fetched page's own
   `<link rel="canonical">` equals the URL it was fetched from. `siteUrl` is
-  pinned to production in `generate.js`, so every `<loc>`/canonical is a
+  pinned to production in `router.js`, so every `<loc>`/canonical is a
   `https://www.a1k9training.co.uk/...` URL even when `<url>` is a deploy
   preview — this row is therefore always a production reachability/redirect
   check, whichever host you point the script at.

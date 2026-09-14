@@ -50,7 +50,7 @@ export function toUrlPath(root, file) {
 /**
  * Derive the sorted, de-duplicated list of page URL paths for a built site.
  *
- * Prefers `.qa-pages.json` (written by generate.js's `.complete()` hook,
+ * Prefers `.qa-pages.json` (written by router.js's `.complete()` hook,
  * listing exactly the pages kiss-ssg itself registered) when present, so a
  * static file copied verbatim into the build — the Google site-verification
  * stub, say — is never mistaken for a page. Falls back to walking every

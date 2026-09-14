@@ -7,9 +7,9 @@
  *
  * What it does (see planning/sessions/2026-09-07-tailwind-migration.md, "Loop 3"):
  *   1. Discovers every /images/... path referenced from src/pages, src/partials,
- *      src/layouts, src/models/**\/*.json and generate.js (png/jpg/JPG/gif),
+ *      src/layouts, src/models/**\/*.json and router.js (png/jpg/JPG/gif),
  *      plus the homepage hero background-image hardcoded in a layout.
- *   2. Classifies each as "hero" (the `image` field of a model JSON / generate.js
+ *   2. Classifies each as "hero" (the `image` field of a model JSON / router.js
  *      page model, or the homepage hero) or "content" (everything else).
  *   3. Converts every referenced raster to WebP with sharp, in place, same
  *      directory/basename (`foo-v2.png` -> `foo-v2.webp`), auto-orienting by
@@ -23,7 +23,7 @@
  *   5. Rewrites the old path to the new .webp path, as an exact string
  *      replacement, in the files this script owns: src/models/**\/*.json,
  *      src/pages/**, and src/partials/** EXCEPT src/partials/layout/**.
- *      generate.js and src/layouts/** are read for discovery only and are
+ *      router.js and src/layouts/** are read for discovery only and are
  *      never edited — their still-old references are reported instead.
  *   6. Converts the Bootstrap-era `caption-class` field on model JSON to the
  *      new semantic `caption` / `captionOffset` shape.
@@ -90,7 +90,7 @@ const OWNED_ROOTS = [join(ROOT, 'src/pages'), join(ROOT, 'src/partials')]
 const LAYOUT_PARTIALS = join(ROOT, 'src/partials/layout')
 const READONLY_ROOTS = [join(ROOT, 'src/layouts')]
 const MODELS_ROOT = join(ROOT, 'src/models')
-const GENERATE_JS = join(ROOT, 'generate.js')
+const ROUTER_JS = join(ROOT, 'router.js')
 
 function isUnderLayoutPartials(p) {
   return p === LAYOUT_PARTIALS || p.startsWith(LAYOUT_PARTIALS + '/')
@@ -108,7 +108,7 @@ function allTextFiles() {
   const files = []
   for (const root of [...OWNED_ROOTS, ...READONLY_ROOTS]) files.push(...walk(root))
   files.push(...walk(MODELS_ROOT).filter((f) => f.endsWith('.json')))
-  files.push(GENERATE_JS)
+  files.push(ROUTER_JS)
   return files
 }
 
@@ -129,10 +129,10 @@ for (const [, content] of fileContents) {
 referencedOld.add(HOMEPAGE_HERO)
 
 // Hero paths: the `image` field of any src/models/**/*.json, or of a page
-// model literal in generate.js, plus the homepage hero.
+// model literal in router.js, plus the homepage hero.
 const heroPaths = new Set([HOMEPAGE_HERO])
 for (const [f, content] of fileContents) {
-  if (f === GENERATE_JS || (f.startsWith(MODELS_ROOT + '/') && f.endsWith('.json'))) {
+  if (f === ROUTER_JS || (f.startsWith(MODELS_ROOT + '/') && f.endsWith('.json'))) {
     const re = /"image"\s*:\s*"([^"]+)"|image:\s*'([^']+)'/g
     let m
     while ((m = re.exec(content))) {
@@ -142,13 +142,13 @@ for (const [f, content] of fileContents) {
   }
 }
 
-// A file this script does not own (generate.js, src/layouts/**) may already
+// A file this script does not own (router.js, src/layouts/**) may already
 // reference the .webp name ahead of this script actually producing it (the
 // agent owning that file renamed its reference in anticipation). Resolve any
 // such not-yet-existing .webp reference back to its still-raster sibling so
 // it still gets converted -- and, since it came from an `image` field or the
 // homepage hero, treat it as a hero.
-for (const f of [GENERATE_JS, ...READONLY_ROOTS.flatMap(walk)]) {
+for (const f of [ROUTER_JS, ...READONLY_ROOTS.flatMap(walk)]) {
   const content = fileContents.get(f) ?? readFileSync(f, 'utf8')
   const webpRefs = content.match(/\/images\/[\w./-]+\.webp/gi) || []
   for (const webPath of webpRefs) {
@@ -160,7 +160,7 @@ for (const f of [GENERATE_JS, ...READONLY_ROOTS.flatMap(walk)]) {
       if (statSyncSafe(candidate)) {
         const rasterWebPath = webPath.replace(/\.webp$/i, `.${ext}`)
         referencedOld.add(rasterWebPath)
-        if (f === GENERATE_JS || READONLY_ROOTS.some((r) => f.startsWith(r + '/'))) {
+        if (f === ROUTER_JS || READONLY_ROOTS.some((r) => f.startsWith(r + '/'))) {
           heroPaths.add(rasterWebPath) // an `image`/hero reference by construction
         }
         break
@@ -308,7 +308,7 @@ const MANIFEST_PATH = join(ROOT, 'qa/images.json')
 
 /** Carry forward manifest entries from a prior run whose files still exist on
  * disk, so a re-run doesn't lose track of images only ever referenced from a
- * file this script cannot edit (e.g. generate.js still says the old .png name,
+ * file this script cannot edit (e.g. router.js still says the old .png name,
  * but the .webp this script produced earlier is still the real, current file). */
 function loadCarriedForwardManifest() {
   let previous
@@ -433,7 +433,7 @@ async function main() {
   }
 
   const staleReferences = []
-  for (const f of [GENERATE_JS, ...walk(READONLY_ROOTS[0])]) {
+  for (const f of [ROUTER_JS, ...walk(READONLY_ROOTS[0])]) {
     const content = readFileSync(f, 'utf8')
     const matches = content.match(IMAGE_REF_RE) || []
     for (const m of matches) {

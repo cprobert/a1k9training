@@ -12,6 +12,6 @@ It mirrors `src/controllers/course.js` exactly, and for the same reason: the ans
 
 ## Gotchas
 
-- The two records deliberately differ only in their first id; the rest (what happens, referral, where, is it too late) are shared, and the index in `generate.js` carries its own list.
+- The two records deliberately differ only in their first id; the rest (what happens, referral, where, is it too late) are shared, and the index in `router.js` carries its own list.
 - An unknown id throws, naming the record.
 - The consultation FAQs carry the analysis's finding that owners rarely use the word "consultation": the questions are phrased the way enquirers write them ("My dog growls, snaps or has bitten someone"), which is what they search for. Keep that voice when adding one.

@@ -20,7 +20,7 @@ against regressions (see below).
 The file above is imported automatically into context on every session —
 it's the package's own cheat sheet for `.page()`/`.pages()`/`.generate()`/
 `.watch()`, config, and every built-in Handlebars helper. Consult it before
-making non-trivial `generate.js` changes. Deeper per-topic notes live
+making non-trivial `router.js` changes. Deeper per-topic notes live
 alongside it in `node_modules/kiss-ssg/AIKB/`.
 
 ## Commands
@@ -34,7 +34,7 @@ npm run images:optimise   # resize/convert a newly added source image to WebP (i
 
 `npm run build` is the exact command Netlify runs on push; publish directory
 is `docs/` (gitignored — never edit it by hand, it's emptied on every
-build). Tailwind is not a separate build step: `generate.js` declares it as
+build). Tailwind is not a separate build step: `router.js` declares it as
 a kiss asset-pipeline step (`config.assets.pipeline`), so it runs before
 kiss copies/hashes assets, under `build`, `check` and `dev` alike. Edit
 `src/styles/site.css`; never `src/assets/css/site.css` (generated,
@@ -43,7 +43,7 @@ gitignored).
 There is no lint or test script configured, and no eslint/prettier config in
 the repo. The committed JS is nonetheless Prettier-formatted with
 `--no-semi --single-quote` (verify with
-`npx prettier@3 --no-semi --single-quote --check generate.js 'src/**/*.js'`).
+`npx prettier@3 --no-semi --single-quote --check router.js 'src/**/*.js'`).
 Correctness is verified by building (`npm run build`), serving `docs/`
 (`npm run qa:serve -- docs <port>`), and checking the rendered page —
 plus the QA harness below for anything beyond a one-off visual check.
@@ -90,7 +90,7 @@ automatically as the `Preview QA` check.
 its id, view, model, controller and the partials it rendered) plus authored
 notes under `AIKB/notes/` for each controller and pipeline step, stamped with
 the subject's hash. It is committed source, written only by
-`npx kiss-ssg aikb generate.js`, and `npm run check` diffs every build
+`npx kiss-ssg aikb router.js`, and `npm run check` diffs every build
 against `AIKB/last-build.json` and reports notes that are missing, stale,
 dead or dangling. A piece of work on the site runs through the kiss-memory
 plugin's loop: `kiss-branch-open` writes the intent to
@@ -102,14 +102,14 @@ empties the diff. Changing a controller obliges restamping its note.
 
 ## Architecture
 
-### Page pipeline: `generate.js` → model → controller → view
+### Page pipeline: `router.js` → model → controller → view
 
-Every route is registered in `generate.js` via kiss-ssg's `.page()` (one
+Every route is registered in `router.js` via kiss-ssg's `.page()` (one
 page) or `.pages()` (fan out one page per item in an array/folder model).
 For a fan-out page, e.g. `/courses/*`:
 
 ```
-generate.js:  .pages({ view: 'courses/course.hbs', model: 'courses', controller: 'course.js', path: 'courses' })
+router.js:  .pages({ view: 'courses/course.hbs', model: 'courses', controller: 'course.js', path: 'courses' })
 src/models/courses/bronze-obedience.json   → data for one page (slug, title, description, image, components: {...})
 src/controllers/course.js                    → reshapes the model into { slug, title, description, model }
 src/pages/courses/course.hbs                → the Handlebars view, extends a layout, renders model.components.*
@@ -125,7 +125,7 @@ persists across dev-server rebuilds (see the imported cheat sheet for why).
 controllers; `about.js`/`course.js`/`behavioural-consultations.js` are
 per-section.
 
-`generate.js` is only the router: config, one `registerHelpers(kiss)` call,
+`router.js` is only the router: config, one `registerHelpers(kiss)` call,
 the `.page()`/`.pages()` table, then `.generate()`/`.sitemap()`/`.llms()` and
 the build report. Nothing else belongs in it.
 
@@ -133,7 +133,7 @@ the build report. Nothing else belongs in it.
 
 Every custom helper, one module per kind, each exporting a
 `register*Helpers(kiss)` that `src/helpers/index.js` composes into the single
-`registerHelpers(kiss)` that `generate.js` calls:
+`registerHelpers(kiss)` that `router.js` calls:
 
 | Module | Helpers | What kind of thing it is |
 | --- | --- | --- |
@@ -201,9 +201,16 @@ list in `src/styles/site.css` if a helper ever emits a class name.
 
 ### Design system (`src/styles/site.css`)
 
-Tailwind v4 entry point; explicit `@source` globs list only real template
-locations (excludes `src/assets` and `qa/`, which would otherwise get
-scanned for class names). Design tokens live in `@theme`: a green `brand`
+Tailwind v4 entry point. `@import 'tailwindcss' source(none)` turns automatic
+detection **off**, so the `@source` globs are the whole of what is scanned for
+class names. Keep it that way: `@source` only *adds* to the automatic walk of
+the repo root, and with the walk on, every prose file in the project —
+`CLAUDE.md`, `README.md`, `planning/`, `AIKB/` — is a class-name source.
+Writing the word "invisible" in a sentence emitted `.invisible` into the
+stylesheet, changed its content hash and so changed every page that links it;
+`.container`, `.fixed`, `.outline` and `.resize` had been riding along the same
+way. **A new template location must be added to the glob list** or its classes
+will not compile. Design tokens live in `@theme`: a green `brand`
 ramp, a warm `sand` ground, a dark-slate `ink` text ramp, and an `accent`
 amber reserved for calls to action — every text/background pairing in the
 shell is WCAG AA. `:focus-visible` uses a two-layer ring (amber `outline` +
@@ -223,7 +230,7 @@ plugin's default palette to the site's `ink`/`brand` tokens.
 ### Assets and caching
 
 `src/assets/` is copied verbatim into `docs/` (images, fonts, `js/`,
-generated `css/`). `assets: { hash: true }` in `generate.js` renames every
+generated `css/`). `assets: { hash: true }` in `router.js` renames every
 emitted `.css`/`.js` with a content hash; templates always reference the
 unhashed name through kiss's `{{asset}}` helper
 (`href="/{{asset "css/site.css"}}"`) and the manifest resolves it.
@@ -231,7 +238,7 @@ unhashed name through kiss's `{{asset}}` helper
 year for images/fonts, and security headers. There is **no hand-written
 `_redirects`**: kiss writes `docs/_redirects` at build time from each page's
 `aliases` (the pre-2015 paths sit on the course, consultation and about
-records in `src/models/`; `/find-us/` on the contact page in `generate.js`),
+records in `src/models/`; `/find-us/` on the contact page in `router.js`),
 one `<old> <new> 301` line per alias. To keep an old URL alive when a page
 moves, add it to that page's `aliases`; `npm run check` reports a page
 removed or moved without one.

@@ -4,7 +4,7 @@ import { registerNavigationHelpers } from './navigation.js'
 import { registerCourseHelpers } from './courses.js'
 
 // Every Handlebars helper this site adds to the ones kiss ships. Called from
-// generate.js on the instance, because kiss gives each Kiss its own Handlebars
+// router.js on the instance, because kiss gives each Kiss its own Handlebars
 // environment (Handlebars.create()) — a helper registered on the global module
 // is not seen by these templates.
 //

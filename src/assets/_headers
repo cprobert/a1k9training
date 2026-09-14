@@ -22,7 +22,7 @@
   # needs careful frame-src/img-src/connect-src entries for that without
   # breaking it. Left for a follow-up once that policy is worked out.
 
-# Hashed build output (generate.js: `assets: { hash: true }`, run by the
+# Hashed build output (router.js: `assets: { hash: true }`, run by the
 # Tailwind pipeline step and kiss's own asset copy) — css/site.<hash>.css and
 # js/site.<hash>.js. A changed file gets a new filename, so a cached copy
 # never needs to be checked again.

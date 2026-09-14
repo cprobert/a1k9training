@@ -7,23 +7,28 @@
  * as {{asset "css/site.css"}}.
  * ------------------------------------------------------------------------- */
 
-@import 'tailwindcss';
+/* `source(none)` switches Tailwind's automatic detection OFF, so the globs below
+ * are the whole of what is scanned for class names. Without it `@source` only
+ * ADDS to the automatic walk of the repo root, which means every prose file in
+ * the project — CLAUDE.md, README.md, planning/, AIKB/ — is a class-name source:
+ * writing the word "invisible" in a sentence emits `.invisible` into this
+ * stylesheet, changes its content hash, and so changes every page that links it.
+ * That happened. Paths below are relative to this file. */
+@import 'tailwindcss' source(none);
 @plugin "@tailwindcss/typography";
 
-/* Explicit source globs. Tailwind's automatic detection would otherwise walk the
- * repo root and scan its own output (src/assets/css/site.css) plus the built site
- * in docs/. Paths are relative to this file. */
 @source '../pages';
 @source '../partials';
 @source '../layouts';
 @source '../models';
 @source '../helpers';
-@source '../../generate.js';
+@source '../../router.js';
 
-/* src/assets holds vendored/binary files and the generated stylesheet itself —
- * never a source of class names. */
+/* Belt and braces: these two would be scanned if the `source(none)` above were
+ * ever dropped. src/assets holds vendored/binary files and this stylesheet's own
+ * output; the QA scripts mention utility names in their assertions. */
 @source not '../assets';
-@source not '../../qa'; /* QA scripts mention utility names in their tests */
+@source not '../../qa';
 
 /* ---------------------------------------------------------------------------
  * Self-hosted display face. Latin subset pulled from the Google Fonts CSS API

@@ -8,7 +8,7 @@
 // script only ever talks HTTP/HTTPS to <url>; it builds nothing and never
 // touches the filesystem outside qa/out/preview/.
 //
-// generate.js pins `siteUrl` to production (`https://www.a1k9training.co.uk`)
+// router.js pins `siteUrl` to production (`https://www.a1k9training.co.uk`)
 // regardless of which host actually served the response, so `<link
 // rel="canonical">`, every `<loc>` in sitemap.xml and every llms.txt entry
 // are always absolute production URLs, even when this script is pointed at
@@ -301,7 +301,7 @@ let llmsEntryUrls = []
 // linked from somewhere we don't control — the pre-2015 paths, and /find-us/,
 // which was the contact page's URL until it became /contact/. kiss writes the
 // file at build time from each page's `aliases` (the course, consultation and
-// about records in src/models, and the contact page in generate.js), one
+// about records in src/models, and the contact page in router.js), one
 // `<old> <new> 301` line per alias — so this needs a build to have run first
 // (the workflow does; by hand, `npm run build` before `npm run qa:preview`).
 // Nothing tested that these resolve: qa/serve.mjs implements pretty-URL
@@ -372,7 +372,7 @@ const pageFetches = new Map()
 
 for (const loc of sitemapLocs) {
   // Fetch from the host under test, not the <loc> itself — for the same
-  // reason section 5 does it (siteUrl is pinned to production in generate.js,
+  // reason section 5 does it (siteUrl is pinned to production in router.js,
   // so every <loc> is a production URL even when this script is pointed at a
   // deploy preview). Fetching the loc directly made this check exercise the
   // LIVE SITE rather than the deploy, so a preview serving 500s everywhere
@@ -428,7 +428,7 @@ for (const loc of sitemapLocs) {
 // 5. Structured data: home + every sitemap URL under
 //    /behavioural-consultations/ — fetched from the host under test
 //    (baseUrl + the loc's path), not the loc itself: siteUrl is pinned to
-//    production in generate.js, so every <loc> is a production URL even
+//    production in router.js, so every <loc> is a production URL even
 //    when this script is pointed at a deploy preview; the point of this
 //    check is what the deploy under test actually serves at that path.
 // ======================================================================

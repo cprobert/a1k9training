@@ -59,7 +59,7 @@ horizontal overflow, one h1 and image attributes, with screenshots in
 - All green: tick the post-deploy box in the PR's test plan and paste the
   table as a PR comment (or edit the PR body) so a reviewer sees the live
   evidence beside the diff. Keep it to the table and the summary line.
-- Any red: fix at source (`src/assets/_headers`, `generate.js`, the
+- Any red: fix at source (`src/assets/_headers`, `router.js`, the
   template), push, and repeat from step 1. Never mark a PR verified with a
   red row; never edit `docs/` by hand.
 

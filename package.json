@@ -1,7 +1,7 @@
 {
   "name": "a1k9-training",
   "version": "1.0.0",
-  "main": "generate.js",
+  "main": "router.js",
   "type": "module",
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
@@ -15,10 +15,10 @@
     "tailwindcss": "^4.3.3"
   },
   "scripts": {
-    "build": "node generate",
-    "gen": "node generate",
-    "dev": "node generate dev",
-    "check": "kiss-ssg check generate.js --summary",
+    "build": "node router",
+    "gen": "node router",
+    "dev": "node router dev",
+    "check": "kiss-ssg check router.js --summary",
     "images:optimise": "node scripts/optimise-images.mjs",
     "qa:serve": "node qa/serve.mjs",
     "qa:pages": "node qa/pages.mjs docs",

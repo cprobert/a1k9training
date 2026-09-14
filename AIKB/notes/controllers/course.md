@@ -4,7 +4,7 @@ subject-hash: c00a59e9f8de4e8b1866d50203499f3480f6f691
 
 ## What it does
 
-Runs once per record in `src/models/courses` for the `/courses/*` fan-out registered in `generate.js`. It resolves the record's `faqIds` into FAQ entries through `src/controllers/faqLib.js`, then returns `slug`, `title` and `description` for the page and the whole record as `model` for `src/pages/courses/course.hbs`. Nothing else is derived here: the course ladder, the breadcrumb and `aliases` are read straight off the record by helpers in `generate.js` and by kiss itself.
+Runs once per record in `src/models/courses` for the `/courses/*` fan-out registered in `router.js`. It resolves the record's `faqIds` into FAQ entries through `src/controllers/faqLib.js`, then returns `slug`, `title` and `description` for the page and the whole record as `model` for `src/pages/courses/course.hbs`. Nothing else is derived here: the course ladder, the breadcrumb and `aliases` are read straight off the record by helpers in `router.js` and by kiss itself.
 
 ## Why it is this way
 

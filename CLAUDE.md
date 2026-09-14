@@ -43,7 +43,10 @@ gitignored).
 There is no lint or test script configured, and no eslint/prettier config in
 the repo. The committed JS is nonetheless Prettier-formatted with
 `--no-semi --single-quote` (verify with
-`npx prettier@3 --no-semi --single-quote --check router.js 'src/**/*.js'`).
+`npx prettier@3 --no-semi --single-quote --check router.js 'src/**/*.js'`) —
+with two files that predate the convention and still fail it:
+`src/assets/js/site.js` and `src/controllers/faqLib.js`. Format what you
+touch; reformatting `site.js` changes a hashed asset and so every page.
 Correctness is verified by building (`npm run build`), serving `docs/`
 (`npm run qa:serve -- docs <port>`), and checking the rendered page —
 plus the QA harness below for anything beyond a one-off visual check.
@@ -158,6 +161,23 @@ inside the helper.
 Helper files are not AIKB subjects (only controllers, URL models and pipeline
 steps are), so adding one obliges no note. Do add the folder to the `@source`
 list in `src/styles/site.css` if a helper ever emits a class name.
+
+### Site facts (`src/config/`)
+
+`src/config/business.js` holds the business's own facts — name, phone (E.164
+plus the display form), the three social URLs, and the two venues as
+schema.org `Place` records. `router.js` spreads it into `new Kiss()` as an
+arbitrary config key, which is what puts it on **both** sides of the site:
+templates read `{{config.business.telephone}}`, helpers read
+`kiss.config.business`. Change a fact here and it reaches the markup and the
+JSON-LD together — before this existed the phone number was written out in
+seven templates and again in `src/helpers/schema.js`.
+
+Page *data* still belongs in `src/models/`; this is for facts the shell and
+the structured data share. Note `SECTIONS` in `src/helpers/navigation.js` is
+**not** here yet: `navbar.hbs` still carries its own copy of those labels in
+hand-written markup (see the comment on `SECTIONS`), so renaming a section
+means editing both.
 
 ### Templates: layouts, pages, partials
 

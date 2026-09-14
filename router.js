@@ -1,6 +1,7 @@
 import 'colors'
 import Kiss from 'kiss-ssg'
 import { registerHelpers } from './src/helpers/index.js'
+import { business } from './src/config/business.js'
 import { onBuildComplete, onBuildFailure } from './scripts/build-report.mjs'
 
 const args = process.argv.slice(2)
@@ -13,6 +14,10 @@ const kiss = new Kiss({
   verbose: true,
   folders: { build: './docs' },
   siteUrl: 'https://www.a1k9training.co.uk',
+  // The business's own facts — name, phone, socials, venues. An arbitrary
+  // config key reaches both sides of the site: templates read it as
+  // {{config.business.*}}, helpers as kiss.config.business.
+  business,
   // Every emitted .css/.js is renamed to carry a hash of its own bytes, so the
   // host can cache them for ever. Templates keep asking for the plain name via
   // the {{asset}} helper — see src/layouts/*.hbs.

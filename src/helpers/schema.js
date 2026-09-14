@@ -4,49 +4,6 @@ import { HOME_HERO_IMAGE } from './format.js'
 // re-expressed for a machine. Each returns a plain object that the template
 // serialises with {{{stringify ...}}}.
 
-// The two venues named on src/pages/contact.hbs ("A1K9 Dog Training Academy
-// now runs from two venues near Swansea"). Only fields this repo actually
-// sources are included:
-//  - A1K9 Training Grounds: locality + postcode come from that page's first
-//    map embed's `pb=` query string ("Pontarddulais,+Swansea+SA4+8NP"); the
-//    lat/long come from the same embed's `!2d…!3d…` pair (longitude then
-//    latitude).
-//  - Llys Nini Animal Centre (RSPCA): the page states its locality and
-//    postcode directly in the heading text, but the repo holds no
-//    coordinates for it (its map is a plain `?q=` search embed, not a
-//    `pb=` embed with a lat/long pair) — so it gets an address and no `geo`,
-//    rather than an invented one.
-// No street address or opening hours are invented for either venue.
-const LOCATIONS = [
-  {
-    '@type': 'Place',
-    name: 'A1K9 Training Grounds',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Pontarddulais',
-      addressRegion: 'West Glamorgan',
-      postalCode: 'SA4 8NP',
-      addressCountry: 'GB',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 51.7053036589514,
-      longitude: -3.9974988901576323,
-    },
-  },
-  {
-    '@type': 'Place',
-    name: 'Llys Nini Animal Centre (RSPCA)',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Penllergaer',
-      addressRegion: 'West Glamorgan',
-      postalCode: 'SA4 9WB',
-      addressCountry: 'GB',
-    },
-  },
-]
-
 export function registerSchemaHelpers(kiss) {
   // LocalBusiness JSON-LD (src/partials/layout/header.hbs, every page). Built
   // as a helper rather than hand-typed JSON in the template so title/description
@@ -57,30 +14,32 @@ export function registerSchemaHelpers(kiss) {
   // query string dropped from Facebook's); the phone number is the site's
   // tel: link. `location` is the LOCATIONS pair above, sourced from
   // src/pages/contact.hbs.
+  const business = kiss.config.business
+
   kiss.handlebars.registerHelper('localBusiness', function (model) {
     const siteUrl = kiss.config.siteUrl
     const image = (model && model.image) || HOME_HERO_IMAGE
     return {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
-      name: 'A1K9 Behaviour and Training Academy',
-      alternateName: 'Gaynor Probert Dog Behaviour and Training',
+      name: business.name,
+      alternateName: business.alternateName,
       url: `${siteUrl}/`,
-      telephone: '+447798500390',
-      areaServed: 'South Wales',
+      telephone: business.telephone,
+      areaServed: business.areaServed,
       image: `${siteUrl}${image}`,
       sameAs: [
-        'https://www.facebook.com/A1K9PDT',
-        'https://www.youtube.com/channel/UCA0GMQkoz1lgjHvo41hqH2A',
-        'https://www.linkedin.com/in/gaynor-probert-b869581a/',
+        business.social.facebook,
+        business.social.youtube,
+        business.social.linkedin,
       ],
-      location: LOCATIONS,
+      location: business.locations,
     }
   })
 
   const BUSINESS_REF = {
     '@type': 'LocalBusiness',
-    name: 'A1K9 Behaviour and Training Academy',
+    name: business.name,
     url: `${kiss.config.siteUrl}/`,
   }
 
@@ -108,7 +67,7 @@ export function registerSchemaHelpers(kiss) {
     name,
     description,
     provider: BUSINESS_REF,
-    areaServed: 'South Wales',
+    areaServed: business.areaServed,
     url,
   }))
 

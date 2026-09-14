@@ -17,6 +17,7 @@
 @source '../partials';
 @source '../layouts';
 @source '../models';
+@source '../helpers';
 @source '../../generate.js';
 
 /* src/assets holds vendored/binary files and the generated stylesheet itself —

@@ -40,8 +40,10 @@ kiss copies/hashes assets, under `build`, `check` and `dev` alike. Edit
 `src/styles/site.css`; never `src/assets/css/site.css` (generated,
 gitignored).
 
-There is no lint or test script configured (`.eslintrc.cjs`/`.prettierrc`
-exist but `eslint` itself isn't a dependency and no `npm run lint` exists).
+There is no lint or test script configured, and no eslint/prettier config in
+the repo. The committed JS is nonetheless Prettier-formatted with
+`--no-semi --single-quote` (verify with
+`npx prettier@3 --no-semi --single-quote --check generate.js 'src/**/*.js'`).
 Correctness is verified by building (`npm run build`), serving `docs/`
 (`npm run qa:serve -- docs <port>`), and checking the rendered page —
 plus the QA harness below for anything beyond a one-off visual check.
@@ -123,6 +125,40 @@ persists across dev-server rebuilds (see the imported cheat sheet for why).
 controllers; `about.js`/`course.js`/`behavioural-consultations.js` are
 per-section.
 
+`generate.js` is only the router: config, one `registerHelpers(kiss)` call,
+the `.page()`/`.pages()` table, then `.generate()`/`.sitemap()`/`.llms()` and
+the build report. Nothing else belongs in it.
+
+### Handlebars helpers (`src/helpers/`)
+
+Every custom helper, one module per kind, each exporting a
+`register*Helpers(kiss)` that `src/helpers/index.js` composes into the single
+`registerHelpers(kiss)` that `generate.js` calls:
+
+| Module | Helpers | What kind of thing it is |
+| --- | --- | --- |
+| `format.js` | `eq`, `imageVariant`, `heroImage` | pure transformations; arguments in, string out |
+| `schema.js` | `localBusiness`, `faqPage`, `serviceSchema`, `personSchema`, `breadcrumbList` | schema.org JSON-LD, serialised by `{{{stringify ...}}}` |
+| `navigation.js` | `breadcrumb` | derives the trail from the page being rendered |
+| `courses.js` | `courseLadder` | reads `src/models/courses/*.json` to build the progression |
+| `link.js` | — | `makeLinkTo(kiss)`, shared by the two above |
+
+Register on `kiss.handlebars`, never the global `handlebars` module: kiss
+gives each instance its own `Handlebars.create()`, so a globally registered
+helper is invisible to these templates. **`registerHelpers(kiss)` must stay
+immediately after `new Kiss()`** — partials are compiled at construction, and
+a helper registered later is not there when they render.
+
+A helper that resolves a link must do so at *render* time: the page registry
+it reads is filled by the `.page()`/`.pages()` calls, so `makeLinkTo(kiss)`
+may run at registration but the `linkTo` it returns may not. This is why
+`courses.js` builds its ladder steps without a `url` and adds one per step
+inside the helper.
+
+Helper files are not AIKB subjects (only controllers, URL models and pipeline
+steps are), so adding one obliges no note. Do add the folder to the `@source`
+list in `src/styles/site.css` if a helper ever emits a class name.
+
 ### Templates: layouts, pages, partials
 
 - `src/layouts/layout.hbs` — the general-purpose layout: a model-driven
@@ -160,8 +196,8 @@ per-section.
   bare helper renders `/courses/bronze-obedience.html`, which Netlify 301s
   back to the slashless form and `qa:preview`'s redirect-free check fails.
   The same rule applies to model data — the about records' `next` carries a
-  page `id`, not a URL — and to `generate.js`, where `linkTo()` wraps the
-  helper for the breadcrumb and course-ladder helpers.
+  page `id`, not a URL — and to `src/helpers/link.js`, whose `makeLinkTo()`
+  wraps the helper for the breadcrumb and course-ladder helpers.
 
 ### Design system (`src/styles/site.css`)
 

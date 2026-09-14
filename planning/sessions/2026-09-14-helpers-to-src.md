@@ -162,3 +162,33 @@ master before this branch opened, which is why `npm run check` reports all 20
 pages `~` and `npm run qa:compare` fails on a clean tree as well as on this
 one. `SECTIONS` also remains duplicated between `src/helpers/navigation.js` and
 the hand-written markup in `navbar.hbs`.
+
+## Close
+
+**6. The 2026-09-13 CSS-hash drift is solved, guarded and written down.** That
+session closed the drift as unexplained, blaming untracked `node_modules`. The
+cause was the Tailwind prose-scanning bug in amendment 2: `.container`,
+`.fixed`, `.outline` and `.resize` were in the shipped stylesheet with none of
+the four used as a class anywhere on the site, and because the stylesheet is
+content-hashed, a word typed into any markdown file renamed it and moved every
+page's hash. The 09-13 log is self-evidencing — it uses "fixed" on five lines
+and "resize" on one, so writing up the drift moved the hash again.
+
+`AIKB/site.md` now exists (it never had, despite `AIKB/README.md` specifying
+it) and carries the finding under Standing gotchas, plus two Retired feedback
+entries. `qa/css-source-guard.mjs` fails the build if `source(none)` goes
+missing or an `@source` path stops resolving; it runs first in `npm run qa`,
+before the build is paid for, and was verified against both failure modes.
+
+`AIKB/` re-recorded at close, deferred twice earlier on this branch for a
+reason that no longer holds. `npm run check` now reports `= 20 unchanged`, with
+no missing, dead, stale or dangling notes, and a second identical record leaves
+the tree clean.
+
+**Still open, deliberately:** `qa/baseline/content.json` is stale relative to
+master, so `npm run qa:compare` fails on this branch and on a clean master
+alike; the convention is to refresh it from a master build, so it is a
+post-merge task. `SECTIONS` remains duplicated between
+`src/helpers/navigation.js` and the hand-written markup in `navbar.hbs`.
+Feedback for kiss-ssg was drafted separately and is not committed here, since
+it targets another repository.

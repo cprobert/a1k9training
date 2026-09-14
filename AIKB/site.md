@@ -72,8 +72,8 @@ unchanged, and it is almost certainly the "CSS-hash drift" that
 `planning/sessions/2026-09-13-ad-hoc-edits.md` investigated at length and
 closed as unexplained — it blamed untracked `node_modules` state, having
 checked that nothing under `src/` had changed. Writing that session log was
-itself enough to move the hash; the file contains the words "fixed" and
-"resize" six times.
+itself enough to move the hash: it uses the word "fixed" on five lines and
+"resize" on one.
 
 `qa/css-source-guard.mjs` (`npm run qa:css`, and the first step of `npm run
 qa`) now fails the build if `source(none)` goes missing, or if any `@source`

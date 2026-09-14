@@ -57,19 +57,9 @@ kiss
 
   .page({
     view: 'behavioural-consultations/index.hbs',
-    model: {
-      image: '/images/consultations/consultations-v1.webp',
-      caption: 'right',
-      // The handful of answers this page shows inline; every answer, including
-      // these, is on /faqs/. Ids live in src/models/faqs/*.json.
-      faqIds: [
-        'cons-too-late',
-        'cons-what-happens',
-        'cons-referral',
-        'cons-after',
-        'cons-where',
-      ],
-    },
+    // Its `faqIds` are the handful of answers this page shows inline; every
+    // answer, including these, is on /faqs/. Ids live in src/models/faqs/*.json.
+    model: 'behavioural-consultations-index.json',
     controller: 'faqMapper.js',
     title: 'Dog Behavioural Consultations in South Wales by Gaynor Probert',
     description:
@@ -88,18 +78,7 @@ kiss
 
   .page({
     view: 'courses/index.hbs',
-    model: {
-      image: '/images/courses/classes-v1.1.webp',
-      caption: 'left',
-      faqIds: [
-        'course-prices',
-        'which-course',
-        'service-triage',
-        'booking-required',
-        'venue',
-        'vaccinations',
-      ],
-    },
+    model: 'courses-index.json',
     controller: 'faqMapper.js',
     title: 'Dog Training Classes in South Wales with Gaynor Probert',
     description:
@@ -132,11 +111,7 @@ kiss
 
   .page({
     view: 'contact.hbs',
-    model: {
-      image: '/images/about/horse-sit-v1.webp',
-      caption: 'right',
-      captionOffset: true,
-    },
+    model: 'contact.json',
     title: 'Contact A1K9 Training',
     description:
       'Contact A1K9 Dog Training Academy near Swansea in South Wales to book dog training courses or a behavioural consultation, and find us on the map.',
@@ -152,6 +127,10 @@ kiss
     sitemapChangefreq: 'monthly',
   })
 
+  // The three `{ noHero: true }` models below stay inline on purpose: noHero is
+  // a layout flag rather than page data, and a .json file holding one boolean
+  // would be a file to open rather than a fact to read.
+  //
   // Where Netlify sends a visitor after a successful form post (the forms'
   // `action`). Like the 404 it is a real page but not a destination — kept out
   // of sitemap.xml and llms.txt, and given `noHero` so the confirmation is the

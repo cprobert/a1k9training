@@ -154,7 +154,7 @@ file: the rebuild moved 32 `tel:` hrefs, 29 visible phone strings, 20 JSON-LD
 telephone entries, 43 Facebook hrefs and 40 JSON-LD `sameAs` entries, and left
 zero copies of the old values in `docs/`.
 
-`router.js` across the whole branch: **570 → 203 lines.**
+`router.js` across the whole branch: **570 → 208 lines.**
 
 Still outstanding, and still deliberately not done here: `AIKB/` is not
 re-recorded and `qa/baseline/` is not refreshed. Both were already stale on

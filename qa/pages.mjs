@@ -49,11 +49,26 @@ export function toUrlPath(root, file) {
 
 /**
  * Derive the sorted, de-duplicated list of page URL paths for a built site.
+ *
+ * Prefers `.qa-pages.json` (written by generate.js's `.complete()` hook,
+ * listing exactly the pages kiss-ssg itself registered) when present, so a
+ * static file copied verbatim into the build — the Google site-verification
+ * stub, say — is never mistaken for a page. Falls back to walking every
+ * `.html` file for a site that has no manifest.
  * @param {string} siteDir
  * @returns {Promise<string[]>}
  */
 export async function listPages(siteDir) {
   const root = path.resolve(siteDir)
+  const manifestPath = path.join(root, '.qa-pages.json')
+  try {
+    const manifest = JSON.parse(await fs.readFile(manifestPath, 'utf8'))
+    const urls = manifest.map((rel) => toUrlPath(root, path.join(root, rel)))
+    return [...new Set(urls)].sort()
+  } catch {
+    // No manifest — an older build, or a site this script wasn't written
+    // for. Walk the directory as before.
+  }
   const files = await walkHtml(root)
   const urls = files.map((f) => toUrlPath(root, f))
   return [...new Set(urls)].sort()

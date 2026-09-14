@@ -1,4 +1,5 @@
 import fs from 'node:fs'
+import path from 'node:path'
 import 'colors'
 import Kiss, { utils } from 'kiss-ssg'
 
@@ -535,6 +536,30 @@ kiss
     console.log('Success'.rainbow)
     if (this.config.dev)
       console.log(`http://${this.config.devHost}:${this.config.port}`.yellow)
+    // qa/pages.mjs's source of truth for "every page on this site": kiss's
+    // own registry, not a directory walk that can't tell a rendered page
+    // apart from an incidental static file copied straight from
+    // src/assets (the Google site-verification stub was the case that
+    // bit us — it lived in docs/ as a .html file, so a raw walk counted
+    // it as a 21st page and both a hardcoded --assert=N in package.json
+    // and a hand-maintained exclusion list in qa/check-axe.mjs had to be
+    // kept in sync by hand). Written once per real (non-dev, non-check)
+    // build, so it is never stale and nothing needs bumping when a page
+    // is added. Skipped in dev and in `check` mode: this is a raw
+    // fs.writeFileSync, not a kiss API call, so it is not staging-aware —
+    // writing it during `check` (report.mode === 'check') would leave a
+    // file behind in the real build folder despite check's "nothing is
+    // written" guarantee.
+    const report = this.report()
+    if (!this.config.dev && report.mode !== 'check') {
+      const pages = (report.pages || [])
+        .filter((p) => p.ok)
+        .map((p) => utils.posixPath(path.relative(report.buildDir, p.buildTo)))
+      fs.writeFileSync(
+        path.join(report.buildDir, '.qa-pages.json'),
+        JSON.stringify(pages, null, 2),
+      )
+    }
   })
   .catch((err) => {
     for (const failure of err.failures ?? [])

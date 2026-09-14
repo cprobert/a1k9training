@@ -7,140 +7,140 @@
       "view": "index.hbs",
       "buildTo": "./docs/index.html",
       "ok": true,
-      "hash": "0df0c538e52348809b45ae727c97b4c858c30615",
+      "hash": "edf6585455c6c8760d3f929edc6809d43e9c6b04",
       "id": "index"
     },
     {
       "view": "contact.hbs",
       "buildTo": "./docs/contact/index.html",
       "ok": true,
-      "hash": "8dea3ac3d98abcf7c3d0c6625100086ffb30c9f8",
+      "hash": "c11e6eeda3ffe34de8ad06de137b3a1db9d2303b",
       "id": "contact"
     },
     {
       "view": "thanks.hbs",
       "buildTo": "./docs/thanks/index.html",
       "ok": true,
-      "hash": "a7520395f882ed93ad49421fc4b228127bcb7aed",
+      "hash": "afbecdcf664052a4d2724bc8d7e21904248c20dc",
       "id": "thanks"
     },
     {
       "view": "404.hbs",
       "buildTo": "./docs/404.html",
       "ok": true,
-      "hash": "063e71713acfa08d91dc59392581b0ad2274a818",
+      "hash": "f5fad2c960b24ad193f51a06a6af2e1ba3c0b765",
       "id": "404"
     },
     {
       "view": "about.hbs",
       "buildTo": "./docs/about/facilities.html",
       "ok": true,
-      "hash": "fe27ecfa524e54f33b9205c6865c95a24d64a1ea",
+      "hash": "0f33c20fe4be04605eb53d82564b4d3d3e5e898b",
       "id": "about/facilities"
+    },
+    {
+      "view": "about.hbs",
+      "buildTo": "./docs/about/gaynor-probert.html",
+      "ok": true,
+      "hash": "124387e396083750775de083e371e7be10580bd9",
+      "id": "about/gaynor-probert"
     },
     {
       "view": "behavioural-consultations/index.hbs",
       "buildTo": "./docs/behavioural-consultations/index.html",
       "ok": true,
-      "hash": "174d884336e23b970d5930fb8d72c583b378c311",
+      "hash": "7caf5d047e7995db21c2fb37cfe4e6182028b6a8",
       "id": "behavioural-consultations/index"
     },
     {
       "view": "courses/index.hbs",
       "buildTo": "./docs/courses/index.html",
       "ok": true,
-      "hash": "6341fc9a44b32649529401e541d7e0417bbb45d8",
+      "hash": "e1563196b6b986eccf439074986f619879c019c0",
       "id": "courses/index"
     },
     {
       "view": "behavioural-consultations/consultation.hbs",
       "buildTo": "./docs/behavioural-consultations/dog-on-dog-aggression.html",
       "ok": true,
-      "hash": "69354bd89e4bb82c417efce5b1908ec3a5b76795",
+      "hash": "3fe744bda5bc2a9e356568058355489984588df9",
       "id": "behavioural-consultations/consultation/dog-on-dog-aggression"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/bronze-obedience.html",
       "ok": true,
-      "hash": "0702794621b3059ef69316dbe7a0af1c6f657bd5",
+      "hash": "daf7196d66c19692ba423c10940582cc292b5b90",
       "id": "courses/course/bronze-obedience"
     },
     {
       "view": "faqs.hbs",
       "buildTo": "./docs/faqs/index.html",
       "ok": true,
-      "hash": "9f445e7489604565c2927c48a6e2dc01fab85994",
+      "hash": "57a9b4ede7a816581bc3d7e0ac3c8623c117ef95",
       "id": "faqs"
     },
     {
       "view": "about.hbs",
-      "buildTo": "./docs/about/gaynor-probert.html",
+      "buildTo": "./docs/about/index.html",
       "ok": true,
-      "hash": "6ad8bdb45a2bd0fff293ef88471bd2c9edc58eca",
-      "id": "about/gaynor-probert"
+      "hash": "145f2294ddd30dadc2415c9cc40f992c295d8d3a",
+      "id": "about/index"
     },
     {
       "view": "behavioural-consultations/consultation.hbs",
       "buildTo": "./docs/behavioural-consultations/dog-on-person-aggression.html",
       "ok": true,
-      "hash": "a45a4f154bca41f2d17fd1078233c0ead69841fe",
+      "hash": "e41e3642f1b1f190e0c2f6f34d071cbfa106da20",
       "id": "behavioural-consultations/consultation/dog-on-person-aggression"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/gold-obedience.html",
       "ok": true,
-      "hash": "6c1ee1eaf727143066ceafa77b77a44c30609104",
+      "hash": "47fd3c72d6452855457d13bc026689f12449101a",
       "id": "courses/course/gold-obedience"
-    },
-    {
-      "view": "about.hbs",
-      "buildTo": "./docs/about/index.html",
-      "ok": true,
-      "hash": "aaf51d3f5b2fa48814a58022da4016183ecbb88b",
-      "id": "about/index"
-    },
-    {
-      "view": "courses/course.hbs",
-      "buildTo": "./docs/courses/junior-obedience.html",
-      "ok": true,
-      "hash": "38460a40d2f5e9a8ee68b9f2b521f70131ccb458",
-      "id": "courses/course/junior-obedience"
     },
     {
       "view": "about.hbs",
       "buildTo": "./docs/about/sara-thomas.html",
       "ok": true,
-      "hash": "a4d9b778ee81ca1a5304374980f2f07b318e35f1",
+      "hash": "8582a6fb3138e25d8850e685b818bb6efadf8b10",
       "id": "about/sara-thomas"
+    },
+    {
+      "view": "courses/course.hbs",
+      "buildTo": "./docs/courses/junior-obedience.html",
+      "ok": true,
+      "hash": "5c729de8a146f5b05960f729991a0001cf4b0584",
+      "id": "courses/course/junior-obedience"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/one-to-one.html",
       "ok": true,
-      "hash": "3568f696ab6ad9d9d40e3f014550749f3301350c",
+      "hash": "83db122755506734d4473c4bdb12903c029ca88d",
       "id": "courses/course/one-to-one"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/platinum-obedience.html",
       "ok": true,
-      "hash": "6afb624d15fd4a07f59082f4c4ba5a8284715cef",
+      "hash": "b212b227db2d5e4e9e69be847aced2d46b1201d4",
       "id": "courses/course/platinum-obedience"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/puppy-socialisation.html",
       "ok": true,
-      "hash": "564ca2c13a79a6231b6b9d5c059c35b03273b6d2",
+      "hash": "31d1c25e61c129260710e0d3364e56c9bf504ce3",
       "id": "courses/course/puppy-socialisation"
     },
     {
       "view": "courses/course.hbs",
       "buildTo": "./docs/courses/silver-obedience.html",
       "ok": true,
-      "hash": "ec239cbf4b74baa1561c7d2d7b248814a5af5142",
+      "hash": "c60e1d8f101a168503867fef83baace1431f0cbe",
       "id": "courses/course/silver-obedience"
     }
   ],
@@ -156,7 +156,7 @@
     },
     {
       "source": "css/site.css",
-      "target": "css/site.e7abc083.css"
+      "target": "css/site.50c65141.css"
     },
     {
       "source": "favicon.ico",
@@ -504,7 +504,7 @@
     },
     {
       "source": "js/site.js",
-      "target": "js/site.e575f042.js"
+      "target": "js/site.03d87911.js"
     },
     {
       "source": "robots.txt",

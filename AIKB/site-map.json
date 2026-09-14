@@ -144,7 +144,7 @@
       "buildTo": "./docs/behavioural-consultations/index.html",
       "id": "behavioural-consultations/index",
       "view": "behavioural-consultations/index.hbs",
-      "model": "inline",
+      "model": "file:behavioural-consultations-index.json",
       "controller": "file:faqMapper.js",
       "partials": [
         "behavioural-consultations/left-col",
@@ -164,7 +164,7 @@
       "buildTo": "./docs/contact/index.html",
       "id": "contact",
       "view": "contact.hbs",
-      "model": "inline",
+      "model": "file:contact.json",
       "controller": "none",
       "partials": [
         "layout",
@@ -221,7 +221,7 @@
       "buildTo": "./docs/courses/index.html",
       "id": "courses/index",
       "view": "courses/index.hbs",
-      "model": "inline",
+      "model": "file:courses-index.json",
       "controller": "file:faqMapper.js",
       "partials": [
         "courses/index/intro",
@@ -683,6 +683,24 @@
   },
   "models": [
     {
+      "source": "file:behavioural-consultations-index.json",
+      "pages": [
+        "./docs/behavioural-consultations/index.html"
+      ]
+    },
+    {
+      "source": "file:contact.json",
+      "pages": [
+        "./docs/contact/index.html"
+      ]
+    },
+    {
+      "source": "file:courses-index.json",
+      "pages": [
+        "./docs/courses/index.html"
+      ]
+    },
+    {
       "source": "folder:about",
       "pages": [
         "./docs/about/facilities.html",
@@ -714,9 +732,6 @@
       "source": "inline",
       "pages": [
         "./docs/404.html",
-        "./docs/behavioural-consultations/index.html",
-        "./docs/contact/index.html",
-        "./docs/courses/index.html",
         "./docs/faqs/index.html",
         "./docs/thanks/index.html"
       ]

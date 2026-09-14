@@ -62,7 +62,10 @@ without `source(none)` every markdown file in the project is a class-name
 source. This was live in the repo for months: `.container`, `.fixed`,
 `.outline` and `.resize` were in the shipped stylesheet, generated purely from
 words in session notes and documentation — none of the four is used as a class
-on any element of the site.
+on any element of the site. (Narrowly: templates *do* use
+`focus-visible:outline`, but that is a different selector,
+`.focus-visible\:outline:focus-visible`, and it compiles identically before and
+after — the focus ring was checked specifically.)
 
 It matters more than four dead rules, because the stylesheet is content-hashed:
 a word typed in a markdown file changes the stylesheet's filename, which changes
@@ -100,6 +103,15 @@ refreshes it after copy lands. A failure there is not automatically your change.
   `node_modules`."* Retired: it was Tailwind scanning prose, above. The
   toolchain was deterministic all along, and the investigation was right that
   nothing under `src/` had changed. It was looking in the wrong tree.
+
+  Attribution was verified by scanning one location at a time against the
+  pre-branch copies: `planning/sessions/` alone produces `.container`,
+  `.fixed` and `.resize`; `CLAUDE.md` and `README.md` produce `.outline` and
+  `.resize`; `scripts/` produces none. What made it hard to catch is that it
+  is intermittent by nature — a word only counts if it forms a clean candidate
+  token (a trailing full stop is enough to stop it) and only shows up if it is
+  not already a compiled utility. The hash moved on some documentation edits
+  and not others, with no pattern a reader could see.
 - *"An eslint config and a prettier config exist but eslint is not installed."*
   Retired: neither config file is in the repo at all. The committed JS is
   Prettier-formatted with `--no-semi --single-quote`, with two files that

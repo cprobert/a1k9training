@@ -2,24 +2,34 @@
   "How booking works" — the sequence Gaynor described, so nobody has to ask
   what happens after they press Send.
 
-  Hash params rather than a controller, because /contact/ has no controller and
-  adding one to reach four sentences would cost an AIKB note restamp:
+  It is not a card of its own any more. It used to sit above the enquiry form
+  as a second panel, which read as a thing to get past before you could ask;
+  it now renders INSIDE the form's card, between the lead paragraph and the
+  first fieldset, so the steps are part of the act of enquiring rather than a
+  preamble to it. Hence no border, no background and no margins of its own —
+  just a hairline rule top and bottom to separate it from the prose above and
+  the fields below.
+
+  src/partials/courses/enquiry.hbs is now the only caller, and it picks the
+  shape from the model rather than the page doing it:
 
     {{> "how-booking-works" noDeposit=model.noDeposit price=model.price}}
       course page   — four steps, deposit step keyed off the model
     {{> "how-booking-works" session=true}}
-      one-to-one and consultation pages — three steps, no deposit and no
-      balance: those are course facts and do not apply to a single session
-    {{> "how-booking-works" generic=true}}
-      /contact/     — four steps, with the Puppy exception named inline since
-      the page is not about any one course
+      one-to-one and consultation pages (model.glance === "session") — three
+      steps, no deposit and no balance: those are course facts and do not
+      apply to a single session
+
+  /contact/ renders the form with `steps=false` and so gets none of this: a
+  general enquiry is not a booking yet, and the four steps would be answering
+  a question nobody on that page has asked.
 
   A @container wrapper, not a media query: the list is 4-up in a course page's
-  full-width column and 2-up in contact's half column, and the breakpoint that
+  full-width form card and 2-up in a narrow one, and the breakpoint that
   decides that is the wrapper's own width, not the viewport's.
 --}}
-<section class="@container mt-10 mb-8 rounded-card border border-sand-200 bg-sand-50 p-6 sm:p-8">
-  <h2 class="mb-5 font-display text-xl text-ink-900">How booking works</h2>
+<section class="@container mb-6 border-y border-sand-200 py-5">
+  <h3 class="mb-4 font-display text-lg text-ink-900">How booking works</h3>
 
   {{#if session}}
     <ol class="grid list-none gap-5 pl-0 @md:grid-cols-3">
@@ -53,7 +63,7 @@
         {{else}}
           <p class="mt-2 mb-0">
             Confirm your place with a {{config.business.courses.deposit}} deposit &mdash;
-            {{config.business.courses.depositNote}}{{#if generic}} (no deposit for Puppy Socialisation){{/if}}.
+            {{config.business.courses.depositNote}}.
           </p>
         {{/if}}
       </li>

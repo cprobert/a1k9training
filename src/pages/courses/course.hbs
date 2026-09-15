@@ -69,13 +69,8 @@
 
   {{!-- Booking this course is the page's primary action; the ladder's next
         step is genuinely secondary, so it renders after the enquiry form and
-        styles its link accordingly. --}}
-  {{#if (eq model.glance "session")}}
-    {{> "how-booking-works" session=true}}
-  {{else}}
-    {{> "how-booking-works" noDeposit=model.noDeposit price=model.price}}
-  {{/if}}
-
+        styles its link accordingly. "How booking works" is inside the form's
+        own card now — see the comment in courses/enquiry.hbs. --}}
   {{> "courses/enquiry"}}
 
   {{> "courses/ladder"}}

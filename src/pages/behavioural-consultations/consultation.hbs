@@ -44,9 +44,9 @@
       owner to navigate before they could say anything. The same enquiry form
       the course pages use now sits here instead, under the same Netlify form
       name so it lands in one inbox; the model's `enquiryKind` is what tells
-      the two apart in the notification's subject line. --}}
-{{> "how-booking-works" session=true}}
-
+      the two apart in the notification's subject line. The form carries the
+      three-step "How booking works" strip inside its own card, keyed off this
+      model's `glance` — see the comment in courses/enquiry.hbs. --}}
 {{> "courses/enquiry"}}
 
 {{/content}}

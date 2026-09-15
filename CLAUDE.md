@@ -81,7 +81,13 @@ automatically as the `Preview QA` check.
 - `qa/axe.mjs` scans every page at 375/1440px; group violations by impact.
   It does **not** catch non-text contrast (e.g. a `:focus-visible` ring) —
   that needs a manual WCAG ratio check against the actual token values in
-  `@theme`.
+  `@theme`. It gates on **first-party markup only**: axe is injected into
+  every frame, so the site's three third-party embeds (a YouTube player, two
+  Google Maps) would otherwise report their vendors' bugs as ours. Those
+  findings are sorted into `thirdParty` in the report and printed, not
+  gated. They also only appear where the browser has direct outbound
+  access, so a clean local run is not evidence CI will be clean — see
+  `qa/README.md`.
 - All of the above expect a Chromium executable; on Windows, Playwright's
   own downloaded browser needs to be pointed at explicitly, e.g.
   `CHROME_PATH=".../ms-playwright/chromium-<rev>/chrome-win64/chrome.exe"`

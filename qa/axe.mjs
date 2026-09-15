@@ -5,6 +5,27 @@
 // every page at 375 and 1440 wide. Violations are grouped by impact
 // (critical/serious/moderate/minor). Writes qa/out/<label>/axe.json (and,
 // for label === 'baseline', a copy to qa/baseline/axe.json).
+//
+// The scan is scoped to markup this repo produces. @axe-core/playwright
+// injects axe into *every* frame Playwright exposes, cross-origin ones
+// included, so an embedded third-party player or map is scanned as if it
+// were ours and its vendor's accessibility bugs are reported against our
+// pages. That is what happened here: YouTube's own player markup on
+// /courses/puppy-socialisation contributed two critical and one serious
+// violation (aria-allowed-attr on .ytmVideoInfoVideoTitle,
+// aria-prohibited-attr on #movie_player, button-name on
+// .ytmVideoInfoChannelAvatar) at both viewports. Nothing in this
+// repository can fix those, and a vendor's next deploy would move the
+// gate under us either way — the site has three such embeds today (one
+// youtube-nocookie.com, two google.com/maps).
+//
+// So findings inside a cross-origin frame are moved to a `thirdParty`
+// list per page, out of `counts` (which is what qa/check-axe.mjs gates
+// on) but still written to the report so they are visible rather than
+// lost. Everything in the host document is unaffected, the <iframe>
+// elements themselves included: frame-title still applies to our markup,
+// because it is the iframe element that carries the title, not its
+// contents.
 
 import { chromium } from 'playwright'
 import AxeBuilder from '@axe-core/playwright'
@@ -39,6 +60,57 @@ function groupByImpact(violations) {
   return groups
 }
 
+/**
+ * Split axe violations into those in the page's own document and those
+ * inside a cross-origin frame.
+ *
+ * axe reports a node inside a frame with a multi-part `target`: the
+ * selector of the <iframe> in the host document, then the selector within
+ * it. So any node with `target.length > 1` is framed, and resolving
+ * `target[0]` against the page gives the frame's src to compare origins.
+ * A same-origin frame stays in scope — it would be our markup.
+ *
+ * @param {import('playwright').Page} page
+ * @param {any[]} violations
+ * @returns {Promise<{ own: any[], thirdParty: any[] }>}
+ */
+export async function splitByOrigin(page, violations) {
+  const pageOrigin = new URL(page.url()).origin
+  const isCrossOrigin = new Map()
+
+  /** @param {string} selector */
+  async function crossOrigin(selector) {
+    if (isCrossOrigin.has(selector)) return isCrossOrigin.get(selector)
+    let verdict = false
+    try {
+      const src = await page.$eval(selector, (el) => el.getAttribute('src'))
+      // A frame with no src (srcdoc, about:blank) inherits our origin.
+      verdict = src ? new URL(src, page.url()).origin !== pageOrigin : false
+    } catch {
+      // Selector no longer resolves: treat it as ours rather than hide it.
+      verdict = false
+    }
+    isCrossOrigin.set(selector, verdict)
+    return verdict
+  }
+
+  const own = []
+  const thirdParty = []
+  for (const v of violations) {
+    const ownNodes = []
+    const framedNodes = []
+    for (const n of v.nodes) {
+      const target = Array.isArray(n.target) ? n.target : [n.target]
+      // eslint-disable-next-line no-await-in-loop
+      const framed = target.length > 1 && (await crossOrigin(String(target[0])))
+      ;(framed ? framedNodes : ownNodes).push(n)
+    }
+    if (ownNodes.length) own.push({ ...v, nodes: ownNodes })
+    if (framedNodes.length) thirdParty.push({ ...v, nodes: framedNodes })
+  }
+  return { own, thirdParty }
+}
+
 function countsOf(groups) {
   return Object.fromEntries(IMPACTS.map((impact) => [impact, groups[impact].length]))
 }
@@ -70,10 +142,18 @@ export async function runAxe(siteDir, label) {
         await page.goto(handle.url + urlPath, { waitUntil: 'networkidle', timeout: 30000 })
         // eslint-disable-next-line no-await-in-loop
         const results = await new AxeBuilder({ page }).analyze()
-        const groups = groupByImpact(results.violations)
+        // eslint-disable-next-line no-await-in-loop
+        const { own, thirdParty } = await splitByOrigin(page, results.violations)
+        const groups = groupByImpact(own)
         summary.pages[urlPath][width] = {
           counts: countsOf(groups),
           violations: groups,
+          thirdParty: groupByImpact(thirdParty),
+        }
+        if (thirdParty.length) {
+          console.log(
+            `[axe] ${urlPath} @ ${width}: ${thirdParty.length} finding(s) inside a cross-origin frame, not gated`
+          )
         }
         // eslint-disable-next-line no-await-in-loop
         await context.close()

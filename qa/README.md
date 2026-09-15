@@ -117,6 +117,28 @@ Runs an axe-core scan (`@axe-core/playwright`) on every page at 375 and
 npm run qa:axe -- qa/.baseline-site baseline
 ```
 
+**The gate is scoped to first-party markup.** `@axe-core/playwright`
+injects axe into every frame Playwright exposes, cross-origin ones
+included, so an embedded player or map is scanned as though we wrote it.
+The site has three such embeds — one `youtube-nocookie.com` on
+`/courses/puppy-socialisation`, two `google.com/maps` on `/contact/` —
+and YouTube's player alone contributes two critical and one serious
+violation at both viewports. Nothing in this repository can fix a
+vendor's markup, and their next deploy would move the gate under us
+regardless.
+
+So `splitByOrigin()` sorts every finding by where its node lives:
+`target` is multi-part for anything inside a frame, and resolving
+`target[0]` gives that `<iframe>`'s `src` to compare origins. Findings in
+a cross-origin frame go to `thirdParty` in the report and are printed by
+`check-axe.mjs` but never gated on; a same-origin frame stays in scope,
+since that would be ours. The split is **per node, not per rule** — the
+same rule can fail on both sides at once (YouTube's channel-avatar button
+and one of our own buttons would both be `button-name`), and excluding
+the whole rule, or the whole `<iframe>` element, would have hidden the
+real one. Excluding the element would also drop `frame-title`, which is a
+check on *our* markup: the `title` is on the iframe, not inside it.
+
 ### `qa/compare.mjs <label>`
 
 Compares `qa/out/<label>/content.json` against `qa/baseline/content.json`
@@ -265,6 +287,13 @@ node qa/no-bootstrap.mjs docs                   # gates on leftover Bootstrap 3
 - `axe.mjs` scans two widths (375, 1440) per page, not the same three
   viewports `snapshot.mjs` screenshots — deliberate, to keep the accessibility
   pass around 2× rather than 3× the page count.
+- Those third-party frames only load where the browser has direct outbound
+  access. In a sandbox behind the agent proxy they stay blank, so a local
+  `npm run qa:axe` reports no `thirdParty` findings while CI reports
+  three: the scan is network-dependent, and a clean local axe run is not
+  evidence that CI will be clean. Reproduce CI's condition by launching
+  Chromium with the proxy variables cleared (as `preview.mjs` does) and
+  letting the frame settle after `networkidle` before calling `analyze()`.
 - `preview.mjs`'s "sitemap agreement" row fetches each sitemap `<loc>` as
   the literal, always-production URL it is (see that script's own header
   comment) — a real reachability/redirect check, but not a preview-specific

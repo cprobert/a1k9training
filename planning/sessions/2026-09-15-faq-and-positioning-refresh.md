@@ -1,8 +1,9 @@
 ---
 branch: content/faq-and-positioning-refresh
 base: master
-status: open
+status: closed
 opened: 2026-09-15
+closed: 2026-09-15
 ---
 
 # Session — 2026-09-15: FAQ correction and positioning refresh from Gaynor interview
@@ -258,3 +259,130 @@ recorded content.
   threshold not met). Operator chose to open this branch directly rather
   than consolidate first — noted above as the 4th chance for that item.
 - No other open/abandoned session files found on other branches.
+
+## Reflection (written at kiss-branch-close, 2026-09-15)
+
+### Reflect — what the session was
+
+Opened as a narrow content fix: correct the FAQs from a Plaud interview
+with Gaynor and sharpen the positioning copy. Within an hour the operator
+reframed it — "cut the questions off at source": put the facts on the pages
+as furniture, keep FAQs for judgement, rank by the four-year enquiry counts —
+and asked for a planned, delegated, QA'd build. Plan mode produced an
+approved plan with a facts table cited to transcript segments; four
+implementation slices ran on it. After the QA presentation the operator
+declined a second PR and directed a second wave onto the same branch
+(rolling dates, the amber most-wanted-response rule, flow, mobile nav, one
+form, long-tail `searchOnly` FAQs, the policies bible), then asked for an
+expand-all control to review the folded answers. **Planned inside each wave,
+emergent across them**, and the shape served it: both expansions are dated
+Amendments, and nothing landed that a criterion did not name.
+
+### Evaluate — how the human supervised the AI
+
+Three dimensions discriminated this session.
+
+**Pushback & steering — the strongest.** Every turn of the operator's
+changed the work's shape for the better: the reframe from "fix the FAQ" to
+"presentation first"; "am I overcomplicating this?" (which turned a
+knowledge-base system into a `searchOnly` flag); "no second PR — Gaynor
+verifies a completed product"; "JSON-based, a forward-facing schedule" in
+place of a CI cron; "is there a back door so I can verify the hidden
+answers?". None of these were prompted by the agent.
+
+**Harness leverage — deliberately designed.** The operator specified the
+workflow: orchestrator plans, delegates by model tier (Opus for
+cross-cutting templates, Sonnet for copy against a verbatim source, Haiku
+for the sweep), and is accountable for QA. Plan mode, three Explore agents
+and a Plan agent fed the plan; nine implementation agents ran it; Chrome
+and Playwright did the looking; the kiss loop (open → pulse ×3 → close)
+held the record. This is the rubric's "reproducible human–AI workflow".
+
+**Verification & ownership — delegated, and that delegation was tested.**
+The operator did not read diffs; the orchestrator did, and the
+trust-but-verify pass found eight findings across nine agent reports
+(a duplicated cash line; "what most owners write about"; two stale hub
+blurbs; a paragraph inserted mid-sequence; Platinum's invented Saturday;
+an invented slip-collar policy; a baseline committed from the interim
+copy). Each was fixed on the branch, not waved through. The one thing the
+delegation cannot substitute for is the operator's own eyes: the eyeball
+criterion — on its fourth outing — was met by the agent in a real browser
+and by Playwright at 375px, but the operator has not yet looked at the
+deploy preview, and the Netlify form-field question can only be answered by
+a real submission there.
+
+**Competency level: Agentic engineering lead** — earned by the workflow
+design and the system improvements (the bible as canonical knowledge, the
+forward schedule, the amber rule as a convention), with the caveat above
+on personal verification.
+
+### Feedback — recommendations for next time
+
+- **Human — look at the deploy preview before merging, specifically
+  `/faqs/?all`, one course page at phone width, and a test submission of
+  the form.** The agent's eyeball is evidence; yours is the criterion. This
+  is the fourth session carrying the item; it is half-met now, which is
+  progress — finish it at the PR.
+- **Human — type the decisions.** "beest the FAW", "Jason best for the time
+  being" each cost a clarifying round trip; a typed one-liner does not.
+- **Agent — treat every sub-agent report as a claim.** Eight findings in
+  nine reports, all in the direction of overstatement (a wording stronger
+  than the source, a step "done" that was half-done). Next time hand each
+  agent a short "claims you may not make" list (no policy the transcript
+  does not state; no "committed" without `git log` proof) and keep the
+  read-the-diff pass regardless.
+- **Agent — one writer of the baseline, last.** Two agents refreshing
+  `qa/baseline/content.json` at different moments produced a stale commit
+  and an interim-copy commit. Next time the sweep is the only writer, runs
+  after the QA fixes, and the orchestrator's `npm run qa` is the proof.
+- **Both — fix the CRLF checkout once.** `core.autocrlf=true` with no
+  `.gitattributes` made Prettier report thirteen false failures, moved the
+  `site.js` asset hash between environments, and made every `git commit`
+  warn. Next time: a one-line `.gitattributes` (`* text=auto eol=lf`) as
+  its own tiny PR before any content work.
+- **Both — take the five open questions to Gaynor with the preview link**,
+  in the bible's "Open questions": Platinum's day, the £50 deposit figure,
+  the wet-weather switch, catchment radius, the Bronze minimum-age wording.
+
+### Verdict — did we achieve the objective?
+
+**Brief (as amended):** put the facts people ask for on the pages so the
+questions stop arriving; keep FAQs for judgement, ranked by enquiry count;
+correct the interview's contradictions; make the site's positioning
+concrete; then rolling dates, amber = MWR, flow, mobile nav, one form,
+long-tail FAQs and a canonical policies file — all on one branch, one PR.
+
+- [x] FAQ set corrected and reduced: 32 → 18 curated + 6 `searchOnly`;
+      every answer cited to a transcript segment; the wrong vaccination
+      answer gone (`09799bc`, `3d6cf03`, `8007e5d`).
+- [ ] **Eyeball on the deploy preview** — agent-verified in Chrome (1440)
+      and Playwright (375, scrollWidth 375 on every changed page); the
+      operator's look at the preview is outstanding, so this stays open by
+      the rule that a human ticks eyeball criteria.
+- [x] One-to-one and consultation pricing on the page: £90 / £130 + travel,
+      `offers` in JSON-LD (`8dd3d8f`).
+- [x] Catchment named on home, contact and in `llms.txt`; access notes on
+      contact and facilities (`74379a7`, `5dfc4e3`).
+- [x] No page added or removed (20 → 20 in the record); the "no template or
+      controller change" line was superseded by the first Amendment.
+- [x] `npx kiss-ssg check` ok, 0 failed, 558 links none broken, all four
+      note lines clean; full `npm run qa` green.
+- [x] Wave 2: rolling dates with a forward schedule (`cb1f830`..`aa28430`,
+      23 tests); amber only on the four enquiry actions (`9dba95e`);
+      booking steps inside the form (`163ddf5`); contact on the one form
+      (`ded7050`); mobile nav 7 links + scrolling panel (`3d6cf03`);
+      `searchOnly` long tail + "Expand all" + `?all` (`e929bf5`, `4b39dbd`);
+      the bible, transcript and `site.md` convention (`30d2b6d`).
+
+**Met, and the objective moved — twice, both times outward, both
+recorded, both the operator's call.** Concretely better: a course page
+answers price, day, next date, venue, class size, what to bring and the
+XL Bully rule before anyone asks; the next-start date maintains itself;
+one amber button means one thing; one form feeds one inbox; the FAQ hub is
+a reviewed list of 18 with a searchable long tail; and the site now has a
+canonical, sourced statement of every policy it makes.
+
+Open: the operator's eyeball on the preview; a Netlify form test
+(`reply-by`, `vet-date`); Gaynor's five open questions; the CRLF
+`.gitattributes` fix; a `kiss-memory-consolidate` sweep (five sessions
+unconsolidated).

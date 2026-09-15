@@ -149,6 +149,26 @@ recorded content.
   Puppy's step 4 repeated the cash line (fixed, `e1c57c0`); the enquiry
   form's fallback lead still promised "dates, prices" (handed to slice 3).
   Decision: **continue**.
+- **2026-09-15 (after slices 2–4, through `5b65aac` + baseline re-refresh)** —
+  check `ok`, 20 pages, 0 failed, no note findings (slice 2 reworded one
+  historical path in `AIKB/notes/controllers/course.md` that had gone
+  dangling when `faqs/gold.json` was deleted; controller untouched, stamp
+  intact). Full `npm run qa` green end to end: css, 8/8 unit tests, 20
+  pages, no Bootstrap, SEO 20/0/0, snapshot, compare OK, axe 0 first-party.
+  Criteria: FAQ set **met** — 32 → 18, every answer traced to its transcript
+  segment by the QA pass, `vaccinations` misstatement gone; copy **met** —
+  retired strings 0 in `docs/`, catchment / access / approach / A1K9
+  distinction present, verified in Chrome on home, contact, bronze hero,
+  consultation, `/faqs/`; baseline refresh **met** (twice: once by slice 4,
+  once after the QA's own three copy fixes). QA findings fixed on the
+  branch: "most owners" → "one of the most common reasons" (`9da6da4`); hub
+  standfirst/search hint still described page facts, and the stay-safe
+  paragraph had been inserted mid-sequence in the what-to-expect card
+  (`2c6cba2`). Eyeball notes for the operator: the Bronze/Junior hero
+  caption is a paragraph taller now; the consultations index page carries
+  no `offers` (it is not a single service). Not verifiable locally: Netlify
+  keeping the `vet-date`/`reply-by` fields — needs one test submission on
+  the deploy preview. Decision: **ready to close**.
 
 ---
 

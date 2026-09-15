@@ -6,11 +6,21 @@
 
   Desktop (lg+): each dropdown group opens on hover, on focus-within (so Tab alone
   reaches every sub-link) and when its chevron button reports aria-expanded="true".
-  Mobile: one disclosure button toggles the panel, and the dropdowns are simply
-  visible groups inside it — the chevron buttons are display:none there, so their
-  aria state never lies about a menu that is already open. The toggle's icon and
+  Mobile: one disclosure button toggles the panel, but below lg the panel lists
+  top-level destinations only (Home, Consultations, Courses, About Us, FAQs,
+  Contact, plus a phone link) — the sub-lists and their chevron toggle buttons
+  are `hidden` there (the toggle already was; the sub-lists now are too), since
+  the section index pages they'd duplicate already list every child page, and
+  17 flattened links cannot fit a phone viewport under a sticky header. Nothing
+  is duplicated for the two viewports: it is the same markup, shown or hidden
+  per breakpoint. The chevron buttons stay display:none on mobile so their aria
+  state never lies about a menu that is already open. The toggle's icon and
   label swap (hamburger/Menu -> X/Close) purely off its own aria-expanded, via
   the group-aria-expanded: variant — no extra JS needed for that part.
+
+  Belt and braces: the panel itself caps its height to the viewport minus the
+  header bar and scrolls internally below lg, in case a future addition still
+  overflows a short phone — see the comment on #site-menu.
 
   Behaviour lives in /js/site.js. Nothing else.
 --}}
@@ -35,7 +45,12 @@
       <span class="hidden group-aria-expanded:inline">Close</span>
     </button>
 
-    <div id="site-menu" class="hidden w-full basis-full lg:block lg:w-auto lg:basis-auto" data-nav-panel>
+    {{!-- max-h/overflow-y is the belt-and-braces fallback from the top comment:
+          100dvh minus the header bar's own height (measured ~4.25rem: py-3 plus
+          the min-h-11 toggle button), so a tall panel scrolls inside itself
+          instead of overflowing past a sticky header a phone can't scroll to
+          reach. Off at lg, where the panel is never full-height. --}}
+    <div id="site-menu" class="hidden w-full basis-full max-h-[calc(100dvh-4.25rem)] overflow-y-auto lg:block lg:w-auto lg:basis-auto lg:max-h-none lg:overflow-visible" data-nav-panel>
       <ul class="flex flex-col gap-1 pt-3 pb-1 lg:flex-row lg:items-center lg:gap-1 lg:pt-0 lg:pb-0">
 
         {{#isActive this href=(link "index" canonical=true) active="true"}}
@@ -63,7 +78,7 @@
               </button>
             </div>
             <ul id="menu-consultations"
-              class="ml-4 border-l border-brand-700 pl-3 lg:invisible lg:absolute lg:top-full lg:left-0 lg:z-50 lg:ml-0 lg:w-72 lg:rounded-card lg:border lg:border-sand-200 lg:bg-white lg:p-2 lg:pl-2 lg:opacity-0 lg:shadow-lg lg:transition-opacity lg:group-hover:visible lg:group-hover:opacity-100 lg:group-focus-within:visible lg:group-focus-within:opacity-100 lg:group-has-[[aria-expanded=true]]:visible lg:group-has-[[aria-expanded=true]]:opacity-100">
+              class="hidden ml-4 border-l border-brand-700 pl-3 lg:block lg:invisible lg:absolute lg:top-full lg:left-0 lg:z-50 lg:ml-0 lg:w-72 lg:rounded-card lg:border lg:border-sand-200 lg:bg-white lg:p-2 lg:pl-2 lg:opacity-0 lg:shadow-lg lg:transition-opacity lg:group-hover:visible lg:group-hover:opacity-100 lg:group-focus-within:visible lg:group-focus-within:opacity-100 lg:group-has-[[aria-expanded=true]]:visible lg:group-has-[[aria-expanded=true]]:opacity-100">
               <li>
                 <a href="{{href}}" class="block rounded-pill px-3 py-2 text-sm text-sand-100 no-underline hover:bg-brand-700 hover:text-white lg:text-ink-700 lg:hover:bg-brand-50 lg:hover:text-brand-800">
                   Behavioural Consultations
@@ -100,7 +115,7 @@
               </button>
             </div>
             <ul id="menu-courses"
-              class="ml-4 border-l border-brand-700 pl-3 lg:invisible lg:absolute lg:top-full lg:left-0 lg:z-50 lg:ml-0 lg:w-72 lg:rounded-card lg:border lg:border-sand-200 lg:bg-white lg:p-2 lg:pl-2 lg:opacity-0 lg:shadow-lg lg:transition-opacity lg:group-hover:visible lg:group-hover:opacity-100 lg:group-focus-within:visible lg:group-focus-within:opacity-100 lg:group-has-[[aria-expanded=true]]:visible lg:group-has-[[aria-expanded=true]]:opacity-100">
+              class="hidden ml-4 border-l border-brand-700 pl-3 lg:block lg:invisible lg:absolute lg:top-full lg:left-0 lg:z-50 lg:ml-0 lg:w-72 lg:rounded-card lg:border lg:border-sand-200 lg:bg-white lg:p-2 lg:pl-2 lg:opacity-0 lg:shadow-lg lg:transition-opacity lg:group-hover:visible lg:group-hover:opacity-100 lg:group-focus-within:visible lg:group-focus-within:opacity-100 lg:group-has-[[aria-expanded=true]]:visible lg:group-has-[[aria-expanded=true]]:opacity-100">
               <li>
                 <a href="{{href}}" class="block rounded-pill px-3 py-2 text-sm text-sand-100 no-underline hover:bg-brand-700 hover:text-white lg:text-ink-700 lg:hover:bg-brand-50 lg:hover:text-brand-800">
                   About our Courses
@@ -164,7 +179,7 @@
               </button>
             </div>
             <ul id="menu-about"
-              class="ml-4 border-l border-brand-700 pl-3 lg:invisible lg:absolute lg:top-full lg:right-0 lg:left-auto lg:z-50 lg:ml-0 lg:w-64 lg:rounded-card lg:border lg:border-sand-200 lg:bg-white lg:p-2 lg:pl-2 lg:opacity-0 lg:shadow-lg lg:transition-opacity lg:group-hover:visible lg:group-hover:opacity-100 lg:group-focus-within:visible lg:group-focus-within:opacity-100 lg:group-has-[[aria-expanded=true]]:visible lg:group-has-[[aria-expanded=true]]:opacity-100">
+              class="hidden ml-4 border-l border-brand-700 pl-3 lg:block lg:invisible lg:absolute lg:top-full lg:right-0 lg:left-auto lg:z-50 lg:ml-0 lg:w-64 lg:rounded-card lg:border lg:border-sand-200 lg:bg-white lg:p-2 lg:pl-2 lg:opacity-0 lg:shadow-lg lg:transition-opacity lg:group-hover:visible lg:group-hover:opacity-100 lg:group-focus-within:visible lg:group-focus-within:opacity-100 lg:group-has-[[aria-expanded=true]]:visible lg:group-has-[[aria-expanded=true]]:opacity-100">
               <li>
                 <a href="{{href}}" class="block rounded-pill px-3 py-2 text-sm text-sand-100 no-underline hover:bg-brand-700 hover:text-white lg:text-ink-700 lg:hover:bg-brand-50 lg:hover:text-brand-800">
                   Philosophy
@@ -207,6 +222,17 @@
             </a>
           </li>
         {{/isActive}}
+
+        {{!-- Mobile only: with the section dropdowns collapsed to a single link
+              each, a quick way to just ring Gaynor earns its place in the same
+              panel. The desktop nav has no room for it and doesn't need it —
+              the footer carries the number there. --}}
+        <li class="lg:hidden">
+          <a href="tel:{{config.business.telephone}}"
+            class="block rounded-pill px-4 py-2 font-medium text-sand-100 no-underline hover:bg-brand-700 hover:text-white">
+            Call {{config.business.telephoneDisplay}}
+          </a>
+        </li>
 
       </ul>
     </div>

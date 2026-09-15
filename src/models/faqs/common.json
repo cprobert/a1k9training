@@ -3,20 +3,20 @@
     {
       "id": "which-course",
       "group": "choosing",
-      "q": "My dog is X months old — Puppy, Junior or Bronze? Can we go up early, or skip Junior if we've done classes elsewhere?",
-      "a": "It depends on your dog's age: Puppy Socialisation is for pups up to 6 months, Junior for young dogs 6 to 12 months, and Bronze for dogs 12 months and over. Going up a little early is possible if Gaynor agrees it — ring her for a quick chat about your dog first. Skipping Junior because you have already done classes elsewhere is possible too, though her usual recommendation is Junior then Bronze, since age tends to matter more than a previous class at that stage. Either way, a short phone conversation is how she decides."
+      "q": "My dog is X months old: Puppy, Junior or Bronze? Can we go up early, or skip Junior if we've done classes elsewhere?",
+      "a": "It depends on your dog's age: Puppy Socialisation is for pups up to 6 months, Junior for young dogs 6 to 12 months, and Bronze for dogs 12 months and over. Going up a little early is possible if Gaynor agrees it. Ring her for a quick chat about your dog first. Skipping Junior because you have already done classes elsewhere is possible too, though her usual recommendation is Junior then Bronze, since age tends to matter more than a previous class at that stage. Either way, a short phone conversation is how she decides."
     },
     {
       "id": "service-triage",
       "group": "choosing",
       "q": "Do I need a group course, a one to one, or a behaviour consultation?",
-      "a": "Group courses are for everyday obedience and manners — lead walking, recall, sit and down, stays — taught step by step over six weeks. A one to one is a bespoke session on whatever you are finding difficult: it suits owners who can't commit to a weekly class, want to get further than a class will take them, or whose dog's temperament doesn't suit a class, and it can also be used just to assess your dog and recommend the right course. A behaviour consultation is for a problem rather than a training gap — aggression towards dogs or people, or anything about your dog's behaviour that worries you day to day. If you are not sure which, tell Gaynor a little about your dog when you get in touch and she will say where to start."
+      "a": "Group courses are for everyday obedience and manners: lead walking, recall, sit and down, stays, taught step by step over six weeks. A one to one is a bespoke session on whatever you are finding difficult: it suits owners who can't commit to a weekly class, want to get further than a class will take them, or whose dog's temperament doesn't suit a class, and it can also be used just to assess your dog and recommend the right course. A behaviour consultation is for a problem rather than a training gap: aggression towards dogs or people, or anything about your dog's behaviour that worries you day to day. If you are not sure which, tell Gaynor a little about your dog when you get in touch and she will say where to start."
     },
     {
       "id": "rescue-start",
       "group": "choosing",
       "q": "We've just adopted a rescue dog, or have an older dog that has never been trained. Can we join, and is it too late?",
-      "a": "Rescue and rehomed dogs are welcome and can start whenever you like — some owners prefer to wait a couple of weeks to let the dog settle in first, which is fine too. It is never too old to come to Bronze, whatever your dog's age. Most dogs coming back to training, or starting for the first time as an adult, join Bronze; if your dog has kept up a higher standard already, Gaynor may place it higher after a chat. If your dog is showing aggression or is very difficult to handle on the lead, she will want to see you for a behaviour consultation first."
+      "a": "Rescue and rehomed dogs are welcome and can start whenever you like. Some owners prefer to wait a couple of weeks to let the dog settle in first, which is fine too. It is never too old to come to Bronze, whatever your dog's age. Most dogs coming back to training, or starting for the first time as an adult, join Bronze; if your dog has kept up a higher standard already, Gaynor may place it higher after a chat. If your dog is showing aggression or is very difficult to handle on the lead, she will want to see you for a behaviour consultation first."
     },
     {
       "id": "reactive-in-class",
@@ -27,32 +27,32 @@
     {
       "id": "over-excited",
       "group": "choosing",
-      "q": "My dog isn't aggressive, just over-excited — barks and pulls to get to other dogs. Is a class right for him?",
-      "a": "Yes — this is something Gaynor deals with all the time. Over-excited, friendly dogs are usually let off the lead first to run off some energy, and then brought back to work at their own level once they can concentrate. It is a normal part of class, not a reason to stay away."
+      "q": "My dog isn't aggressive, just over-excited: barks and pulls to get to other dogs. Is a class right for him?",
+      "a": "Yes, this is something Gaynor deals with all the time. Over-excited, friendly dogs are usually let off the lead first to run off some energy, and then brought back to work at their own level once they can concentrate. It is a normal part of class, not a reason to stay away."
     },
     {
       "id": "other-activities",
       "group": "choosing",
       "q": "Do you run agility, gundog, CaniCross, protection or residential training?",
-      "a": "Not as standalone classes — agility is taught as part of Silver and Gold (sometimes Bronze) for dogs over twelve months, worked into the obedience course rather than run on its own. Gaynor does not offer gundog training or CaniCross. Protection work and the five-week residential obedience course are run separately by A1K9 Protection, not by Gaynor. See a1k9.co.uk."
+      "a": "Not as standalone classes: agility is taught as part of Silver and Gold (sometimes Bronze) for dogs over twelve months, worked into the obedience course rather than run on its own. Gaynor does not offer gundog training or CaniCross. Protection work and the five-week residential obedience course are run separately by A1K9 Protection, not by Gaynor. See a1k9.co.uk."
     },
     {
       "id": "join-late",
       "group": "booking",
       "q": "Can we join a course that's already started, and what if we miss a week?",
-      "a": "You can join in week two if there is space — after that it's best to wait for the next course. If you miss a class partway through, there's no way to make it up on another course running the same weekend, since it will be at a different level: you have the weeks you paid for on your own course."
+      "a": "You can join in week two if there is space. After that it's best to wait for the next course. If you miss a class partway through, there's no way to make it up on another course running the same weekend, since it will be at a different level: you have the weeks you paid for on your own course."
     },
     {
       "id": "two-dogs",
       "group": "booking",
       "q": "We have two dogs (or littermates). Can they both come, does each need a handler, and is there a discount?",
-      "a": "Two dogs from the same home can both come, but it isn't recommended — they tend to watch each other rather than you, so neither learns as well. Each dog needs its own handler, and Gaynor's advice is to put them on separate courses rather than bring them into the same one; if they're different ages, one option is for each partner to take one dog to a different course, swapping over. There's no discount for a second dog — it's the same price per dog."
+      "a": "Two dogs from the same home can both come, but it isn't recommended: they tend to watch each other rather than you, so neither learns as well. Each dog needs its own handler, and Gaynor's advice is to put them on separate courses rather than bring them into the same one; if they're different ages, one option is for each partner to take one dog to a different course, swapping over. There's no discount for a second dog: it's the same price per dog."
     },
     {
       "id": "partners-children",
       "group": "booking",
       "q": "Can my partner and I both come, and can our child handle the dog?",
-      "a": "Yes — couples are very welcome, and it's often best for one person to handle the dog each week while the other watches and helps out with practice at home. Children join in fully at Puppy Socialisation; in the obedience courses they sit and watch rather than handle, though from about twelve years old they can take a turn handling the dog."
+      "a": "Yes, couples are very welcome, and it's often best for one person to handle the dog each week while the other watches and helps out with practice at home. Children join in fully at Puppy Socialisation; in the obedience courses they sit and watch rather than handle, though from about twelve years old they can take a turn handling the dog."
     },
     {
       "id": "season-neutered",

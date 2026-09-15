@@ -99,7 +99,7 @@
       <div>
         <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Next course starts</dt>
         <dd class="mt-1 mb-0"{{#if model.schedule}} data-schedule-starts="{{join model.schedule.upcoming}}" data-schedule-time="{{model.schedule.time}}"{{/if}}>
-          {{#if model.nextStart}}{{model.nextStart}}{{else}}{{#if model.schedule}}{{#if model.schedule.current}}Started {{model.schedule.current}} &mdash; you can still join on week two. The next course starts {{model.schedule.next}}.{{else}}{{model.schedule.next}}{{/if}}{{else}}{{#if model.startNote}}{{model.startNote}}{{else}}{{config.business.courses.cycleNote}}{{/if}}{{/if}}{{/if}}
+          {{#if model.nextStart}}{{model.nextStart}}{{else}}{{#if model.schedule}}{{#if model.schedule.current}}Started {{model.schedule.current}}. You can still join on week two. The next course starts {{model.schedule.next}}.{{else}}{{model.schedule.next}}{{/if}}{{else}}{{#if model.startNote}}{{model.startNote}}{{else}}{{config.business.courses.cycleNote}}{{/if}}{{/if}}{{/if}}
         </dd>
       </div>
 

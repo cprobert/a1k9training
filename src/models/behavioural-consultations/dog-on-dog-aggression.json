@@ -10,7 +10,7 @@
   "heading": "Behavioural Consultations for Dog on Dog Aggression",
   "glance": "session",
   "enquiryKind": "Consultation enquiry",
-  "enquiryLead": "Tell Gaynor what your dog is doing and she will come back with a time — usually within about a week.",
+  "enquiryLead": "Tell Gaynor what your dog is doing and she will come back with a time, usually within about a week.",
   "components": {
     "intro": "behavioural-consultations/dog-on-dog-aggression/intro",
     "details": "behavioural-consultations/dog-on-dog-aggression/details"

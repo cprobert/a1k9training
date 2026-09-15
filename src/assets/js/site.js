@@ -171,7 +171,7 @@
 
     el.textContent = current === null
       ? say(next)
-      : 'Started ' + say(current) + ' — you can still join on week two. ' +
+      : 'Started ' + say(current) + '. You can still join on week two. ' +
         'The next course starts ' + say(next) + '.'
   })
 

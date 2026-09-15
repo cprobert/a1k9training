@@ -66,4 +66,34 @@ export const business = {
     linkedin: 'https://www.linkedin.com/in/gaynor-probert-b869581a/',
   },
   locations: LOCATIONS,
+  // The facts every course page states as furniture, rather than answering one
+  // enquiry at a time. Data, not copy: short strings the partials frame into
+  // sentences (src/partials/at-a-glance.hbs, src/partials/how-booking-works.hbs).
+  // Sourced from the 2026-09-14 interview with Gaynor.
+  courses: {
+    cycleNote:
+      'Courses run back to back in six-week blocks; the next starts the week after the last ends',
+    classSize: 'About ten dogs, never more than twelve',
+    joinBy: 'You can join up to week two',
+    deposit: '£50',
+    depositNote: 'non-refundable, by bank transfer',
+    balance:
+      'Balance in cash on the first week. No instalments, no multi-dog discount',
+    venueNote:
+      'Outdoors at the Training Grounds; indoors at Llys Nini when it is wet',
+    bring: 'A collar, a lead and treats your dog likes',
+    eligibilityNote:
+      'For insurance reasons XL Bully dogs, and dogs legally required to be muzzled, cannot join a class',
+  },
+  // One-to-one sessions and behaviour consultations. `atA1K9` is read twice —
+  // by the visitor in the at-a-glance block, and by the `offers` JSON-LD in
+  // src/helpers/schema.js — which is why it lives here rather than in a model.
+  sessions: {
+    atA1K9: '£90',
+    atHome: '£130',
+    travelNote: 'plus travel if you are any distance away',
+    length: 'One hour',
+    lead: 'Usually within about a week',
+    note: 'One session is normally enough. Two dogs from the same home can share it at no extra charge',
+  },
 }

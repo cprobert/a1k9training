@@ -9,6 +9,7 @@
   "crumb": "One to One",
   "enquiryLead": "One to one sessions are arranged to suit you and your dog. Tell Gaynor what you are working on and she will come back to you with times and prices.",
   "heading": "What's Right For You?",
+  "glance": "session",
   "components": {
     "intro": "courses/one-to-one/intro",
     "details": "courses/one-to-one/you-will-learn",

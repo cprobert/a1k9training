@@ -2,7 +2,13 @@
 
 {{#content "head"}}
 <script type="application/ld+json">
-{{{stringify (serviceSchema model.heading description (canonical))}}}
+{{!-- One-to-one carries no `price` (faqLib's [PRICES] block filters on it), so
+      its Offer comes from the shared sessions fact instead. --}}
+{{#if (eq model.glance "session")}}
+{{{stringify (serviceSchema model.heading description (canonical) price=config.business.sessions.atA1K9)}}}
+{{else}}
+{{{stringify (serviceSchema model.heading description (canonical) price=model.price)}}}
+{{/if}}
 </script>
 <script type="application/ld+json">
 {{{stringify (breadcrumbList (breadcrumb))}}}
@@ -23,13 +29,13 @@
 {{#content "main"}}
   <div class="page-header">
       <h1>{{model.heading}}</h1>
-      {{#if model.price}}
-      <p class="mt-2 text-lg font-medium text-brand-700">
-        {{model.price}}{{#if model.priceNote}} <span class="text-base font-normal text-ink-600">— {{model.priceNote}}</span>{{/if}}
-        {{#if model.nextStart}}<br><span class="text-base text-ink-600">Next course starts {{model.nextStart}}</span>{{/if}}
-      </p>
-      {{/if}}
   </div>
+
+  {{!-- The price/next-start line that used to sit under the h1 is now one row
+        of the at-a-glance block, beside the rest of the facts people write in
+        to ask for. One-to-one renders its "session" shape instead. --}}
+  {{> "at-a-glance"}}
+
   <div class="grid gap-8 lg:grid-cols-3">
     <div class="prose-site lg:col-span-2">
       {{#if model.videoId}}
@@ -64,6 +70,12 @@
   {{!-- Booking this course is the page's primary action; the ladder's next
         step is genuinely secondary, so it renders after the enquiry form and
         styles its link accordingly. --}}
+  {{#if (eq model.glance "session")}}
+    {{> "how-booking-works" session=true}}
+  {{else}}
+    {{> "how-booking-works" noDeposit=model.noDeposit price=model.price}}
+  {{/if}}
+
   {{> "courses/enquiry"}}
 
   {{> "courses/ladder"}}

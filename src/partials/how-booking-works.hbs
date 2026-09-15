@@ -1,0 +1,66 @@
+{{!--
+  "How booking works" — the sequence Gaynor described, so nobody has to ask
+  what happens after they press Send.
+
+  Hash params rather than a controller, because /contact/ has no controller and
+  adding one to reach four sentences would cost an AIKB note restamp:
+
+    {{> "how-booking-works" noDeposit=model.noDeposit price=model.price}}
+      course page   — four steps, deposit step keyed off the model
+    {{> "how-booking-works" session=true}}
+      one-to-one and consultation pages — three steps, no deposit and no
+      balance: those are course facts and do not apply to a single session
+    {{> "how-booking-works" generic=true}}
+      /contact/     — four steps, with the Puppy exception named inline since
+      the page is not about any one course
+
+  A @container wrapper, not a media query: the list is 4-up in a course page's
+  full-width column and 2-up in contact's half column, and the breakpoint that
+  decides that is the wrapper's own width, not the viewport's.
+--}}
+<section class="@container mt-10 mb-8 rounded-card border border-sand-200 bg-sand-50 p-6 sm:p-8">
+  <h2 class="mb-5 font-display text-xl text-ink-900">How booking works</h2>
+
+  {{#if session}}
+    <ol class="grid list-none gap-5 pl-0 @md:grid-cols-3">
+      <li>
+        <span class="badge">Step 1</span>
+        <p class="mt-2 mb-0">Send the form with your dog&rsquo;s details, or ring Gaynor if it is easier.</p>
+      </li>
+      <li>
+        <span class="badge">Step 2</span>
+        <p class="mt-2 mb-0">She comes back with a time. {{config.business.sessions.lead}}. Email, text or WhatsApp are all fine; if you have not heard, ring or text again.</p>
+      </li>
+      <li>
+        <span class="badge">Step 3</span>
+        <p class="mt-2 mb-0">{{config.business.sessions.length}} with Gaynor, at A1K9 ({{config.business.sessions.atA1K9}}) or at your home ({{config.business.sessions.atHome}}, {{config.business.sessions.travelNote}}).</p>
+      </li>
+    </ol>
+  {{else}}
+    <ol class="grid list-none gap-5 pl-0 @md:grid-cols-2 @3xl:grid-cols-4">
+      <li>
+        <span class="badge">Step 1</span>
+        <p class="mt-2 mb-0">Send the enquiry form with your dog&rsquo;s name and age.</p>
+      </li>
+      <li>
+        <span class="badge">Step 2</span>
+        <p class="mt-2 mb-0">Gaynor replies with the dates and the details. Email, text or WhatsApp are all fine; if you have not heard, ring or text again &mdash; some enquiries reach A1K9 first and take longer to get to her.</p>
+      </li>
+      <li>
+        <span class="badge">Step 3</span>
+        {{#if noDeposit}}
+          <p class="mt-2 mb-0">No deposit for Puppy Socialisation &mdash; pay {{price}} in cash at the first class.</p>
+        {{else}}
+          <p class="mt-2 mb-0">
+            Confirm your place with a {{config.business.courses.deposit}} deposit &mdash;
+            {{config.business.courses.depositNote}}{{#if generic}} (no deposit for Puppy Socialisation){{/if}}.
+          </p>
+        {{/if}}
+      </li>
+      <li>
+        <span class="badge">Step 4</span>
+        <p class="mt-2 mb-0">{{config.business.courses.balance}}. A WhatsApp group starts nearer the course.</p>
+      </li>
+    </ol>
+  {{/if}}
+</section>

@@ -2,7 +2,7 @@
 
 {{#content "head"}}
 <script type="application/ld+json">
-{{{stringify (serviceSchema model.heading description (canonical))}}}
+{{{stringify (serviceSchema model.heading description (canonical) price=config.business.sessions.atA1K9)}}}
 </script>
 <script type="application/ld+json">
 {{{stringify (breadcrumbList (breadcrumb))}}}
@@ -20,6 +20,8 @@
   <h1 class="mb-0 text-3xl sm:text-4xl">{{model.heading}}</h1>
 </div>
 
+{{> "at-a-glance"}}
+
 <div class="grid gap-8 lg:grid-cols-2">
   <div class="prose-site">
     {{#if model.components.details}}
@@ -32,15 +34,20 @@
   </div>
 </div>
 
-<div class="mt-8">
-  <a href="{{link "contact" canonical=true}}" class="btn btn-accent">Contact Gaynor</a>
-</div>
-
 {{#if model.faqs}}
   <div class="mt-10">
     {{> "faqs" model.faqs }}
   </div>
 {{/if}}
+
+{{!-- The page used to end at a "Contact Gaynor" button, which asked a worried
+      owner to navigate before they could say anything. The same enquiry form
+      the course pages use now sits here instead, under the same Netlify form
+      name so it lands in one inbox; the model's `enquiryKind` is what tells
+      the two apart in the notification's subject line. --}}
+{{> "how-booking-works" session=true}}
+
+{{> "courses/enquiry"}}
 
 {{/content}}
 

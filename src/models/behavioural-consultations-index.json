@@ -1,0 +1,11 @@
+{
+  "image": "/images/consultations/consultations-v1.webp",
+  "caption": "right",
+  "faqIds": [
+    "cons-too-late",
+    "cons-what-happens",
+    "cons-referral",
+    "cons-after",
+    "cons-where"
+  ]
+}

@@ -13,7 +13,7 @@
 //   - og:image resolves to a file that actually exists under siteDir
 //   - the LocalBusiness JSON-LD parses, and carries a `location` array of
 //     exactly two Place entries, each with a postalCode
-//   - (warning, not failure — see generate.js's per-model `description`)
+//   - (warning, not failure — see router.js's per-model `description`)
 //     a non-empty meta description
 //
 // Also checks that sitemap.xml exists, parses, and lists exactly the same
@@ -58,8 +58,8 @@ function walkHtmlFiles(dir) {
 }
 
 // The same collapse kiss's canonical/sitemap use, restored to the trailing-
-// slash-on-a-folder-index shape generate.js's `pageUrl` helper and
-// `fixSitemapTrailingSlashes` step put back (see generate.js) — so this
+// slash-on-a-folder-index shape router.js's `pageUrl` helper and
+// `fixSitemapTrailingSlashes` step put back (see router.js) — so this
 // script's idea of "the right URL for this file" matches what the site
 // itself emits, not kiss's un-patched default.
 function prettyUrlForFile(siteDirAbs, filePath) {
@@ -179,7 +179,7 @@ for (const page of pages) {
   } else {
     try {
       const localBusiness = JSON.parse(ldJsonMatch[1])
-      // generate.js's localBusiness helper is always the first ld+json
+      // router.js's localBusiness helper is always the first ld+json
       // script in <head> (src/partials/layout/header.hbs) — see its
       // `location` array of the two venues src/pages/contact.hbs names.
       const locations = Array.isArray(localBusiness.location)
@@ -252,7 +252,7 @@ if (!fs.existsSync(sitemapPath)) {
     locs.map((loc) => loc.replace(SITE_URL, '') || '/'),
   )
   // Pages that are built but deliberately not destinations, so they are
-  // registered with `ignoreSitemap`/`ignoreLlms` in generate.js and must not
+  // registered with `ignoreSitemap`/`ignoreLlms` in router.js and must not
   // appear in sitemap.xml. Listed here so their absence stays an assertion
   // rather than a hole in the check.
   const NOT_INDEXED = new Set(['/404', '/thanks/'])

@@ -1,6 +1,6 @@
 ---
 name: pr-verify
-description: Verify a pull request's Netlify deploy preview end to end — find the preview URL from the PR's commit status, wait for it to be ready, run qa/preview.mjs against it (real cache headers, redirect-free canonical URLs, llms.txt / robots / sitemap, structured data, a Playwright pass with screenshots), and record the result on the PR. Use after opening any PR on this repo, when asked to "verify the preview", "check the deploy preview", or before merging.
+description: Verify a pull request's Netlify deploy preview end to end — find the preview URL from Netlify's check runs on the PR (not its commit status, which is always empty here), wait for the deploy to be ready, run qa/preview.mjs against it (real cache headers, redirect-free canonical URLs, llms.txt / robots / sitemap, structured data, a Playwright pass with screenshots), and record the result on the PR. Use after opening any PR on this repo, when asked to "verify the preview", "check the deploy preview", or before merging.
 ---
 
 # PR Verify
@@ -20,22 +20,35 @@ commit, and this skill closes the gap by testing that URL.
 
 ## Steps
 
-### 1 — Find the preview URL (never guess it)
+### 1 — Confirm the deploy, then derive the URL
 
-The Netlify site slug is `a1k9-training`, with a hyphen; a guessed hostname
-404s. Read it from the PR instead:
+**Netlify reports to this repo as check runs, not commit statuses.** There
+is no `netlify/a1k9-training/deploy-preview` status to read —
+`pull_request_read` with `method: get_status`, `gh pr view --json
+statusCheckRollup` and `gh api …/commits/<sha>/status` all return an empty
+list here, whatever the deploy is doing. (This is also why `Preview QA`
+never ran for the first months of its life; see
+`.github/workflows/preview-qa.yml`.)
 
-- **GitHub MCP:** `pull_request_read` with `method: get_status`. The status
-  with context `netlify/a1k9-training/deploy-preview` has the URL in
-  `target_url`; its `description` is `Deploy Preview ready!` when the build
-  has finished, and `Deploy Preview pending` / `failed` otherwise.
-- **`gh` CLI:** `gh pr view <n> --json statusCheckRollup` and read the same
-  context, or `gh api repos/{owner}/{repo}/commits/<sha>/status`.
+Read the check runs instead — `pull_request_read` with
+`method: get_check_runs`, or `gh api repos/{owner}/{repo}/commits/<sha>/check-runs`.
+Netlify posts three: `Header rules - a1k9-training`, `Redirect rules - …`
+and `Pages changed - …`. Their `details_url` points at the deploy
+(`https://app.netlify.com/projects/<slug>/deploys/<id>`), which is where
+the site slug comes from — and where the build log is if one failed.
 
-If the status is pending, wait (poll every 30 s, up to 10 minutes). A failed
-status means the Netlify build broke: open the deploy log at the status URL,
-fix the build locally (`npm run build`), push, and start again. Do not
-verify a stale preview.
+The deploy is ready when all three are `completed`. `Pages changed`
+concludes `neutral`, which is normal and not a failure; only `failure`,
+`timed_out` or `cancelled` is. If they are still running, wait (poll every
+30 s, up to 10 minutes). A failed deploy means the Netlify build broke:
+open the log at the `details_url`, fix it locally (`npm run build`), push,
+and start again. Do not verify a stale preview.
+
+The preview URL is then `https://deploy-preview-<PR>--<slug>.netlify.app`
+— today `https://deploy-preview-<PR>--a1k9-training.netlify.app`. The slug
+has a hyphen; take it from the `details_url` rather than typing it, and
+confirm the host answers 200 before trusting it, since a check run turning
+`completed` and the host serving are not quite the same moment.
 
 ### 2 — Run the live checks
 
@@ -59,7 +72,7 @@ horizontal overflow, one h1 and image attributes, with screenshots in
 - All green: tick the post-deploy box in the PR's test plan and paste the
   table as a PR comment (or edit the PR body) so a reviewer sees the live
   evidence beside the diff. Keep it to the table and the summary line.
-- Any red: fix at source (`src/assets/_headers`, `generate.js`, the
+- Any red: fix at source (`src/assets/_headers`, `router.js`, the
   template), push, and repeat from step 1. Never mark a PR verified with a
   red row; never edit `docs/` by hand.
 
@@ -78,8 +91,16 @@ redirects apply per deploy and a merge is a new deploy.
 
 ## Also automated
 
-`.github/workflows/preview-qa.yml` runs the same script automatically when
-Netlify reports a deploy preview as ready (the `deployment_status` event),
-and reports as the `Preview QA` check on the PR. This skill is the manual,
-detailed path; the workflow is the net that runs whether or not anyone
-remembers.
+`.github/workflows/preview-qa.yml` runs the same script automatically on
+every PR push and reports as the `Preview QA` check. This skill is the
+manual, detailed path; the workflow is the net that runs whether or not
+anyone remembers.
+
+It triggers on `pull_request` and waits for the deploy preview itself,
+doing exactly what step 1 above describes. It used to trigger on
+`deployment_status` and take the URL from the event — which meant it never
+ran at all, because no GitHub deployment is ever created for this repo.
+Keep it on `pull_request`: `deployment_status`, `check_run` and `status`
+are repository-level events that only ever run the workflow file from the
+default branch, so a change to this workflow could not be tested on the PR
+that makes it.

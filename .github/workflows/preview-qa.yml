@@ -1,28 +1,118 @@
 name: Preview QA
 
-# Netlify builds a Deploy Preview for every pull request and reports it as a
-# GitHub deployment. When that deployment's status turns to success, run
-# qa/preview.mjs against the preview URL: the checks a local docs/ build
-# cannot make — real Cache-Control headers, redirect-free canonical URLs,
-# llms.txt / robots / sitemap as served, structured data, a Playwright pass.
-# The same script runs by hand via `npm run qa:preview -- <url>` (see
-# .claude/skills/pr-verify/SKILL.md).
+# Runs qa/preview.mjs against this PR's Netlify Deploy Preview: the checks a
+# local docs/ build cannot make — real Cache-Control headers, redirect-free
+# canonical URLs, llms.txt / robots / sitemap as served, structured data, a
+# Playwright pass. The same script runs by hand via
+# `npm run qa:preview -- <url>` (see .claude/skills/pr-verify/SKILL.md).
+#
+# WHY pull_request AND NOT deployment_status
+#
+# This workflow used to trigger on `deployment_status`, reading the preview
+# URL from `github.event.deployment_status.environment_url`. It never ran
+# once — zero runs from the day it was added. Netlify reports to this repo
+# as CHECK RUNS ("Header rules - a1k9-training", "Redirect rules …",
+# "Pages changed …"), not as GitHub deployments: no deployment is ever
+# created, so no deployment_status event is ever delivered, so nothing
+# triggered. `gh api repos/{owner}/{repo}/commits/<sha>/status` returns zero
+# statuses on this repo for the same reason, which is also why the
+# pr-verify skill's documented "read the netlify/… commit status" route
+# finds nothing.
+#
+# `pull_request` is delivered from the PR's own branch, so a change to this
+# file is testable on the PR that makes it. `deployment_status`, `check_run`
+# and `status` are repository-level events that only ever run the workflow
+# file from the DEFAULT branch — with any of those, a fix to this workflow
+# could not be verified until after it was merged.
+#
+# The trade is that the preview is not ready when the PR event fires, so the
+# job waits for it below rather than being handed a URL.
 on:
-  deployment_status:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+# The wait step reads check runs to learn when Netlify has finished.
+permissions:
+  contents: read
+  checks: read
+  pull-requests: read
+
+concurrency:
+  # A new push supersedes an in-flight run: the older preview is about to be
+  # replaced anyway, and verifying it would report on bytes nobody will serve.
+  group: preview-qa-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   preview-qa:
-    # Only successful Deploy Previews (production deploys have no
-    # deploy-preview- host and are verified after merge instead).
-    if: >-
-      github.event.deployment_status.state == 'success' &&
-      contains(github.event.deployment_status.environment_url, 'deploy-preview-')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
         with:
-          # The commit the preview was built from, not the default branch.
-          ref: ${{ github.event.deployment.sha }}
+          # The PR head, not the synthetic merge commit: it is the commit
+          # Netlify built the preview from, so qa/preview.mjs compares the
+          # deploy against the source that produced it.
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Wait for the Netlify deploy preview
+        id: preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+
+          # 1 — wait for Netlify's own check runs on this commit to finish.
+          #     "Pages changed" reports `neutral`, so a completed run is the
+          #     signal; only `failure`/`timed_out`/`cancelled` is a problem.
+          slug=""
+          for _ in $(seq 1 60); do   # 60 x 10s = 10 minutes
+            runs=$(gh api "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs" \
+              --jq '.check_runs[] | select(.details_url // "" | test("app\\.netlify\\.com/projects/"))
+                    | [.name, .status, (.conclusion // ""), .details_url] | @tsv' 2>/dev/null || true)
+
+            if [ -n "$runs" ]; then
+              if printf '%s\n' "$runs" | awk -F'\t' '$3 ~ /^(failure|timed_out|cancelled)$/ {found=1} END {exit !found}'; then
+                echo "Netlify reported a failed deploy for ${SHA}:" >&2
+                printf '%s\n' "$runs" >&2
+                exit 1
+              fi
+              if printf '%s\n' "$runs" | awk -F'\t' '$2 != "completed" {pending=1} END {exit pending}'; then
+                # Derive the site slug from Netlify's own details_url rather
+                # than hardcoding it, so a rename cannot leave this pointing
+                # at a host that does not exist.
+                slug=$(printf '%s\n' "$runs" | head -n1 | cut -f4 \
+                  | sed -n 's#.*app\.netlify\.com/projects/\([^/]*\)/.*#\1#p')
+                break
+              fi
+            fi
+            sleep 10
+          done
+
+          if [ -z "$slug" ]; then
+            echo "No completed Netlify check run for ${SHA} after 10 minutes." >&2
+            echo "If Netlify is not configured to build previews for this repo," >&2
+            echo "this workflow has nothing to verify." >&2
+            exit 1
+          fi
+
+          url="https://deploy-preview-${PR}--${slug}.netlify.app"
+
+          # 2 — the check run completing and the host answering are not quite
+          #     the same moment, so confirm the preview actually serves.
+          for _ in $(seq 1 30); do   # 30 x 10s = 5 minutes
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$url/" || echo 000)
+            if [ "$code" = "200" ]; then
+              echo "url=$url" >> "$GITHUB_OUTPUT"
+              echo "Deploy preview ready: $url"
+              exit 0
+            fi
+            sleep 10
+          done
+
+          echo "Deploy preview $url did not answer 200 within 5 minutes." >&2
+          exit 1
 
       - uses: actions/setup-node@v7
         with:
@@ -44,7 +134,7 @@ jobs:
         run: echo "CHROME_PATH=$(node -e "console.log(require('playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
 
       - name: Verify the deploy preview
-        run: node qa/preview.mjs "${{ github.event.deployment_status.environment_url }}" --md=qa/out/preview/report.md --json=qa/out/preview/report.json
+        run: node qa/preview.mjs "${{ steps.preview.outputs.url }}" --md=qa/out/preview/report.md --json=qa/out/preview/report.json
 
       - name: Publish the table to the job summary
         if: always()

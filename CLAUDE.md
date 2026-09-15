@@ -20,7 +20,7 @@ against regressions (see below).
 The file above is imported automatically into context on every session —
 it's the package's own cheat sheet for `.page()`/`.pages()`/`.generate()`/
 `.watch()`, config, and every built-in Handlebars helper. Consult it before
-making non-trivial `generate.js` changes. Deeper per-topic notes live
+making non-trivial `router.js` changes. Deeper per-topic notes live
 alongside it in `node_modules/kiss-ssg/AIKB/`.
 
 ## Commands
@@ -34,14 +34,21 @@ npm run images:optimise   # resize/convert a newly added source image to WebP (i
 
 `npm run build` is the exact command Netlify runs on push; publish directory
 is `docs/` (gitignored — never edit it by hand, it's emptied on every
-build). Tailwind is not a separate build step: `generate.js` declares it as
+build). Tailwind is not a separate build step: `router.js` declares it as
 a kiss asset-pipeline step (`config.assets.pipeline`), so it runs before
 kiss copies/hashes assets, under `build`, `check` and `dev` alike. Edit
 `src/styles/site.css`; never `src/assets/css/site.css` (generated,
 gitignored).
 
-There is no lint or test script configured (`.eslintrc.cjs`/`.prettierrc`
-exist but `eslint` itself isn't a dependency and no `npm run lint` exists).
+There is no lint script and no eslint/prettier config in the repo. The only
+tests are `npm run qa:test` (`node --test qa/*.test.mjs`) — unit tests for
+the pure helpers in the QA harness, not for the site, which is verified by
+building and inspecting the output as below. The committed JS is nonetheless Prettier-formatted with
+`--no-semi --single-quote` (verify with
+`npx prettier@3 --no-semi --single-quote --check router.js 'src/**/*.js'`) —
+with two files that predate the convention and still fail it:
+`src/assets/js/site.js` and `src/controllers/faqLib.js`. Format what you
+touch; reformatting `site.js` changes a hashed asset and so every page.
 Correctness is verified by building (`npm run build`), serving `docs/`
 (`npm run qa:serve -- docs <port>`), and checking the rendered page —
 plus the QA harness below for anything beyond a one-off visual check.
@@ -61,9 +68,16 @@ npm run qa:preview -- <url>     # verify a DEPLOYED site: real headers, redirect
 ```
 
 After opening a PR, run `/pr-verify` (`.claude/skills/pr-verify/SKILL.md`): it
-finds the Netlify deploy-preview URL on the PR's commit status and runs
-`qa:preview` against it. `.github/workflows/preview-qa.yml` does the same
-automatically as the `Preview QA` check.
+finds the Netlify deploy preview and runs `qa:preview` against it.
+`.github/workflows/preview-qa.yml` does the same automatically as the
+`Preview QA` check, on every PR push.
+
+**Netlify reports here as check runs, never as commit statuses or GitHub
+deployments.** `commits/<sha>/status` is always empty on this repo, so the
+preview URL comes from the `details_url` on one of Netlify's three check
+runs (`Header rules - a1k9-training` and friends) — that is where the site
+slug lives. The `Preview QA` workflow went unrun for months because it
+triggered on `deployment_status`, an event nothing here ever emits.
 
 - `qa/snapshot.mjs` + `qa/compare.mjs` gate against `qa/baseline/content.json`
   (a snapshot of the last merged master build; refresh it by building master
@@ -73,10 +87,24 @@ automatically as the `Preview QA` check.
   `qa/baseline/pre-migration/` keeps the original Bootstrap-site records.
 - `qa/no-bootstrap.mjs` fails if any Bootstrap 3 class/idiom shows up in the
   built output — the guard against regressing the migration.
+- `qa/preview.mjs` checks `FAQPage` JSON-LD **both ways**: required on
+  `/faqs/`, forbidden on the pages that render the inline FAQ accordion. The
+  markup is centralised on that one URL by design; only the markup, though —
+  the human-readable Q&A blocks elsewhere stay, and are not an SEO liability.
+  It also checks that every question and answer in that JSON-LD is actually
+  visible on the page (`qa/faq-parity.mjs`, unit-tested by `qa:test`), since
+  markup describing content the page does not show is the one defect a human
+  review cannot see.
 - `qa/axe.mjs` scans every page at 375/1440px; group violations by impact.
   It does **not** catch non-text contrast (e.g. a `:focus-visible` ring) —
   that needs a manual WCAG ratio check against the actual token values in
-  `@theme`.
+  `@theme`. It gates on **first-party markup only**: axe is injected into
+  every frame, so the site's three third-party embeds (a YouTube player, two
+  Google Maps) would otherwise report their vendors' bugs as ours. Those
+  findings are sorted into `thirdParty` in the report and printed, not
+  gated. They also only appear where the browser has direct outbound
+  access, so a clean local run is not evidence CI will be clean — see
+  `qa/README.md`.
 - All of the above expect a Chromium executable; on Windows, Playwright's
   own downloaded browser needs to be pointed at explicitly, e.g.
   `CHROME_PATH=".../ms-playwright/chromium-<rev>/chrome-win64/chrome.exe"`
@@ -84,11 +112,36 @@ automatically as the `Preview QA` check.
 
 ### Knowledge base and session loop (`AIKB/`, `planning/sessions/`)
 
+### Where the kiss-memory skills come from
+
+`.claude/skills/kiss-branch-open`, `-pulse`, `-close`, `kiss-site-brief` and
+`kiss-memory-consolidate` are a **vendored copy** of the `kiss-memory` plugin at
+version 2.2.1, committed here rather than installed.
+
+`.claude/settings.json` already declares the plugin properly (`enabledPlugins`
+plus the `cprobert/kiss-ssg` marketplace) and that is the right config — but a
+cloud session never fetches a GitHub marketplace, so in Claude Code on the web
+the plugin silently is not there while project `.claude/skills/` loads fine.
+Vendoring is what makes the loop work in every session rather than only local
+ones. Leave the plugin config in place: where plugins *do* load, it is the
+better source.
+
+The cost is that these five are pinned and no longer track the marketplace. To
+re-sync after the plugin changes upstream:
+
+```bash
+git clone --depth 1 https://github.com/cprobert/kiss-ssg /tmp/kiss-ssg
+cp -r /tmp/kiss-ssg/plugins/kiss-memory/skills/kiss-* .claude/skills/
+```
+
+Copy only the `kiss-*` directories — `.claude/skills/pr-verify/` is this
+repository's own and is not part of the plugin.
+
 `AIKB/` is kiss's recorded map of the site (`site-map.md` lists every page,
 its id, view, model, controller and the partials it rendered) plus authored
 notes under `AIKB/notes/` for each controller and pipeline step, stamped with
 the subject's hash. It is committed source, written only by
-`npx kiss-ssg aikb generate.js`, and `npm run check` diffs every build
+`npx kiss-ssg aikb router.js`, and `npm run check` diffs every build
 against `AIKB/last-build.json` and reports notes that are missing, stale,
 dead or dangling. A piece of work on the site runs through the kiss-memory
 plugin's loop: `kiss-branch-open` writes the intent to
@@ -100,14 +153,14 @@ empties the diff. Changing a controller obliges restamping its note.
 
 ## Architecture
 
-### Page pipeline: `generate.js` → model → controller → view
+### Page pipeline: `router.js` → model → controller → view
 
-Every route is registered in `generate.js` via kiss-ssg's `.page()` (one
+Every route is registered in `router.js` via kiss-ssg's `.page()` (one
 page) or `.pages()` (fan out one page per item in an array/folder model).
 For a fan-out page, e.g. `/courses/*`:
 
 ```
-generate.js:  .pages({ view: 'courses/course.hbs', model: 'courses', controller: 'course.js', path: 'courses' })
+router.js:  .pages({ view: 'courses/course.hbs', model: 'courses', controller: 'course.js', path: 'courses' })
 src/models/courses/bronze-obedience.json   → data for one page (slug, title, description, image, components: {...})
 src/controllers/course.js                    → reshapes the model into { slug, title, description, model }
 src/pages/courses/course.hbs                → the Handlebars view, extends a layout, renders model.components.*
@@ -122,6 +175,57 @@ persists across dev-server rebuilds (see the imported cheat sheet for why).
 `src/controllers/faqMapper.js`/`metaMapper.js` are small reusable
 controllers; `about.js`/`course.js`/`behavioural-consultations.js` are
 per-section.
+
+`router.js` is only the router: config, one `registerHelpers(kiss)` call,
+the `.page()`/`.pages()` table, then `.generate()`/`.sitemap()`/`.llms()` and
+the build report. Nothing else belongs in it.
+
+### Handlebars helpers (`src/helpers/`)
+
+Every custom helper, one module per kind, each exporting a
+`register*Helpers(kiss)` that `src/helpers/index.js` composes into the single
+`registerHelpers(kiss)` that `router.js` calls:
+
+| Module | Helpers | What kind of thing it is |
+| --- | --- | --- |
+| `format.js` | `eq`, `imageVariant`, `heroImage` | pure transformations; arguments in, string out |
+| `schema.js` | `localBusiness`, `faqPage`, `serviceSchema`, `personSchema`, `breadcrumbList` | schema.org JSON-LD, serialised by `{{{stringify ...}}}` |
+| `navigation.js` | `breadcrumb` | derives the trail from the page being rendered |
+| `courses.js` | `courseLadder` | reads `src/models/courses/*.json` to build the progression |
+| `link.js` | — | `makeLinkTo(kiss)`, shared by the two above |
+
+Register on `kiss.handlebars`, never the global `handlebars` module: kiss
+gives each instance its own `Handlebars.create()`, so a globally registered
+helper is invisible to these templates. **`registerHelpers(kiss)` must stay
+immediately after `new Kiss()`** — partials are compiled at construction, and
+a helper registered later is not there when they render.
+
+A helper that resolves a link must do so at *render* time: the page registry
+it reads is filled by the `.page()`/`.pages()` calls, so `makeLinkTo(kiss)`
+may run at registration but the `linkTo` it returns may not. This is why
+`courses.js` builds its ladder steps without a `url` and adds one per step
+inside the helper.
+
+Helper files are not AIKB subjects (only controllers, URL models and pipeline
+steps are), so adding one obliges no note. Do add the folder to the `@source`
+list in `src/styles/site.css` if a helper ever emits a class name.
+
+### Site facts (`src/config/`)
+
+`src/config/business.js` holds the business's own facts — name, phone (E.164
+plus the display form), the three social URLs, and the two venues as
+schema.org `Place` records. `router.js` spreads it into `new Kiss()` as an
+arbitrary config key, which is what puts it on **both** sides of the site:
+templates read `{{config.business.telephone}}`, helpers read
+`kiss.config.business`. Change a fact here and it reaches the markup and the
+JSON-LD together — before this existed the phone number was written out in
+seven templates and again in `src/helpers/schema.js`.
+
+Page *data* still belongs in `src/models/`; this is for facts the shell and
+the structured data share. Note `SECTIONS` in `src/helpers/navigation.js` is
+**not** here yet: `navbar.hbs` still carries its own copy of those labels in
+hand-written markup (see the comment on `SECTIONS`), so renaming a section
+means editing both.
 
 ### Templates: layouts, pages, partials
 
@@ -160,14 +264,21 @@ per-section.
   bare helper renders `/courses/bronze-obedience.html`, which Netlify 301s
   back to the slashless form and `qa:preview`'s redirect-free check fails.
   The same rule applies to model data — the about records' `next` carries a
-  page `id`, not a URL — and to `generate.js`, where `linkTo()` wraps the
-  helper for the breadcrumb and course-ladder helpers.
+  page `id`, not a URL — and to `src/helpers/link.js`, whose `makeLinkTo()`
+  wraps the helper for the breadcrumb and course-ladder helpers.
 
 ### Design system (`src/styles/site.css`)
 
-Tailwind v4 entry point; explicit `@source` globs list only real template
-locations (excludes `src/assets` and `qa/`, which would otherwise get
-scanned for class names). Design tokens live in `@theme`: a green `brand`
+Tailwind v4 entry point. `@import 'tailwindcss' source(none)` turns automatic
+detection **off**, so the `@source` globs are the whole of what is scanned for
+class names. Keep it that way: `@source` only *adds* to the automatic walk of
+the repo root, and with the walk on, every prose file in the project —
+`CLAUDE.md`, `README.md`, `planning/`, `AIKB/` — is a class-name source.
+Writing the word "invisible" in a sentence emitted `.invisible` into the
+stylesheet, changed its content hash and so changed every page that links it;
+`.container`, `.fixed`, `.outline` and `.resize` had been riding along the same
+way. **A new template location must be added to the glob list** or its classes
+will not compile. Design tokens live in `@theme`: a green `brand`
 ramp, a warm `sand` ground, a dark-slate `ink` text ramp, and an `accent`
 amber reserved for calls to action — every text/background pairing in the
 shell is WCAG AA. `:focus-visible` uses a two-layer ring (amber `outline` +
@@ -187,7 +298,7 @@ plugin's default palette to the site's `ink`/`brand` tokens.
 ### Assets and caching
 
 `src/assets/` is copied verbatim into `docs/` (images, fonts, `js/`,
-generated `css/`). `assets: { hash: true }` in `generate.js` renames every
+generated `css/`). `assets: { hash: true }` in `router.js` renames every
 emitted `.css`/`.js` with a content hash; templates always reference the
 unhashed name through kiss's `{{asset}}` helper
 (`href="/{{asset "css/site.css"}}"`) and the manifest resolves it.
@@ -195,7 +306,7 @@ unhashed name through kiss's `{{asset}}` helper
 year for images/fonts, and security headers. There is **no hand-written
 `_redirects`**: kiss writes `docs/_redirects` at build time from each page's
 `aliases` (the pre-2015 paths sit on the course, consultation and about
-records in `src/models/`; `/find-us/` on the contact page in `generate.js`),
+records in `src/models/`; `/find-us/` on the contact page in `router.js`),
 one `<old> <new> 301` line per alias. To keep an old URL alive when a page
 moves, add it to that page's `aliases`; `npm run check` reports a page
 removed or moved without one.

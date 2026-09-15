@@ -19,14 +19,14 @@ npm run build       # one command: Tailwind runs inside kiss, then the site is g
 ```
 
 `npm run build` is the single command Netlify runs; the publish directory is
-`docs/`. Tailwind is not a separate step: `generate.js` declares it as a kiss
+`docs/`. Tailwind is not a separate step: `router.js` declares it as a kiss
 asset-pipeline step (`config.assets.pipeline`), so kiss compiles
 `src/styles/site.css` into `src/assets/css/site.css` before it copies and
 hashes the assets. The same happens under `npm run check` and `npm run dev`.
 
 | Script | What it does |
 | ------ | ------------ |
-| `npm run build` | the production build (`node generate`) |
+| `npm run build` | the production build (`node router`) |
 | `npm run check` | dry-run the build and print its report; publishes nothing |
 | `npm run dev` | kiss dev server with live reload; Tailwind keeps compiling through the pipeline's `watch` command |
 | `npm run images:optimise` | resize and convert any newly added source image to WebP (idempotent) |
@@ -74,7 +74,7 @@ element. Each one is commented in `src/styles/site.css`.
 
 ## Cache busting
 
-`generate.js` sets `assets: { hash: true }`, so every emitted `.css`/`.js` is
+`router.js` sets `assets: { hash: true }`, so every emitted `.css`/`.js` is
 renamed to carry a hash of its bytes. Templates always ask for the plain name
 through kiss's `{{asset}}` helper (`href="/{{asset "css/site.css"}}"`) and the
 config decides the caching policy.

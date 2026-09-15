@@ -1,7 +1,7 @@
 {
   "name": "a1k9-training",
   "version": "1.0.0",
-  "main": "generate.js",
+  "main": "router.js",
   "type": "module",
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
@@ -15,10 +15,10 @@
     "tailwindcss": "^4.3.3"
   },
   "scripts": {
-    "build": "node generate",
-    "gen": "node generate",
-    "dev": "node generate dev",
-    "check": "kiss-ssg check generate.js --summary",
+    "build": "node router",
+    "gen": "node router",
+    "dev": "node router dev",
+    "check": "kiss-ssg check router.js --summary",
     "images:optimise": "node scripts/optimise-images.mjs",
     "qa:serve": "node qa/serve.mjs",
     "qa:pages": "node qa/pages.mjs docs",
@@ -27,12 +27,14 @@
     "qa:axe": "node qa/axe.mjs docs after",
     "qa:axe:check": "node qa/check-axe.mjs after",
     "qa:compare": "node qa/compare.mjs after",
+    "qa:css": "node qa/css-source-guard.mjs",
+    "qa:test": "node --test qa/*.test.mjs",
     "qa:no-bootstrap": "node qa/no-bootstrap.mjs docs",
     "qa:seo": "node qa/seo-check.mjs docs",
     "qa:dev-watch": "node qa/dev-watch.mjs",
     "qa:baseline": "node qa/snapshot.mjs qa/.baseline-site baseline && node qa/lighthouse.mjs qa/.baseline-site baseline && node qa/axe.mjs qa/.baseline-site baseline",
-    "qa": "npm run build && npm run qa:pages && npm run qa:no-bootstrap && npm run qa:seo && npm run qa:snapshot && npm run qa:compare && npm run qa:axe",
-    "qa:ci": "npm run build && npm run qa:pages && npm run qa:no-bootstrap && npm run qa:seo && npm run qa:snapshot && npm run qa:compare && npm run qa:axe && npm run qa:axe:check",
+    "qa": "npm run qa:css && npm run qa:test && npm run build && npm run qa:pages && npm run qa:no-bootstrap && npm run qa:seo && npm run qa:snapshot && npm run qa:compare && npm run qa:axe",
+    "qa:ci": "npm run qa:css && npm run qa:test && npm run build && npm run qa:pages && npm run qa:no-bootstrap && npm run qa:seo && npm run qa:snapshot && npm run qa:compare && npm run qa:axe && npm run qa:axe:check",
     "qa:preview": "node qa/preview.mjs"
   },
   "repository": {

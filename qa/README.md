@@ -117,6 +117,28 @@ Runs an axe-core scan (`@axe-core/playwright`) on every page at 375 and
 npm run qa:axe -- qa/.baseline-site baseline
 ```
 
+**The gate is scoped to first-party markup.** `@axe-core/playwright`
+injects axe into every frame Playwright exposes, cross-origin ones
+included, so an embedded player or map is scanned as though we wrote it.
+The site has three such embeds — one `youtube-nocookie.com` on
+`/courses/puppy-socialisation`, two `google.com/maps` on `/contact/` —
+and YouTube's player alone contributes two critical and one serious
+violation at both viewports. Nothing in this repository can fix a
+vendor's markup, and their next deploy would move the gate under us
+regardless.
+
+So `splitByOrigin()` sorts every finding by where its node lives:
+`target` is multi-part for anything inside a frame, and resolving
+`target[0]` gives that `<iframe>`'s `src` to compare origins. Findings in
+a cross-origin frame go to `thirdParty` in the report and are printed by
+`check-axe.mjs` but never gated on; a same-origin frame stays in scope,
+since that would be ours. The split is **per node, not per rule** — the
+same rule can fail on both sides at once (YouTube's channel-avatar button
+and one of our own buttons would both be `button-name`), and excluding
+the whole rule, or the whole `<iframe>` element, would have hidden the
+real one. Excluding the element would also drop `frame-title`, which is a
+check on *our* markup: the `title` is on the iframe, not inside it.
+
 ### `qa/compare.mjs <label>`
 
 Compares `qa/out/<label>/content.json` against `qa/baseline/content.json`
@@ -177,16 +199,47 @@ Every check is a pass/fail row (never stops at the first failure):
   is** (`redirect: 'manual'`, fail on any 3xx) — and every `llms.txt` URL
   agree with each other and with the sitemap, and the fetched page's own
   `<link rel="canonical">` equals the URL it was fetched from. `siteUrl` is
-  pinned to production in `generate.js`, so every `<loc>`/canonical is a
+  pinned to production in `router.js`, so every `<loc>`/canonical is a
   `https://www.a1k9training.co.uk/...` URL even when `<url>` is a deploy
   preview — this row is therefore always a production reachability/redirect
   check, whichever host you point the script at.
-- **Structured data**: on `/` and every sitemap path under
+- **Structured data**: on `/`, `/faqs/` and every sitemap path under
   `/behavioural-consultations/`, fetched from **the host under test**
   (`<url>` + that path — unlike the row above, since the point here is what
-  the deploy actually serves): every ld+json block parses, the
+  the deploy actually serves): every ld+json block parses, and the
   `LocalBusiness` object carries a `location` array of ≥ 2 entries each
-  with `address.postalCode`, and the consultation pages carry a `FAQPage`.
+  with `address.postalCode`.
+
+  `FAQPage` is asserted **both ways**: required on `/faqs/`, and forbidden
+  on the consultation pages. The markup deliberately lives on that one URL
+  — #26 consolidated it there when the hub was built. This check used to
+  require a `FAQPage` on the consultation pages, which was right when it was
+  written in #23 (the shared FAQ partial carried its own block then) and
+  silently wrong afterwards. Inverting it, rather than deleting it, is what
+  keeps the consolidation from being undone by accident.
+
+  The reason for centralising is housekeeping, not rich results. Google
+  restricted FAQ rich results to authoritative government and health sites
+  in August 2023 and **discontinued them entirely in May 2026**, so this
+  markup earns no Google FAQ rich result and is not a route to one; Google
+  has also said no special markup is needed for AI Overviews or AI Mode. It
+  is kept because `FAQPage` is a valid schema.org type, costs nothing, and
+  one authoritative machine-readable copy is cleaner for anything consuming
+  structured data than the same 32 answers on seven URLs. No claim is made
+  about duplication harming answer-engine retrieval — there is no good
+  evidence for one.
+
+  Only the **markup** is centralised. The inline, human-readable FAQ blocks
+  on course and consultation pages stay: page-specific Q&A earns its place
+  for a reader mid-enquiry and for relevance, marked up or not.
+
+  A third assertion rides with the first: on `/faqs/`, every `mainEntity`
+  question **and** its answer must appear in the page's own visible text.
+  Structured data that describes content the page does not show is the one
+  failure here that review cannot catch — the page looks right — so a
+  controller dropping an id or a template hiding a section fails the gate
+  instead of shipping. A collapsed `<details>` counts as visible: it is in
+  the DOM and reachable.
 - **Browser pass** (Playwright, `--pages` default `/`, `/courses/`,
   `/courses/bronze-obedience`, `/behavioural-consultations/dog-on-dog-aggression`,
   `/find-us/`, at 375×812 and 1440×900): no same-origin console errors or
@@ -220,6 +273,7 @@ finding the preview URL and running this) and automatically by
 | `qa:serve` | `node qa/serve.mjs` — pass `-- <dir> <port>` |
 | `qa:snapshot` | `node qa/snapshot.mjs` — pass `-- <siteDir> <label>` |
 | `qa:lh` | `node qa/lighthouse.mjs` — pass `-- <siteDir> <label> [--pages=...] [--runs=N]` |
+| `qa:test` | `node --test qa/*.test.mjs` — unit tests for the harness's own pure helpers |
 | `qa:axe` | `node qa/axe.mjs` — pass `-- <siteDir> <label>` |
 | `qa:compare` | `node qa/compare.mjs` — pass `-- <label>` |
 | `qa:no-bootstrap` | `node qa/no-bootstrap.mjs` — pass `-- <siteDir>` |
@@ -265,6 +319,13 @@ node qa/no-bootstrap.mjs docs                   # gates on leftover Bootstrap 3
 - `axe.mjs` scans two widths (375, 1440) per page, not the same three
   viewports `snapshot.mjs` screenshots — deliberate, to keep the accessibility
   pass around 2× rather than 3× the page count.
+- Those third-party frames only load where the browser has direct outbound
+  access. In a sandbox behind the agent proxy they stay blank, so a local
+  `npm run qa:axe` reports no `thirdParty` findings while CI reports
+  three: the scan is network-dependent, and a clean local axe run is not
+  evidence that CI will be clean. Reproduce CI's condition by launching
+  Chromium with the proxy variables cleared (as `preview.mjs` does) and
+  letting the frame settle after `networkidle` before calling `analyze()`.
 - `preview.mjs`'s "sitemap agreement" row fetches each sitemap `<loc>` as
   the literal, always-production URL it is (see that script's own header
   comment) — a real reachability/redirect check, but not a preview-specific

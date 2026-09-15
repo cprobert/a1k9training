@@ -1,7 +1,7 @@
 {
-  "label": "after",
-  "generated": "2026-09-15T18:19:11.946Z",
-  "siteDir": "C:\\Code\\kiss\\a1k9training\\docs",
+  "label": "baseline",
+  "generated": "2026-09-15T18:24:09.088Z",
+  "siteDir": "C:\\Code\\kiss\\a1k9training\\qa\\.baseline-site",
   "pages": {
     "/": {
       "title": "Dog Behaviour and Trainer South Wales | A1K9 Training",
@@ -222,9 +222,9 @@
       "totalBytes": 235314,
       "bytesByType": {
         "document": 30727,
-        "image": 110920,
-        "stylesheet": 68056,
         "font": 13558,
+        "stylesheet": 68056,
+        "image": 110920,
         "script": 12053
       }
     },
@@ -405,8 +405,8 @@
       "totalBytes": 263041,
       "bytesByType": {
         "document": 21423,
-        "image": 147951,
         "stylesheet": 68056,
+        "image": 147951,
         "font": 13558,
         "script": 12053
       }
@@ -996,8 +996,8 @@
       "totalBytes": 183708,
       "bytesByType": {
         "document": 33799,
-        "stylesheet": 68056,
         "image": 56242,
+        "stylesheet": 68056,
         "font": 13558,
         "script": 12053
       }
@@ -1389,10 +1389,10 @@
       "thirdPartyFailedRequests": [],
       "totalBytes": 223105,
       "bytesByType": {
+        "document": 36531,
         "image": 92907,
         "stylesheet": 68056,
         "font": 13558,
-        "document": 36531,
         "script": 12053
       }
     },
@@ -1597,12 +1597,12 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 668189,
+      "totalBytes": 668190,
       "bytesByType": {
-        "image": 107376,
         "stylesheet": 68056,
+        "image": 107376,
         "font": 13558,
-        "document": 28375,
+        "document": 28376,
         "script": 450778,
         "xhr": 46
       }
@@ -1802,9 +1802,9 @@
       "totalBytes": 243472,
       "bytesByType": {
         "document": 31955,
-        "stylesheet": 68056,
-        "image": 117850,
         "font": 13558,
+        "image": 117850,
+        "stylesheet": 68056,
         "script": 12053
       }
     },
@@ -2554,9 +2554,9 @@
       "totalBytes": 233403,
       "bytesByType": {
         "document": 40041,
+        "font": 13558,
         "stylesheet": 68056,
         "image": 99695,
-        "font": 13558,
         "script": 12053
       }
     },
@@ -2767,8 +2767,8 @@
       "bytesByType": {
         "stylesheet": 68056,
         "image": 152639,
-        "font": 13558,
         "document": 33212,
+        "font": 13558,
         "script": 12053
       }
     },
@@ -3265,13 +3265,13 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 1461031,
+      "totalBytes": 1460863,
       "bytesByType": {
-        "stylesheet": 127173,
-        "image": 166178,
+        "stylesheet": 127172,
+        "image": 166175,
         "font": 53718,
-        "document": 102332,
-        "script": 1011269,
+        "document": 102339,
+        "script": 1011098,
         "xhr": 361
       }
     },
@@ -3641,9 +3641,9 @@
       "thirdPartyFailedRequests": [],
       "totalBytes": 155841,
       "bytesByType": {
-        "document": 62174,
         "stylesheet": 68056,
         "font": 13558,
+        "document": 62174,
         "script": 12053
       }
     },

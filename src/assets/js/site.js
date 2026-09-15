@@ -192,6 +192,7 @@
     var faqEmpty = document.querySelector('[data-faq-empty]')
     var faqJump = document.querySelector('[data-faq-jump]')
     var faqJumpNav = faqJump ? faqJump.closest('nav') : null
+    var faqMore = document.querySelector('[data-faq-more]')
 
     /* Question and answer text of each entry, lower-cased once up front. */
     var haystack = faqs.map(function (el) {
@@ -220,6 +221,13 @@
         section.hidden = !section.querySelector('[data-faq]:not([hidden])')
       })
 
+      /* Open the "more answers" block only while a search actually matches
+       * something inside it, so a hit there is seen without a second click;
+       * collapse it again when the box is cleared, same as the entries. */
+      if (faqMore) {
+        faqMore.open = !!(searching && faqMore.querySelector('[data-faq]:not([hidden])'))
+      }
+
       if (faqJumpNav) faqJumpNav.hidden = searching
       if (faqEmpty) faqEmpty.hidden = !(searching && shown === 0)
       if (faqCount) {
@@ -243,11 +251,15 @@
       }
     })
 
-    /* A link to one answer (/faqs/#q-course-prices) opens it on arrival. */
+    /* A link to one answer (/faqs/#q-course-prices) opens it on arrival —
+     * and, if that answer lives in the "more answers" block, opens that too,
+     * since a collapsed <details> hides its own open descendants. */
     var openFromHash = function () {
       if (!/^#q-/.test(location.hash)) return
       var target = document.getElementById(location.hash.slice(1))
-      if (target && target.tagName === 'DETAILS') target.open = true
+      if (!target || target.tagName !== 'DETAILS') return
+      target.open = true
+      if (faqMore && faqMore.contains(target)) faqMore.open = true
     }
     openFromHash()
     window.addEventListener('hashchange', openFromHash)

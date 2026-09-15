@@ -73,6 +73,18 @@ export const business = {
   courses: {
     cycleNote:
       'Courses run back to back in six-week blocks; the next starts the week after the last ends',
+    // The timetable itself, as data rather than a date typed onto five models
+    // and retyped every six weeks. `anchorSunday` is one real start Sunday;
+    // every later start is that date plus a whole number of `blockWeeks`, and
+    // the Saturday courses (Silver, Gold) start the day before the shared
+    // Sunday. src/helpers/schedule.js does the arithmetic,
+    // src/controllers/course.js formats it onto each course page.
+    //
+    // When the pattern actually breaks — a cancelled block, a week off over
+    // Christmas — move this anchor to the next Sunday courses really do start,
+    // or override one course with a literal `nextStart` on its model.
+    blockWeeks: 6,
+    anchorSunday: '2026-10-11',
     classSize: 'About ten dogs, never more than twelve',
     joinBy: 'You can join up to week two',
     deposit: '£50',

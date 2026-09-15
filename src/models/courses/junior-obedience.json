@@ -15,7 +15,8 @@
   "when": "Sunday afternoons",
   "price": "£119.99",
   "priceNote": "6-week course, 1 hour a week",
-  "nextStart": "Sunday 11 October, 2:00pm",
+  "startDay": "sunday",
+  "startTime": "2:00pm",
   "components": {
     "intro": "courses/junior/intro",
     "details": "courses/junior/you-will-learn",

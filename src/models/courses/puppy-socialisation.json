@@ -18,7 +18,8 @@
   "askVetDate": true,
   "price": "£59.99",
   "priceNote": "6 classes, 30 minutes each",
-  "nextStart": "Sunday 11 October, 3:00pm",
+  "startDay": "sunday",
+  "startTime": "3:00pm",
   "videoId": "B9IWqEXo2eA",
   "videoTitle": "Puppy socialisation: having fun while learning to look and listen",
   "components": {

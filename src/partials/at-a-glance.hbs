@@ -7,13 +7,22 @@
   `glance`: "course" for the six group courses, "session" for one-to-one work
   and behaviour consultations, which are priced per visit and have no dates.
 
-  Per-page values come from the model (`ages`, `when`, `price`, `nextStart`,
-  `startNote`, `askVetDate`); everything shared comes from
+  Per-page values come from the model (`ages`, `when`, `price`, `schedule`,
+  `nextStart`, `startNote`, `askVetDate`); everything shared comes from
   src/config/business.js, so a changed fact reaches all nine pages at once.
 
-  "Next course starts" degrades nextStart -> startNote -> courses.cycleNote and
-  is never blank: Platinum has no fixed date (its dates are agreed with the
-  group at Gold graduation) and a blank row reads as an omission.
+  "Next course starts" degrades nextStart -> schedule -> startNote ->
+  courses.cycleNote and is never blank: Platinum has no fixed date (its dates
+  are agreed with the group at Gold graduation) and a blank row reads as an
+  omission.
+
+  `schedule` is computed per build by src/controllers/course.js from the
+  timetable anchor in src/config/business.js, so the date is right six weeks
+  from now without anyone retyping it. When it reports a `current` course the
+  row says so, because a visitor reading in week one can still join at week
+  two and should not be sent away to wait six weeks. A literal `nextStart`
+  on a record beats it — that is the manual override for a cancelled or
+  moved block.
 
   Rendered in `main`, never inside a layout hero — the hero caption box styles
   every descendant with arbitrary-variant selectors and would repaint the links
@@ -82,7 +91,7 @@
       <div>
         <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Next course starts</dt>
         <dd class="mt-1 mb-0">
-          {{#if model.nextStart}}{{model.nextStart}}{{else}}{{#if model.startNote}}{{model.startNote}}{{else}}{{config.business.courses.cycleNote}}{{/if}}{{/if}}
+          {{#if model.nextStart}}{{model.nextStart}}{{else}}{{#if model.schedule}}{{#if model.schedule.current}}Started {{model.schedule.current}} &mdash; you can still join on week two. The next course starts {{model.schedule.next}}.{{else}}{{model.schedule.next}}{{/if}}{{else}}{{#if model.startNote}}{{model.startNote}}{{else}}{{config.business.courses.cycleNote}}{{/if}}{{/if}}{{/if}}
         </dd>
       </div>
 

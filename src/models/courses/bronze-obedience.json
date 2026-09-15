@@ -15,7 +15,8 @@
   "when": "Sunday afternoons",
   "price": "£119.99",
   "priceNote": "6-week course, 1 hour a week",
-  "nextStart": "Sunday 11 October, 1:00pm",
+  "startDay": "sunday",
+  "startTime": "1:00pm",
   "components": {
     "intro": "courses/bronze/intro",
     "details": "courses/bronze/you-will-learn",

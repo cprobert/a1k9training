@@ -22,7 +22,15 @@
   row says so, because a visitor reading in week one can still join at week
   two and should not be sent away to wait six weeks. A literal `nextStart`
   on a record beats it — that is the manual override for a cancelled or
-  moved block.
+  moved block, and a record carrying one is given no `schedule` at all, so
+  the override holds in the browser too.
+
+  The `<dd>` also carries the next twelve starts as data attributes, and
+  src/assets/js/site.js re-picks the right one on load. The site builds on
+  push, not on a schedule, so without that a page deployed in October would
+  still name an October date in December. The text rendered here is the
+  default that a crawler and a reader without JavaScript see, and it is left
+  alone once the list runs out.
 
   Rendered in `main`, never inside a layout hero — the hero caption box styles
   every descendant with arbitrary-variant selectors and would repaint the links
@@ -90,7 +98,7 @@
 
       <div>
         <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Next course starts</dt>
-        <dd class="mt-1 mb-0">
+        <dd class="mt-1 mb-0"{{#if model.schedule}} data-schedule-starts="{{join model.schedule.upcoming}}" data-schedule-time="{{model.schedule.time}}"{{/if}}>
           {{#if model.nextStart}}{{model.nextStart}}{{else}}{{#if model.schedule}}{{#if model.schedule.current}}Started {{model.schedule.current}} &mdash; you can still join on week two. The next course starts {{model.schedule.next}}.{{else}}{{model.schedule.next}}{{/if}}{{else}}{{#if model.startNote}}{{model.startNote}}{{else}}{{config.business.courses.cycleNote}}{{/if}}{{/if}}{{/if}}
         </dd>
       </div>

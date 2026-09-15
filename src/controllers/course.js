@@ -1,6 +1,6 @@
 import { faqsByIds } from './faqLib.js'
 import { business } from '../config/business.js'
-import { nextStart, formatStart } from '../helpers/schedule.js'
+import { nextStart, formatStart, upcomingStarts } from '../helpers/schedule.js'
 
 // The clock, read once per build so that all five dated course pages agree
 // even if the build straddles midnight. This is the only impure thing in here;
@@ -8,28 +8,38 @@ import { nextStart, formatStart } from '../helpers/schedule.js'
 // as an argument and is unit-tested (qa/schedule.test.mjs).
 const TODAY = new Date()
 
+// How many starts ahead the page carries. See `upcoming` below.
+const HORIZON = 12
+
 // The start dates for one course record, already written the way the page says
 // them. A record opts in by carrying `startDay` ("sunday"/"saturday") and
 // `startTime`; Platinum has neither, because its dates are agreed with the
 // group at Gold graduation, and it keeps its `startNote` instead.
 //
-// A record may still carry a literal `nextStart` string, which the template
-// prefers over anything computed here — the manual override for a block that
-// is cancelled or moved. Nothing is computed for such a record either way.
+// A record carrying a literal `nextStart` string gets no schedule at all —
+// that is the manual override for a block that is cancelled or moved, and it
+// has to beat the rolling date in the browser as well as in the markup, not
+// just win the template's first `{{#if}}`.
+//
+// `next` and `current` are the build-time answer: the text in the markup, which
+// is what a crawler and a reader without JavaScript get. `upcoming` and `time`
+// are the same timetable carried forward — src/partials/at-a-glance.hbs puts
+// them in data attributes and src/assets/js/site.js re-picks the right date at
+// load time, because this site builds on push and a page deployed in October
+// would otherwise still be naming an October date in December.
 const scheduleFor = (model) => {
+  if (model.nextStart) return undefined
   if (!model.startDay || !model.startTime) return undefined
   const { anchorSunday, blockWeeks } = business.courses
-  const { next, current } = nextStart({
-    anchorSunday,
-    blockWeeks,
-    day: model.startDay,
-    today: TODAY,
-  })
+  const timetable = { anchorSunday, blockWeeks, day: model.startDay }
+  const { next, current } = nextStart({ ...timetable, today: TODAY })
   return {
     next: formatStart(next, { time: model.startTime, today: TODAY }),
     current: current
       ? formatStart(current, { time: model.startTime, today: TODAY })
       : null,
+    upcoming: upcomingStarts({ ...timetable, from: TODAY, count: HORIZON }),
+    time: model.startTime,
   }
 }
 

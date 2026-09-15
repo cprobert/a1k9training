@@ -130,6 +130,51 @@
     })
   })
 
+  /* ---- Rolling course start dates ---------------------------------------
+   * The build stamps the next twelve block starts into data-schedule-starts
+   * and re-states the first of them as the <dd>'s text. That text is what a
+   * crawler and a reader without JavaScript get, but the site builds on push,
+   * so it ages: this picks the right start for today instead. Past the end of
+   * the list, or with no list at all (Platinum, a manual nextStart override),
+   * the server-rendered text is left exactly as it is. */
+  var DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December']
+  var WEEK = 7 * 24 * 60 * 60 * 1000
+
+  var schedules = document.querySelectorAll('[data-schedule-starts]')
+
+  Array.prototype.forEach.call(schedules, function (el) {
+    var starts = (el.getAttribute('data-schedule-starts') || '').split(',')
+    var time = el.getAttribute('data-schedule-time') || ''
+    var now = new Date()
+    /* Compared as UTC midnights so the two DST Sundays cannot move a date. */
+    var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())
+    var next = null
+    var current = null
+
+    for (var i = 0; i < starts.length; i++) {
+      var parts = starts[i].split('-')
+      if (parts.length !== 3) continue
+      var start = Date.UTC(+parts[0], +parts[1] - 1, +parts[2])
+      if (start >= today) { next = start; break }
+      if (today - start < WEEK) current = start /* week one: joinable at week two */
+    }
+    if (next === null) return
+
+    var say = function (stamp) {
+      var d = new Date(stamp)
+      var text = DAY_NAMES[d.getUTCDay()] + ' ' + d.getUTCDate() + ' ' + MONTH_NAMES[d.getUTCMonth()]
+      if (d.getUTCFullYear() !== now.getFullYear()) text += ' ' + d.getUTCFullYear()
+      return time ? text + ', ' + time : text
+    }
+
+    el.textContent = current === null
+      ? say(next)
+      : 'Started ' + say(current) + ' — you can still join on week two. ' +
+        'The next course starts ' + say(next) + '.'
+  })
+
   /* ---- FAQ search, /faqs/ only -----------------------------------------
    * Filters the questions already on the page — no index to fetch, no
    * network. The box is hidden in the markup and revealed here, so with

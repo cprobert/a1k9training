@@ -9,7 +9,11 @@
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { nextStart, formatStart } from '../src/helpers/schedule.js'
+import {
+  nextStart,
+  formatStart,
+  upcomingStarts,
+} from '../src/helpers/schedule.js'
 
 // The timetable src/config/business.js carries.
 const TIMETABLE = { anchorSunday: '2026-10-11', blockWeeks: 6 }
@@ -149,6 +153,79 @@ test('an anchor that is not a Sunday is refused', () => {
         today: on('2026-09-15'),
       }),
     /Sunday/,
+  )
+})
+
+// upcomingStarts is what the built page carries in a data attribute so the
+// browser can pick the right date weeks after the deploy. Its first entry must
+// therefore be exactly what nextStart() rendered into the same page, or the
+// text would change under the reader for no reason.
+
+test('upcomingStarts begins at the next start and steps a block at a time', () => {
+  const starts = upcomingStarts({
+    ...TIMETABLE,
+    day: 'sunday',
+    from: on('2026-09-15'),
+    count: 4,
+  })
+  assert.deepEqual(starts, [
+    '2026-10-11',
+    '2026-11-22',
+    '2027-01-03',
+    '2027-02-14',
+  ])
+})
+
+test('upcomingStarts agrees with nextStart on its first entry', () => {
+  for (const day of ['sunday', 'saturday']) {
+    for (const today of [
+      '2026-09-15',
+      '2026-10-11',
+      '2026-10-14',
+      '2027-03-28',
+    ]) {
+      const { next } = nextStart({ ...TIMETABLE, day, today: on(today) })
+      const [first] = upcomingStarts({ ...TIMETABLE, day, from: on(today) })
+      assert.equal(first, iso(next), `${day} on ${today}`)
+    }
+  }
+})
+
+test('upcomingStarts defaults to twelve, about sixteen months ahead', () => {
+  const starts = upcomingStarts({
+    ...TIMETABLE,
+    day: 'sunday',
+    from: on('2026-09-15'),
+  })
+  assert.equal(starts.length, 12)
+  assert.equal(starts[11], '2028-01-16')
+  // Every entry is a real Sunday, DST changes and year ends included.
+  for (const s of starts)
+    assert.equal(new Date(`${s}T12:00:00Z`).getUTCDay(), 0)
+})
+
+test('upcomingStarts for a Saturday course lists Saturdays', () => {
+  const starts = upcomingStarts({
+    ...TIMETABLE,
+    day: 'saturday',
+    from: on('2026-09-15'),
+    count: 3,
+  })
+  assert.deepEqual(starts, ['2026-10-10', '2026-11-21', '2027-01-02'])
+  for (const s of starts)
+    assert.equal(new Date(`${s}T12:00:00Z`).getUTCDay(), 6)
+})
+
+test('upcomingStarts refuses a count that would produce no timetable', () => {
+  assert.throws(
+    () =>
+      upcomingStarts({
+        ...TIMETABLE,
+        day: 'sunday',
+        from: on('2026-09-15'),
+        count: 0,
+      }),
+    /count/,
   )
 })
 

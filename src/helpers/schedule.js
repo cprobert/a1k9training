@@ -142,6 +142,44 @@ export function nextStart({ anchorSunday, blockWeeks, day = 'sunday', today }) {
   return { next, current }
 }
 
+/** A calendar date as the 'YYYY-MM-DD' string a data attribute carries. */
+export function toISODate(date) {
+  return toCalendarDate(date, 'date').toISOString().slice(0, 10)
+}
+
+/**
+ * The next `count` start dates as ISO strings, beginning with the first on or
+ * after `from` — the forward-facing timetable the built page carries in a data
+ * attribute so that src/assets/js/site.js can pick the right one at load time.
+ *
+ * This site builds on push, not on a schedule, so without it a page deployed in
+ * October would still be naming an October date in December. Twelve starts is
+ * about sixteen months, which is longer than this site has ever gone between
+ * deploys; past the end of the list the script leaves the build-time text
+ * alone rather than inventing one.
+ *
+ * @param {{ anchorSunday: string, blockWeeks: number, day?: 'sunday'|'saturday', from: Date|string, count?: number }} options
+ * @returns {string[]}
+ */
+export function upcomingStarts({
+  anchorSunday,
+  blockWeeks,
+  day = 'sunday',
+  from,
+  count = 12,
+}) {
+  if (!Number.isInteger(count) || count < 1) {
+    throw new Error(`count must be a positive whole number, not ${count}`)
+  }
+  const { next } = nextStart({ anchorSunday, blockWeeks, day, today: from })
+  const blockMs = blockWeeks * WEEK_MS
+  const starts = []
+  for (let i = 0; i < count; i++) {
+    starts.push(toISODate(new Date(next.getTime() + i * blockMs)))
+  }
+  return starts
+}
+
 /**
  * A start date in the house style the five course pages already used:
  * "Sunday 11 October, 3:00pm". The year is added only when it is not the year

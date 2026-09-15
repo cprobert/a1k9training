@@ -55,8 +55,12 @@
           fallback; /js/site.js rewrites it on submit to include the sender's
           name, because Gmail threads messages sharing a subject and a
           course-only subject would collapse every enquiry about the same
-          course, from different people, into one conversation. --}}
-    <input type="hidden" name="subject" value="Course enquiry: {{model.crumb}}">
+          course, from different people, into one conversation. The prefix is
+          the model's `enquiryKind` where it has one (the consultation pages
+          render this same form), so one inbox still sorts at a glance — and
+          site.js re-derives that prefix from this value rather than repeating
+          the literal. --}}
+    <input type="hidden" name="subject" value="{{#if model.enquiryKind}}{{model.enquiryKind}}{{else}}Course enquiry{{/if}}: {{model.crumb}}">
 
     <p class="hidden">
       <label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field"></label>
@@ -86,7 +90,29 @@
           <label for="enquiry-mobile" class="block font-medium">Mobile number</label>
           <input id="enquiry-mobile" name="mobile" type="tel" autocomplete="tel" required
             class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2">
-          <p class="mt-1 mb-0 text-sm text-ink-500">So Gaynor can add you to the class WhatsApp group.</p>
+          {{!-- The consultation pages render this same form, where there is no
+                class and no group to be added to. --}}
+          <p class="mt-1 mb-0 text-sm text-ink-500">{{#if model.enquiryKind}}So Gaynor can reach you quickly.{{else}}So Gaynor can add you to the class WhatsApp group.{{/if}}</p>
+        </div>
+
+        {{!-- Replies go out by email, text or WhatsApp; asking which saves the
+              round trip where a message sits unread in the wrong channel. A
+              role="radiogroup" rather than a nested <fieldset>, so the group
+              carries an accessible name without a second legend competing
+              visually with "About you". --}}
+        <div role="radiogroup" aria-labelledby="enquiry-reply-by-label" class="sm:col-span-2">
+          <span id="enquiry-reply-by-label" class="block font-medium">How should Gaynor reply?</span>
+          <div class="mt-2 flex flex-wrap gap-x-6 gap-y-2">
+            <label class="inline-flex items-center gap-2 font-normal">
+              <input type="radio" name="reply-by" value="Email" required class="size-4"> Email
+            </label>
+            <label class="inline-flex items-center gap-2 font-normal">
+              <input type="radio" name="reply-by" value="Text or WhatsApp" required class="size-4"> Text or WhatsApp
+            </label>
+            <label class="inline-flex items-center gap-2 font-normal">
+              <input type="radio" name="reply-by" value="Phone call" required class="size-4"> Phone call
+            </label>
+          </div>
         </div>
       </div>
     </fieldset>
@@ -109,8 +135,30 @@
           </label>
           <input id="enquiry-dog-age" name="dog-age" type="text" placeholder="e.g. 7 months" required
             class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2">
-          <p class="mt-1 mb-0 text-sm text-ink-500">Roughly is fine. It decides which course suits.</p>
+          <p class="mt-1 mb-0 text-sm text-ink-500">Roughly is fine.{{#unless model.enquiryKind}} It decides which course suits.{{/unless}}</p>
         </div>
+
+        {{!-- Puppy Socialisation only: the vet decides when a puppy can mix,
+              and practices differ, so the date is the one thing Gaynor needs
+              before she can offer a class. Everywhere else the field is a
+              hidden empty twin — Netlify fixes a form's field set from ONE
+              parsed instance at deploy time and silently drops names it did
+              not see there, so every instance of this form must declare the
+              same names or the field goes missing site-wide. --}}
+        {{#if model.askVetDate}}
+        <div class="sm:col-span-2">
+          <label for="enquiry-vet-date" class="block font-medium">
+            When your vet says your puppy can mix with other dogs
+          </label>
+          <input id="enquiry-vet-date" name="vet-date" type="text" placeholder="e.g. 20 October, or not sure yet"
+            class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2">
+          <p class="mt-1 mb-0 text-sm text-ink-500">
+            Optional. Ask your vet &mdash; some say a week after a jab, some two &mdash; then bring the vet card to the first class.
+          </p>
+        </div>
+        {{else}}
+        <input type="hidden" name="vet-date" value="">
+        {{/if}}
       </div>
     </fieldset>
 

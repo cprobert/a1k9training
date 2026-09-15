@@ -64,16 +64,35 @@ export function registerSchemaHelpers(kiss) {
   // Service JSON-LD for a course or consultation page — src/pages/courses/course.hbs
   // and src/pages/behavioural-consultations/{index,consultation}.hbs. `provider`
   // points back at the same LocalBusiness the header's JSON-LD describes.
-  kiss.handlebars.registerHelper('serviceSchema', (name, description, url) => ({
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    serviceType: name,
-    name,
-    description,
-    provider: BUSINESS_REF,
-    areaServed: business.areaServed,
-    url,
-  }))
+  // `price` is a HASH parameter — {{serviceSchema a b c price=…}} — not a
+  // fourth positional one: Handlebars passes its own `options` object in the
+  // last argument slot, so a positional fourth would be shadowed the moment
+  // any caller omitted it. The value is whatever the page shows a reader
+  // ("£119.99", or the shared sessions fact), stripped to the number
+  // schema.org wants; a missing or unparseable one simply omits `offers`
+  // rather than publishing a price of 0.
+  kiss.handlebars.registerHelper(
+    'serviceSchema',
+    (name, description, url, options) => {
+      const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        serviceType: name,
+        name,
+        description,
+        provider: BUSINESS_REF,
+        areaServed: business.areaServed,
+        url,
+      }
+      const price = Number(
+        String(options?.hash?.price ?? '').replace(/[^0-9.]/g, ''),
+      )
+      if (Number.isFinite(price) && price > 0) {
+        schema.offers = { '@type': 'Offer', price, priceCurrency: 'GBP' }
+      }
+      return schema
+    },
+  )
 
   // Person JSON-LD for a team member's About page — src/pages/about.hbs, gated
   // on the model carrying a `person` object (only gaynor-probert.json and

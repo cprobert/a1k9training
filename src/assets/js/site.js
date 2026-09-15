@@ -125,9 +125,8 @@
 
       var course = form.querySelector('input[name="course"]')
       var what = course ? course.value : ''
-      subject.value = what
-        ? 'Course enquiry: ' + who + ' — ' + what
-        : 'Course enquiry: ' + who
+      var prefix = subject.value.split(':')[0]
+      subject.value = prefix + ': ' + who + (what ? ' — ' + what : '')
     })
   })
 

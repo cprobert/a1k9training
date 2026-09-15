@@ -208,6 +208,29 @@ recorded content.
   no `offers` (it is not a single service). Not verifiable locally: Netlify
   keeping the `vet-date`/`reply-by` fields — needs one test submission on
   the deploy preview. Decision: **ready to close**.
+- **2026-09-15 (wave 2, `cb1f830`..HEAD)** — check `ok`, 20 pages, 0 failed,
+  558 links none broken, no note findings (`course.md` restamped twice,
+  `faqhub.md` once); full `npm run qa` green end to end (35/35 unit tests,
+  SEO 20/0/0, axe 0 first-party, compare OK after the baseline refresh).
+  Wave-2 criteria all **met**: rolling dates (helper + 23 tests; forward
+  schedule stamped into the page, client-side pick verified by Playwright
+  with a mocked clock across week one, year boundary and past-horizon; no
+  cron — operator's call); amber = MWR only (4 amber, ≤1 green per page);
+  booking steps inside the form section; contact on the one form, one inbox;
+  mobile nav 7 links incl. phone, panel scrolls, desktop unchanged; 6
+  `searchOnly` long-tail FAQs (hub still "18 answers", JSON-LD 24, search
+  opens "More answers"); the bible (`AIKB/knowledge/gaynor-policies.md`, 48
+  sourced entries) + transcript in `planning/sources/` + `llms.txt` notes +
+  a `site.md` convention, zero dangling. QA findings fixed on the branch:
+  Platinum's "Saturday afternoons" was an assumption the interview never
+  made (`b4b001f`); contact heading wording (`9cb791a`); the collar answer
+  invented a slip-collar policy (`8007e5d`); the sweep committed the interim
+  "after" snapshot as the baseline (corrected). Open questions for Gaynor
+  are listed in the bible: Platinum's day, the £50 deposit figure (pre-dates
+  the interview), the wet-weather switch, catchment radius, Bronze minimum
+  age wording. Still not verifiable locally: Netlify keeping the three new
+  form fields — one test submission on the deploy preview. Decision:
+  **ready to close**.
 
 ---
 

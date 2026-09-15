@@ -59,7 +59,11 @@
       </li>
       <li>
         <span class="badge">Step 4</span>
-        <p class="mt-2 mb-0">{{config.business.courses.balance}}. A WhatsApp group starts nearer the course.</p>
+        {{#if noDeposit}}
+          <p class="mt-2 mb-0">A WhatsApp group for the class starts nearer the course. Priced per puppy, with no multi-dog discount.</p>
+        {{else}}
+          <p class="mt-2 mb-0">{{config.business.courses.balance}}. A WhatsApp group starts nearer the course.</p>
+        {{/if}}
       </li>
     </ol>
   {{/if}}

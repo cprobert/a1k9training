@@ -103,7 +103,30 @@ recorded content.
 
 ### Amendments
 
-<!-- Dated notes where the remit legitimately expanded mid-branch. -->
+- **2026-09-15 — scope widened from "FAQ + copy" to "presentation first, FAQ
+  second".** After reading the full interview transcript alongside the 4-year
+  enquiry analysis ("What People Ask Gaynor", 1,094 enquiries: booking/next
+  start 544, cost 298, days/times 163, puppy vaccination timing 170…), the
+  operator directed that the facts be put on the pages as furniture so the
+  questions stop arriving, and the FAQ hub shrink to the ~15–18 judgement
+  questions a facts table cannot answer. That flips two lines of the Intent:
+  - **Impact surface** is now *templates & partials + data* (was content
+    only): new `src/partials/at-a-glance.hbs` and `how-booking-works.hbs`, a
+    facts block on every course and consultation page, the enquiry form on the
+    consultation pages, two new form fields, `offers` in the service JSON-LD.
+    No controller changes (facts live in `src/config/business.js` as new
+    `courses`/`sessions` blocks — `areaServed` stays untouched, as ruled).
+    `src/assets/js/site.js` gets a one-line edit, so every page's HTML changes
+    via the hashed asset — expected.
+  - **Criterion 1** changes direction: the FAQ set is *reduced* (32 → ≤18),
+    not extended; the retired entries become page furniture.
+  - **Non-goal reversed**: `qa/baseline/content.json` **is** refreshed in this
+    PR, as the last commit, per the 2026-09-12 feedback.
+  Approved plan: `C:\Users\cprob\.claude\plans\i-want-you-to-tender-wilkes.md`
+  (facts table with transcript segment numbers, delegation Opus/Sonnet/Sonnet/
+  Haiku, QA bar). Operator decisions at the plan stage: hub ~15–18 sectioned;
+  catchment in copy only; enquiry form on consultation pages; honest venue
+  access note published on contact + facilities.
 
 ## Pulse log
 

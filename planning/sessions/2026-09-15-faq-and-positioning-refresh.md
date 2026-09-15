@@ -127,6 +127,45 @@ recorded content.
   Haiku, QA bar). Operator decisions at the plan stage: hub ~15–18 sectioned;
   catchment in copy only; enquiry form on consultation pages; honest venue
   access note published on contact + facilities.
+- **2026-09-15 — wave 2, same branch (operator: one PR, verified by Gaynor
+  as a completed product; no second PR).** After the QA presentation the
+  operator asked for the follow-ups to land here. Criteria added:
+  - **Rolling next-start dates.** The 544-person "when does the next course
+    start" answer must not depend on five hand-typed `nextStart` strings.
+    Anchor Sunday + six-week blocks in `src/config/business.js`; a pure,
+    unit-tested `src/helpers/schedule.js`; Sunday courses (Puppy/Junior/
+    Bronze) and Saturday courses (Silver/Gold) derive their date; a model
+    `nextStart` remains as a manual override (cancelled course); within the
+    first week after a start the block says "started … you can still join
+    on week two; next course …". Platinum unchanged (invitation).
+    Controller `course.js` changes → `AIKB/notes/controllers/course.md`
+    restamped. Weekly scheduled rebuild: operator decision pending.
+  - **Yellow brick road.** Amber (`btn-accent`) is the most-wanted response
+    only: the hero jump-to-form, "Send enquiry", the phone. Every other
+    `btn-primary` that is navigation ("Read more", "Next:", "Website",
+    "Find out more") becomes `btn-secondary`. Consistent on all 20 pages.
+  - **Flow.** "How booking works" folds into the enquiry form section's
+    header (part of the act, not a doubt); FAQs stay immediately above the
+    form; order identical on course and consultation pages.
+  - **Mobile nav.** Top-level items only below `lg` (Home, Consultations,
+    Courses, About, FAQs, Contact, phone); the panel scrolls
+    (`max-h-[calc(100dvh-…)] overflow-y-auto`) as belt and braces.
+  - **Contact page.** Remove the booking steps; replace the separate
+    `a1k9-contact-consultation` Netlify form with the same enquiry partial
+    (one form, one inbox, one field set); keep "already spoken to Gaynor",
+    venues, access, catchment. Baseline refreshed again at the end.
+  - **Long-tail FAQs.** `searchOnly: true` entries (PAT/therapy dogs,
+    wheelchair/access, prong collars, residential/board-and-train,
+    toilet/crate/chewing) exist in the hub's search index and under a
+    collapsed "More answers" section, not in the curated list; hub count
+    stays the curated number. `faqHub.js` changes → note restamped.
+    Junior/Bronze inline order: `reactive-in-class` before `over-excited`.
+  - **The bible.** `AIKB/knowledge/gaynor-policies.md` — every policy in
+    Gaynor's words, dated, with its transcript segment and the site
+    statements it retired; `planning/sources/2026-09-14-gaynor-interview.md`
+    (the transcript); a convention in `AIKB/site.md` ("a business fact is
+    stated on the site only if it is in the policies file"); the same facts
+    in `src/llms/notes.md` for answer engines.
 
 ## Pulse log
 

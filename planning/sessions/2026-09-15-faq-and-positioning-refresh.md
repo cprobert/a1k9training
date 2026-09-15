@@ -132,6 +132,24 @@ recorded content.
 
 <!-- Appended by kiss-branch-pulse. -->
 
+- **2026-09-15 (after slice 1, commits `666424b`..`e1c57c0`)** — check `ok`,
+  20 pages, 0 failed, 557 links none broken, no note findings; diff `~` on all
+  20 pages, 0 unchanged — expected, since `site.js` (hashed asset) changed and
+  every page links it, on top of the inherited CRLF drift recorded at open.
+  Against the amended criteria: facts-on-the-page **met** (at-a-glance on 9
+  pages, booking steps on 10, enquiry form on the 2 consultation pages,
+  `offers` 119.99/90 in JSON-LD) — verified in Chrome at 1440 and by
+  Playwright at 375 (scrollWidth 375 on bronze, puppy, consultation, contact;
+  the Chrome extension's window resize did not take effect, so the mobile
+  check is Playwright's, not the extension's). FAQ reduction **not yet**
+  (slice 2 in flight); copy **not yet** (slice 3 in flight); baseline
+  refresh **not yet** (slice 4). Nothing in the diff outside the criteria.
+  Surface moved from content to templates + data — recorded in the
+  Amendment, no controller touched so no note restamp owed. Two QA findings:
+  Puppy's step 4 repeated the cash line (fixed, `e1c57c0`); the enquiry
+  form's fallback lead still promised "dates, prices" (handed to slice 3).
+  Decision: **continue**.
+
 ---
 
 ## Baseline notes (captured at open, not this branch's doing)

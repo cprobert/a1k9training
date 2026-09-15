@@ -17,12 +17,9 @@
   <div>
 
     <div class="page-header">
-      <h1 class="mb-3 text-3xl sm:text-4xl">
+      <h1 class="mb-0 text-3xl sm:text-4xl">
         Get in Touch
       </h1>
-      <p>
-        Please complete the form below to find out more about a dog behaviour consultation or a dog training course.
-      </p>
     </div>
 
     <p class="mb-6">
@@ -36,105 +33,19 @@
       to travel.
     </p>
 
-    {{> "how-booking-works" generic=true}}
+    {{!-- The one form on the site. This page used to carry its own Netlify
+          form (`a1k9-contact-consultation`), which meant two inboxes, two
+          field sets and two notification rules to keep in step — and the one
+          that got the general "which course?" enquiries was the one without
+          the reply-by question. It renders the course pages' form instead,
+          under the same `course-enquiry` name; `src/models/contact.json`
+          supplies the `crumb`, `enquiryKind` and `enquiryLead` that make the
+          wording read as a general enquiry, and the hidden `subject` reads
+          "General enquiry: where to start" so the inbox still sorts.
 
-    <form id="a1k9-contact-consultation" name="a1k9-contact-consultation" method="post" data-netlify="true"
-      netlify-honeypot="bot-field" class="space-y-6">
-
-      <p class="hidden">
-        <label>Don't fill this out if you're human: <input name="bot-field"></label>
-      </p>
-
-      <div>
-        <label for="first-name" class="block font-medium">
-          Name
-        </label>
-        <div class="mt-1 grid gap-4 sm:grid-cols-2">
-          <div>
-            <label for="first-name" class="sr-only">First name</label>
-            <input id="first-name" name="first-name" type="text" placeholder="first" required
-              class="w-full rounded-md border border-sand-300 bg-white px-3 py-2 focus-visible:border-brand-600 focus-visible:outline-none">
-          </div>
-          <div>
-            <label for="last-name" class="sr-only">Last name</label>
-            <input id="last-name" name="last-name" type="text" placeholder="last" required
-              class="w-full rounded-md border border-sand-300 bg-white px-3 py-2 focus-visible:border-brand-600 focus-visible:outline-none">
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <label for="tel" class="block font-medium">
-          Mobile number
-        </label>
-        <input id="tel" name="mobile" type="tel" maxlength="15" required
-          class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2 focus-visible:border-brand-600 focus-visible:outline-none">
-      </div>
-
-      <div>
-        <label for="email" class="block font-medium">
-          Email
-        </label>
-        <input id="email" name="email" type="email" spellcheck="false" maxlength="255" required
-          class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2 focus-visible:border-brand-600 focus-visible:outline-none">
-      </div>
-
-      <div>
-        <label for="message" class="block font-medium">
-          Message
-        </label>
-        <textarea id="message" name="message" spellcheck="true" rows="10" required
-          class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2 focus-visible:border-brand-600 focus-visible:outline-none"></textarea>
-      </div>
-
-      <div>
-        <h2 class="text-lg">
-          About your dog
-        </h2>
-        <p class="mt-1 text-sm text-ink-600">Please provide the following details for your dog:</p>
-      </div>
-
-      <div>
-        <label for="dog-name" class="block font-medium">
-          Dog's name
-        </label>
-        <input id="dog-name" name="dog-name" type="text" required
-          class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2 focus-visible:border-brand-600 focus-visible:outline-none">
-      </div>
-
-      <div>
-        <label for="dog-breed" class="block font-medium">
-          Dog's breed
-        </label>
-        <input id="dog-breed" name="dog-breed" type="text" maxlength="255" required
-          class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2 focus-visible:border-brand-600 focus-visible:outline-none">
-      </div>
-
-      <div>
-        <label for="dog-age-years" class="block font-medium">
-          Dog's age
-        </label>
-
-        <div class="mt-1 grid gap-4 sm:grid-cols-2">
-          <div>
-            <label for="dog-age-years" class="sr-only">Dog's age, years</label>
-            <input id="dog-age-years" name="dog-age-years" type="text" min="0" max="30"
-              placeholder="years" required
-              class="w-full rounded-md border border-sand-300 bg-white px-3 py-2 focus-visible:border-brand-600 focus-visible:outline-none">
-          </div>
-          <div>
-            <label for="dog-age-months" class="sr-only">Dog's age, months</label>
-            <input id="dog-age-months" name="dog-age-months" type="text" min="0" max="12"
-              placeholder="months"
-              class="w-full rounded-md border border-sand-300 bg-white px-3 py-2 focus-visible:border-brand-600 focus-visible:outline-none">
-          </div>
-        </div>
-      </div>
-
-      <button id="saveForm" name="saveForm" type="submit" class="btn btn-primary btn-lg">
-        Submit
-      </button>
-    </form>
+          `steps=false`: "How booking works" answers a question nobody asking
+          where to start has got to yet. --}}
+    {{> "courses/enquiry" steps=false}}
 
   </div>
 

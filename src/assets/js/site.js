@@ -263,5 +263,24 @@
     }
     openFromHash()
     window.addEventListener('hashchange', openFromHash)
+
+    /* "Expand all answers" opens every entry and the "more answers" block in
+     * one click, for a read-through; /faqs/?all does the same on arrival so a
+     * review link opens fully. Clearing a search collapses them again. */
+    var faqExpand = document.querySelector('[data-faq-expand]')
+    var setAllOpen = function (open) {
+      faqs.forEach(function (el) { el.open = open })
+      if (faqMore) faqMore.open = open
+      if (faqExpand) {
+        faqExpand.setAttribute('aria-pressed', open ? 'true' : 'false')
+        faqExpand.textContent = open ? 'Collapse all answers' : 'Expand all answers'
+      }
+    }
+    if (faqExpand) {
+      faqExpand.addEventListener('click', function () {
+        setAllOpen(faqExpand.getAttribute('aria-pressed') !== 'true')
+      })
+    }
+    if (/[?&]all(=|&|$)/.test(location.search)) setAllOpen(true)
   }
 })()

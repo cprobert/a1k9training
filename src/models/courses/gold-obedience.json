@@ -21,10 +21,5 @@
     "testimonial": "courses/gold/testimonial"
   },
   "captionOffset": true,
-  "faqIds": [
-    "gold-skip",
-    "booking-required",
-    "what-to-bring",
-    "rain"
-  ]
+  "faqIds": ["skip-levels", "awards-returning", "over-excited"]
 }

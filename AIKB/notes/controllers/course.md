@@ -8,7 +8,7 @@ Runs once per record in `src/models/courses` for the `/courses/*` fan-out regist
 
 ## Why it is this way
 
-A record used to name an FAQ file by path (`../models/faqs/gold.json`) and the controller swapped the path for its contents. Each course page therefore owned a file, and the shared answers — deposit, venue, what to bring, missed weeks — were duplicated across five of them and drifted apart. A record now names ids instead (`src/models/courses/bronze-obedience.json`), the answers live once under `src/models/faqs`, and the same entry is rendered inline here and on `/faqs/`.
+A record used to name a whole FAQ file by path and the controller swapped the path for its contents. Each course page therefore owned a file, and the shared answers — deposit, venue, what to bring, missed weeks — were duplicated across five of them and drifted apart. A record now names ids instead (`src/models/courses/bronze-obedience.json`), the answers live once under `src/models/faqs`, and the same entry is rendered inline here and on `/faqs/`.
 
 The controller returns a new model rather than mutating the record in place, which also removes the old in-place `model.faqs` mutation noted in earlier versions of this file.
 

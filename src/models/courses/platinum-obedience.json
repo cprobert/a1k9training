@@ -21,10 +21,5 @@
     "details": "courses/platinum/you-will-learn",
     "testimonial": "courses/platinum/testimonial"
   },
-  "faqIds": [
-    "platinum-skip",
-    "platinum-after",
-    "booking-required",
-    "what-to-bring"
-  ]
+  "faqIds": ["skip-levels", "awards-returning"]
 }

@@ -26,12 +26,5 @@
     "details": "courses/puppy/you-will-learn",
     "testimonial": "courses/puppy/testimonial"
   },
-  "faqIds": [
-    "puppy-socialise-safely",
-    "puppy-nipping",
-    "puppy-booking",
-    "puppy-children",
-    "vaccinations",
-    "missed-week"
-  ]
+  "faqIds": ["shy-puppy", "which-course", "join-late", "two-dogs"]
 }

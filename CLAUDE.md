@@ -89,6 +89,31 @@ automatically as the `Preview QA` check.
 
 ### Knowledge base and session loop (`AIKB/`, `planning/sessions/`)
 
+### Where the kiss-memory skills come from
+
+`.claude/skills/kiss-branch-open`, `-pulse`, `-close`, `kiss-site-brief` and
+`kiss-memory-consolidate` are a **vendored copy** of the `kiss-memory` plugin at
+version 2.2.1, committed here rather than installed.
+
+`.claude/settings.json` already declares the plugin properly (`enabledPlugins`
+plus the `cprobert/kiss-ssg` marketplace) and that is the right config — but a
+cloud session never fetches a GitHub marketplace, so in Claude Code on the web
+the plugin silently is not there while project `.claude/skills/` loads fine.
+Vendoring is what makes the loop work in every session rather than only local
+ones. Leave the plugin config in place: where plugins *do* load, it is the
+better source.
+
+The cost is that these five are pinned and no longer track the marketplace. To
+re-sync after the plugin changes upstream:
+
+```bash
+git clone --depth 1 https://github.com/cprobert/kiss-ssg /tmp/kiss-ssg
+cp -r /tmp/kiss-ssg/plugins/kiss-memory/skills/kiss-* .claude/skills/
+```
+
+Copy only the `kiss-*` directories — `.claude/skills/pr-verify/` is this
+repository's own and is not part of the plugin.
+
 `AIKB/` is kiss's recorded map of the site (`site-map.md` lists every page,
 its id, view, model, controller and the partials it rendered) plus authored
 notes under `AIKB/notes/` for each controller and pipeline step, stamped with

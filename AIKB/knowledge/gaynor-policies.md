@@ -397,9 +397,9 @@ below is that file's segment number.
 ## Open questions
 
 None outstanding. The five the interview left ambiguous were resolved on
-2026-09-15 by Courtenay Probert (site owner, who conducted the interview),
-not by Gaynor directly — so each is **confirmed second-hand**; re-confirm
-with Gaynor if it is ever quoted as her words:
+2026-09-15 by Courtenay Probert, who conducted the interview, understood
+Gaynor's answers on the call and is confident in these. They are
+confirmed; quote them as policy, not as Gaynor's verbatim words:
 
 - **Bronze minimum age — 12 months and over.** Segment 215's "anything
   over two and a half months" is a mis-hearing of "twelve months"; the

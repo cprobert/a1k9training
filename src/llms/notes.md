@@ -10,4 +10,4 @@
 - A puppy can start Puppy Socialisation once its own vet says it is ready to mix with other dogs; there is no fixed vaccination count, and no proof is needed before the first class — just bring the vet card along to it.
 - For insurance reasons, XL Bully dogs and any dog legally required to be muzzled and kept on lead in public cannot join a class.
 - The main catchment area is Swansea, Neath, Port Talbot and Ammanford, down towards Carmarthen and Cross Hands; some clients also travel from Caerphilly and Cardiff.
-- Gaynor does not run standalone agility, gundog, CaniCross or protection classes (agility is folded into Silver/Gold for dogs over twelve months). Protection work and the five-week residential obedience course are run by A1K9 (Charles), a separate business, not by Gaynor.
+- Gaynor does not run standalone agility, gundog, CaniCross or protection classes (agility is folded into Silver/Gold for dogs over twelve months). Protection work and the five-week residential obedience course are run by A1K9 Protection, a separate business, not by Gaynor.

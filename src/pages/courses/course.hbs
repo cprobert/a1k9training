@@ -38,8 +38,14 @@
 
   <div class="grid gap-8 lg:grid-cols-3">
     <div class="prose-site lg:col-span-2">
+      {{#if  model.components.details}}
+        {{> (lookup model.components 'details')}}
+      {{/if}}
+      {{!-- The video sits under the syllabus, not above it: it shows a puppy
+            doing clever things, which reads as the payoff of the course
+            rather than its introduction. --}}
       {{#if model.videoId}}
-      <div class="mb-6 aspect-video overflow-hidden rounded-card not-prose">
+      <div class="mt-8 aspect-video overflow-hidden rounded-card not-prose">
         <iframe
           src="https://www.youtube-nocookie.com/embed/{{model.videoId}}"
           title="{{model.videoTitle}}"
@@ -49,9 +55,6 @@
           referrerpolicy="strict-origin-when-cross-origin"
           class="size-full border-0"></iframe>
       </div>
-      {{/if}}
-      {{#if  model.components.details}}
-        {{> (lookup model.components 'details')}}
       {{/if}}
     </div>
     {{#if  model.components.testimonial}}

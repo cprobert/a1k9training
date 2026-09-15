@@ -396,24 +396,24 @@ below is that file's segment number.
 
 ## Open questions
 
-Left ambiguous by the interview — resolve with Gaynor before treating the
-answer as settled:
+None outstanding. The five the interview left ambiguous were resolved on
+2026-09-15 by Courtenay Probert (site owner, who conducted the interview),
+not by Gaynor directly — so each is **confirmed second-hand**; re-confirm
+with Gaynor if it is ever quoted as her words:
 
-- **Bronze minimum age, exact wording.** Segment 215's "anything over two
-  and a half months" is almost certainly a mis-hearing of "twelve months"
-  (the site's own Bronze minimum), but the interview never states the
-  figure cleanly in Gaynor's own words — confirm the exact phrasing before
-  quoting her directly on it.
-- **Platinum's day.** Never stated explicitly; assumed Saturday afternoon
-  by analogy with Gold (the course it graduates from) — not confirmed.
-- **The £50 deposit figure.** Not confirmed in this interview at all — it
-  is the pre-existing site figure, carried forward unchanged. Only the
-  *rule* that Puppy Socialisation has no deposit is from the interview.
-- **Catchment radius.** No maximum distance or postcode boundary was ever
-  given — only named towns and "it's their decision, really" for anyone
-  further out. There is no numeric radius to state.
-- **Wet-weather venue switch.** `src/config/business.js`'s `venueNote`
-  ("indoors at Llys Nini when it is wet") is a pre-existing site fact, not
-  something Gaynor confirmed in this interview — the interview's access
-  answers [seg 164–168] describe both venues but don't describe a
-  weather-triggered switch between them.
+- **Bronze minimum age — 12 months and over.** Segment 215's "anything
+  over two and a half months" is a mis-hearing of "twelve months"; the
+  site's Bronze minimum stands.
+- **Platinum's day — no fixed day.** Deliberately unstated: dates and day
+  are agreed with each group at Gold graduation. The At a glance block
+  shows no "When" row for Platinum; do not restore "Saturday afternoons".
+- **The £50 deposit — confirmed.** Non-refundable, by bank transfer, none
+  for Puppy Socialisation.
+- **Catchment — towns only, no radius, by design.** The towns Gaynor named
+  are examples of where her classes draw from; the point she was making is
+  that the owner evaluates the drive and decides for themselves. Do not
+  add a distance or time; keep the contact page's "it comes down to how
+  far you're happy to travel".
+- **Wet-weather venue switch — confirmed.** Outdoors at the Training
+  Grounds; indoors at Llys Nini Animal Centre when it is wet, as
+  `src/config/business.js` `venueNote` says.

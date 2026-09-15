@@ -19,6 +19,17 @@ export function registerFormatHelpers(kiss) {
       : '',
   )
 
+  // An array as one attribute value: {{join model.schedule.upcoming}} writes
+  // "2026-10-11,2026-11-22,…" into data-schedule-starts. Handlebars would
+  // stringify the array to the same thing by accident; saying it out loud
+  // means the separator src/assets/js/site.js splits on is written down
+  // somewhere rather than inherited from Array.prototype.toString.
+  kiss.handlebars.registerHelper('join', (values, separator) =>
+    Array.isArray(values)
+      ? values.join(typeof separator === 'string' ? separator : ',')
+      : '',
+  )
+
   // The page's hero image, for og:image and the LocalBusiness JSON-LD in
   // src/partials/layout/header.hbs. Every inner page's model carries its own
   // `image` (see the *.json under src/models/); the one page that doesn't is

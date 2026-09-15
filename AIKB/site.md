@@ -52,6 +52,14 @@ pipeline step, so it runs under `build`, `check` and `dev` alike.
 - **Verify by building, not by reading the diff.** The build is deterministic:
   a refactor that should change nothing should produce a byte-identical
   `docs/`, and that is a stronger check than any review.
+- **A business fact is stated on the site only if it is in the policies
+  file.** `AIKB/knowledge/gaynor-policies.md` is Gaynor Probert's own
+  answer, dated and sourced to a transcript segment, to every policy
+  question the site now needs to answer; it is canonical over any page. A
+  page may say less than an entry there but never something different, and
+  a policy change is a new dated entry in that file first, then a change to
+  the templates. The machine-readable subset of the same facts lives in
+  `src/config/business.js` (`courses`/`sessions`) and must agree with it.
 
 ## Standing gotchas
 
@@ -96,6 +104,12 @@ which is re-resolved every build.
 **`npm run qa:compare` needs a baseline from master.** It gates against a
 snapshot of the last merged master build, so it reports noise until somebody
 refreshes it after copy lands. A failure there is not automatically your change.
+
+**The enquiry analysis behind Wave 2 lives outside the repo.** "What People
+Ask Gaynor" (1,094 enquiries, 2026-09-13) is a private Claude artifact, not a
+committed file — the counts quoted in
+`planning/sessions/2026-09-15-faq-and-positioning-refresh.md` are the only
+copy of it that exists here.
 
 ## Retired feedback
 

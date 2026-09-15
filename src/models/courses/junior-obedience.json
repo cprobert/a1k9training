@@ -10,9 +10,13 @@
   "level": 1,
   "rung": "Junior",
   "heading": "Engagement Training",
+  "glance": "course",
+  "ages": "Young dogs 6 to 12 months",
+  "when": "Sunday afternoons",
   "price": "£119.99",
   "priceNote": "6-week course, 1 hour a week",
-  "nextStart": "Sunday 11 October, 2:00pm",
+  "startDay": "sunday",
+  "startTime": "2:00pm",
   "components": {
     "intro": "courses/junior/intro",
     "details": "courses/junior/you-will-learn",
@@ -20,10 +24,10 @@
   },
   "captionOffset": true,
   "faqIds": [
-    "junior-pull-recall",
     "which-course",
-    "booking-required",
-    "what-to-bring",
-    "missed-week"
+    "rescue-start",
+    "reactive-in-class",
+    "over-excited",
+    "join-late"
   ]
 }

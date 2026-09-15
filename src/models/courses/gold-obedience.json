@@ -9,19 +9,18 @@
   "level": 4,
   "rung": "Gold",
   "heading": "Focusing When There Are Distractions",
+  "glance": "course",
+  "ages": "Silver graduates",
+  "when": "Saturday afternoons",
   "price": "£129.99",
   "priceNote": "6-week course, 1 hour a week",
-  "nextStart": "Saturday 10 October, 1:00pm",
+  "startDay": "saturday",
+  "startTime": "1:00pm",
   "components": {
     "intro": "courses/gold/intro",
     "details": "courses/gold/you-will-learn",
     "testimonial": "courses/gold/testimonial"
   },
   "captionOffset": true,
-  "faqIds": [
-    "gold-skip",
-    "booking-required",
-    "what-to-bring",
-    "rain"
-  ]
+  "faqIds": ["skip-levels", "awards-returning", "over-excited"]
 }

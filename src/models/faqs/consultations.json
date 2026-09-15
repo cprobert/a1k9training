@@ -4,43 +4,31 @@
       "id": "cons-too-late",
       "group": "consultations",
       "q": "We've tried other trainers and nothing has worked, and it's getting worse. Is it too late?",
-      "a": "Many owners feel they have let their dog down after trying umpteen different things they've read about or seen on television, and conclude that the problem must be them. A behavioural problem is a sign that the relationship between you and your dog is out of balance, and it will not get better on its own — seeking help while it is still in the early stages saves a great deal of heartache and worry. Gaynor works with all breeds of dogs and will deal with any dog no matter how serious the problem, and dogs have a far greater ability to change than people do."
-    },
-    {
-      "id": "cons-what-happens",
-      "group": "consultations",
-      "q": "What happens during a behavioural consultation?",
-      "a": "Gaynor will first talk with you about the problems you're having with your dog and what has led up to this point, so she can gather the information she needs to diagnose the problem. She'll then test your dog's behaviour — using A1K9 dogs as stooge dogs if necessary — before explaining what she believes the problem is and its most probable cause, and showing you the techniques and equipment needed to rehabilitate your dog."
+      "a": "Many owners feel they have let their dog down after trying umpteen different things they've read about or seen on television, and conclude that the problem must be them. A behavioural problem is a sign that the relationship between you and your dog is out of balance, and it will not get better on its own: seeking help while it is still in the early stages saves a great deal of heartache and worry. Gaynor works with all breeds of dogs and will deal with any dog no matter how serious the problem, and dogs have a far greater ability to change than people do."
     },
     {
       "id": "cons-referral",
       "group": "consultations",
       "q": "Do I need a referral from my vet for a behavioural consultation?",
-      "a": "No. You can come straight to Gaynor without a referral. A vet referral is only needed if you want to claim the consultation on your pet insurance — that route involves a longer consultation and a full written report, costs more up front, and is reimbursed by your insurer. Gaynor is a canine behaviour practitioner with the Canine and Feline Behaviour Association, which is approved by most pet insurance companies."
+      "a": "No. You can come straight to Gaynor without a referral, at the standard price: £90 at A1K9 or £130 at your home. A vet referral is only needed if you want to claim the consultation on your pet insurance: that route involves a longer consultation and a full written report, and costs more up front before your insurer reimburses you. Gaynor is a canine behaviour practitioner with the Canine and Feline Behaviour Association, which is approved by most pet insurance companies."
     },
     {
-      "id": "cons-dog-aggression",
+      "id": "cons-two-dogs-fight",
       "group": "consultations",
-      "q": "Can you help if my dog is aggressive to other dogs?",
-      "a": "Yes. Dog on dog aggression consultations are highly skilled work Gaynor has a great deal of experience in — she has worked with dogs that exhibit this behaviour for 15 years, attending courses with the Canine and Feline Behaviour Association and Middlesex University to expand her knowledge, and works with all breeds of dogs no matter how serious the problem."
+      "q": "My two dogs fight each other. Do both come to the consultation?",
+      "a": "Yes, both dogs need to come: it sometimes takes a little longer to work with two, but that's fine. There's no extra charge for the second dog, and they don't need to book separately."
     },
     {
-      "id": "cons-person-aggression",
+      "id": "cons-stay-safe",
       "group": "consultations",
-      "q": "Can you help if my dog is aggressive to people?",
-      "a": "Yes. Dog on person aggression consultations are highly skilled work Gaynor has a great deal of experience in — she has worked with dogs that exhibit this behaviour for 15 years, attending courses with the Canine and Feline Behaviour Association and Middlesex University to expand her knowledge, and has worked with all breeds of dogs no matter how serious the problem."
+      "q": "What should we do while we wait for the consultation?",
+      "a": "Above all, don't get into a confrontation with your dog: for example, forcing something back out of its mouth. If there's a problem, wait for Gaynor to see you and show you how to handle it safely, rather than trying to sort it yourself in the meantime. Consultations are normally booked about a week ahead, so it shouldn't be a long wait."
     },
     {
-      "id": "cons-after",
+      "id": "cons-baby-anxieties",
       "group": "consultations",
-      "q": "What happens after the consultation?",
-      "a": "Gaynor may ask you to attend a behavioural modification programme, or to stay in touch by email or telephone so she can monitor your progress. After the consultation she writes a full report and sends a copy to your vet, unless you request otherwise."
-    },
-    {
-      "id": "cons-where",
-      "group": "consultations",
-      "q": "Where are behavioural consultations held?",
-      "a": "Consultations can be held at A1K9 Behaviour and Training Academy or at your home."
+      "q": "Can you help with a new baby, separation anxiety, fireworks or the car?",
+      "a": "Yes, preparing a dog for a new baby, separation anxiety, noise and firework fear, and car anxiety are all behaviour work Gaynor takes on. If you're expecting, it's best to get in touch about two months ahead of the due date. For the others, ring for a chat about exactly what's happening and she'll advise the best way in."
     }
   ]
 }

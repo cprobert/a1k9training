@@ -107,11 +107,14 @@
       "model": "folder:behavioural-consultations",
       "controller": "file:behavioural-consultations.js",
       "partials": [
+        "at-a-glance",
         "behavioural-consultations/dog-on-dog-aggression/details",
         "behavioural-consultations/dog-on-dog-aggression/intro",
         "behavioural-consultations/shared/vet-referrals",
         "behavioural-consultations/shared/what-to-expect-in-a-behavioural-consultation",
+        "courses/enquiry",
         "faqs",
+        "how-booking-works",
         "layout",
         "layout/breadcrumb",
         "layout/footer",
@@ -127,11 +130,14 @@
       "model": "folder:behavioural-consultations",
       "controller": "file:behavioural-consultations.js",
       "partials": [
+        "at-a-glance",
         "behavioural-consultations/dog-on-person-aggression/details",
         "behavioural-consultations/dog-on-person-aggression/intro",
         "behavioural-consultations/shared/vet-referrals",
         "behavioural-consultations/shared/what-to-expect-in-a-behavioural-consultation",
+        "courses/enquiry",
         "faqs",
+        "how-booking-works",
         "layout",
         "layout/breadcrumb",
         "layout/footer",
@@ -167,6 +173,7 @@
       "model": "file:contact.json",
       "controller": "none",
       "partials": [
+        "courses/enquiry",
         "layout",
         "layout/breadcrumb",
         "layout/footer",
@@ -182,12 +189,14 @@
       "model": "folder:courses",
       "controller": "file:course.js",
       "partials": [
+        "at-a-glance",
         "courses/bronze/intro",
         "courses/bronze/testimonial",
         "courses/bronze/you-will-learn",
         "courses/enquiry",
         "courses/ladder",
         "faqs",
+        "how-booking-works",
         "layout",
         "layout/breadcrumb",
         "layout/footer",
@@ -203,12 +212,14 @@
       "model": "folder:courses",
       "controller": "file:course.js",
       "partials": [
+        "at-a-glance",
         "courses/enquiry",
         "courses/gold/intro",
         "courses/gold/testimonial",
         "courses/gold/you-will-learn",
         "courses/ladder",
         "faqs",
+        "how-booking-works",
         "layout",
         "layout/breadcrumb",
         "layout/footer",
@@ -242,12 +253,14 @@
       "model": "folder:courses",
       "controller": "file:course.js",
       "partials": [
+        "at-a-glance",
         "courses/enquiry",
         "courses/junior/intro",
         "courses/junior/testimonial",
         "courses/junior/you-will-learn",
         "courses/ladder",
         "faqs",
+        "how-booking-works",
         "layout",
         "layout/breadcrumb",
         "layout/footer",
@@ -263,12 +276,14 @@
       "model": "folder:courses",
       "controller": "file:course.js",
       "partials": [
+        "at-a-glance",
         "courses/enquiry",
         "courses/ladder",
         "courses/one-to-one/intro",
         "courses/one-to-one/testimonial",
         "courses/one-to-one/you-will-learn",
         "faqs",
+        "how-booking-works",
         "layout",
         "layout/breadcrumb",
         "layout/footer",
@@ -284,12 +299,14 @@
       "model": "folder:courses",
       "controller": "file:course.js",
       "partials": [
+        "at-a-glance",
         "courses/enquiry",
         "courses/ladder",
         "courses/platinum/intro",
         "courses/platinum/testimonial",
         "courses/platinum/you-will-learn",
         "faqs",
+        "how-booking-works",
         "layout",
         "layout/breadcrumb",
         "layout/footer",
@@ -305,12 +322,14 @@
       "model": "folder:courses",
       "controller": "file:course.js",
       "partials": [
+        "at-a-glance",
         "courses/enquiry",
         "courses/ladder",
         "courses/puppy/intro",
         "courses/puppy/testimonial",
         "courses/puppy/you-will-learn",
         "faqs",
+        "how-booking-works",
         "layout",
         "layout/breadcrumb",
         "layout/footer",
@@ -326,12 +345,14 @@
       "model": "folder:courses",
       "controller": "file:course.js",
       "partials": [
+        "at-a-glance",
         "courses/enquiry",
         "courses/ladder",
         "courses/silver/intro",
         "courses/silver/testimonial",
         "courses/silver/you-will-learn",
         "faqs",
+        "how-booking-works",
         "layout",
         "layout/breadcrumb",
         "layout/footer",
@@ -347,6 +368,7 @@
       "model": "inline",
       "controller": "file:faqHub.js",
       "partials": [
+        "faqs/entry",
         "layout",
         "layout/footer",
         "layout/header",
@@ -420,6 +442,17 @@
     "about/sara-thomas/intro": [
       "./docs/about/sara-thomas.html"
     ],
+    "at-a-glance": [
+      "./docs/behavioural-consultations/dog-on-dog-aggression.html",
+      "./docs/behavioural-consultations/dog-on-person-aggression.html",
+      "./docs/courses/bronze-obedience.html",
+      "./docs/courses/gold-obedience.html",
+      "./docs/courses/junior-obedience.html",
+      "./docs/courses/one-to-one.html",
+      "./docs/courses/platinum-obedience.html",
+      "./docs/courses/puppy-socialisation.html",
+      "./docs/courses/silver-obedience.html"
+    ],
     "behavioural-consultations/dog-on-dog-aggression/details": [
       "./docs/behavioural-consultations/dog-on-dog-aggression.html"
     ],
@@ -460,6 +493,9 @@
       "./docs/courses/bronze-obedience.html"
     ],
     "courses/enquiry": [
+      "./docs/behavioural-consultations/dog-on-dog-aggression.html",
+      "./docs/behavioural-consultations/dog-on-person-aggression.html",
+      "./docs/contact/index.html",
       "./docs/courses/bronze-obedience.html",
       "./docs/courses/gold-obedience.html",
       "./docs/courses/junior-obedience.html",
@@ -544,6 +580,20 @@
       "./docs/courses/bronze-obedience.html",
       "./docs/courses/gold-obedience.html",
       "./docs/courses/index.html",
+      "./docs/courses/junior-obedience.html",
+      "./docs/courses/one-to-one.html",
+      "./docs/courses/platinum-obedience.html",
+      "./docs/courses/puppy-socialisation.html",
+      "./docs/courses/silver-obedience.html"
+    ],
+    "faqs/entry": [
+      "./docs/faqs/index.html"
+    ],
+    "how-booking-works": [
+      "./docs/behavioural-consultations/dog-on-dog-aggression.html",
+      "./docs/behavioural-consultations/dog-on-person-aggression.html",
+      "./docs/courses/bronze-obedience.html",
+      "./docs/courses/gold-obedience.html",
       "./docs/courses/junior-obedience.html",
       "./docs/courses/one-to-one.html",
       "./docs/courses/platinum-obedience.html",
@@ -803,13 +853,13 @@
       "kind": "controllers",
       "id": "course.js",
       "note": "notes/controllers/course.md",
-      "hash": "c00a59e9f8de4e8b1866d50203499f3480f6f691"
+      "hash": "c5f5d03fea003ca386cb43a2fec3651650bd90ed"
     },
     {
       "kind": "controllers",
       "id": "faqHub.js",
       "note": "notes/controllers/faqhub.md",
-      "hash": "ddfc88d9646cf01dc4b9e886b2bc9accda5baff0"
+      "hash": "fbc571897bfcc428090c8ebda083cd5a6898c483"
     },
     {
       "kind": "controllers",

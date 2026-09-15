@@ -125,10 +125,54 @@
 
       var course = form.querySelector('input[name="course"]')
       var what = course ? course.value : ''
-      subject.value = what
-        ? 'Course enquiry: ' + who + ' — ' + what
-        : 'Course enquiry: ' + who
+      var prefix = subject.value.split(':')[0]
+      subject.value = prefix + ': ' + who + (what ? ' (' + what + ')' : '')
     })
+  })
+
+  /* ---- Rolling course start dates ---------------------------------------
+   * The build stamps the next twelve block starts into data-schedule-starts
+   * and re-states the first of them as the <dd>'s text. That text is what a
+   * crawler and a reader without JavaScript get, but the site builds on push,
+   * so it ages: this picks the right start for today instead. Past the end of
+   * the list, or with no list at all (Platinum, a manual nextStart override),
+   * the server-rendered text is left exactly as it is. */
+  var DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December']
+  var WEEK = 7 * 24 * 60 * 60 * 1000
+
+  var schedules = document.querySelectorAll('[data-schedule-starts]')
+
+  Array.prototype.forEach.call(schedules, function (el) {
+    var starts = (el.getAttribute('data-schedule-starts') || '').split(',')
+    var time = el.getAttribute('data-schedule-time') || ''
+    var now = new Date()
+    /* Compared as UTC midnights so the two DST Sundays cannot move a date. */
+    var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())
+    var next = null
+    var current = null
+
+    for (var i = 0; i < starts.length; i++) {
+      var parts = starts[i].split('-')
+      if (parts.length !== 3) continue
+      var start = Date.UTC(+parts[0], +parts[1] - 1, +parts[2])
+      if (start >= today) { next = start; break }
+      if (today - start < WEEK) current = start /* week one: joinable at week two */
+    }
+    if (next === null) return
+
+    var say = function (stamp) {
+      var d = new Date(stamp)
+      var text = DAY_NAMES[d.getUTCDay()] + ' ' + d.getUTCDate() + ' ' + MONTH_NAMES[d.getUTCMonth()]
+      if (d.getUTCFullYear() !== now.getFullYear()) text += ' ' + d.getUTCFullYear()
+      return time ? text + ', ' + time : text
+    }
+
+    el.textContent = current === null
+      ? say(next)
+      : 'Started ' + say(current) + '. You can still join on week two. ' +
+        'The next course starts ' + say(next) + '.'
   })
 
   /* ---- FAQ search, /faqs/ only -----------------------------------------
@@ -148,6 +192,7 @@
     var faqEmpty = document.querySelector('[data-faq-empty]')
     var faqJump = document.querySelector('[data-faq-jump]')
     var faqJumpNav = faqJump ? faqJump.closest('nav') : null
+    var faqMore = document.querySelector('[data-faq-more]')
 
     /* Question and answer text of each entry, lower-cased once up front. */
     var haystack = faqs.map(function (el) {
@@ -176,6 +221,13 @@
         section.hidden = !section.querySelector('[data-faq]:not([hidden])')
       })
 
+      /* Open the "more answers" block only while a search actually matches
+       * something inside it, so a hit there is seen without a second click;
+       * collapse it again when the box is cleared, same as the entries. */
+      if (faqMore) {
+        faqMore.open = !!(searching && faqMore.querySelector('[data-faq]:not([hidden])'))
+      }
+
       if (faqJumpNav) faqJumpNav.hidden = searching
       if (faqEmpty) faqEmpty.hidden = !(searching && shown === 0)
       if (faqCount) {
@@ -199,13 +251,36 @@
       }
     })
 
-    /* A link to one answer (/faqs/#q-course-prices) opens it on arrival. */
+    /* A link to one answer (/faqs/#q-course-prices) opens it on arrival —
+     * and, if that answer lives in the "more answers" block, opens that too,
+     * since a collapsed <details> hides its own open descendants. */
     var openFromHash = function () {
       if (!/^#q-/.test(location.hash)) return
       var target = document.getElementById(location.hash.slice(1))
-      if (target && target.tagName === 'DETAILS') target.open = true
+      if (!target || target.tagName !== 'DETAILS') return
+      target.open = true
+      if (faqMore && faqMore.contains(target)) faqMore.open = true
     }
     openFromHash()
     window.addEventListener('hashchange', openFromHash)
+
+    /* "Expand all answers" opens every entry and the "more answers" block in
+     * one click, for a read-through; /faqs/?all does the same on arrival so a
+     * review link opens fully. Clearing a search collapses them again. */
+    var faqExpand = document.querySelector('[data-faq-expand]')
+    var setAllOpen = function (open) {
+      faqs.forEach(function (el) { el.open = open })
+      if (faqMore) faqMore.open = open
+      if (faqExpand) {
+        faqExpand.setAttribute('aria-pressed', open ? 'true' : 'false')
+        faqExpand.textContent = open ? 'Collapse all answers' : 'Expand all answers'
+      }
+    }
+    if (faqExpand) {
+      faqExpand.addEventListener('click', function () {
+        setAllOpen(faqExpand.getAttribute('aria-pressed') !== 'true')
+      })
+    }
+    if (/[?&]all(=|&|$)/.test(location.search)) setAllOpen(true)
   }
 })()

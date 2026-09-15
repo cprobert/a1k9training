@@ -8,15 +8,18 @@
   "caption": "left",
   "crumb": "Dog-on-Person Aggression",
   "heading": "Rehabilitate your dog",
+  "glance": "session",
+  "enquiryKind": "Consultation enquiry",
+  "enquiryLead": "Tell Gaynor what your dog is doing and she will come back with a time, usually within about a week.",
   "components": {
     "intro": "behavioural-consultations/dog-on-person-aggression/intro",
     "details": "behavioural-consultations/dog-on-person-aggression/details"
   },
   "faqIds": [
-    "cons-person-aggression",
-    "cons-what-happens",
+    "cons-too-late",
+    "cons-two-dogs-fight",
+    "cons-stay-safe",
     "cons-referral",
-    "cons-where",
-    "cons-too-late"
+    "cons-baby-anxieties"
   ]
 }

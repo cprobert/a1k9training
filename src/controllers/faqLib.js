@@ -100,7 +100,31 @@ export function faqsByIds(ids, where = 'a page') {
   })
 }
 
-/** Every entry, grouped for the hub page, in GROUPS order. */
+/**
+ * Split a flat list of entries into the curated set the hub groups into
+ * sections and the "more answers" set — entries marked `searchOnly: true`,
+ * findable by the hub's search box but left out of the curated list and its
+ * count. Pure and I/O-free, so it's unit-testable without touching the
+ * filesystem (qa/faqlib.test.mjs).
+ *
+ * @param {Array<Record<string, any>>} entries
+ * @returns {{ curated: Array<Record<string, any>>, more: Array<Record<string, any>> }}
+ */
+export function splitFaqs(entries) {
+  const curated = []
+  const more = []
+  for (const entry of entries ?? []) {
+    if (entry.searchOnly) more.push(entry)
+    else curated.push(entry)
+  }
+  more.sort((a, b) => a.q.localeCompare(b.q))
+  return { curated, more }
+}
+
+/** Every entry, grouped for the hub page, in GROUPS order. searchOnly entries
+ * are left out — they belong in the hub's "more answers" block, not a
+ * section — but still validated against GROUPS, so a typo in one still fails
+ * the build instead of surfacing only once someone searches for it. */
 export function faqSections() {
   const all = [...faqIndex().values()]
   const ungrouped = all.filter((e) => !GROUPS.some((g) => g.key === e.group))
@@ -108,8 +132,15 @@ export function faqSections() {
     throw new Error(
       `FAQ group not in GROUPS: ${[...new Set(ungrouped.map((e) => e.group))].join(', ')}`,
     )
+  const { curated } = splitFaqs(all)
   return GROUPS.map((group) => ({
     ...group,
-    faqs: all.filter((entry) => entry.group === group.key),
+    faqs: curated.filter((entry) => entry.group === group.key),
   })).filter((section) => section.faqs.length)
+}
+
+/** The searchOnly entries, sorted by question — the hub's "more answers"
+ * block, findable by search but absent from the curated sections/count. */
+export function moreFaqs() {
+  return splitFaqs([...faqIndex().values()]).more
 }

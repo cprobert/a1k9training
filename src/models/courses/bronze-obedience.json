@@ -10,19 +10,23 @@
   "level": 2,
   "rung": "Bronze",
   "heading": "Solid Foundation Training",
+  "glance": "course",
+  "ages": "Dogs 12 months and over",
+  "when": "Sunday afternoons",
   "price": "£119.99",
   "priceNote": "6-week course, 1 hour a week",
-  "nextStart": "Sunday 11 October, 1:00pm",
+  "startDay": "sunday",
+  "startTime": "1:00pm",
   "components": {
     "intro": "courses/bronze/intro",
     "details": "courses/bronze/you-will-learn",
     "testimonial": "courses/bronze/testimonial"
   },
   "faqIds": [
-    "bronze-pull-recall",
     "which-course",
-    "booking-required",
-    "what-to-bring",
-    "missed-week"
+    "rescue-start",
+    "reactive-in-class",
+    "over-excited",
+    "join-late"
   ]
 }

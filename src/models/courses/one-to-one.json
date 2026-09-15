@@ -7,16 +7,13 @@
   "image": "/images/courses/one-to-one/one-to-one-v3.webp",
   "caption": "right",
   "crumb": "One to One",
-  "enquiryLead": "One to one sessions are arranged to suit you and your dog. Tell Gaynor what you are working on and she will come back to you with times and prices.",
+  "enquiryLead": "Tell Gaynor what you are working on and she will come back with a time.",
   "heading": "What's Right For You?",
+  "glance": "session",
   "components": {
     "intro": "courses/one-to-one/intro",
     "details": "courses/one-to-one/you-will-learn",
     "testimonial": "courses/one-to-one/testimonial"
   },
-  "faqIds": [
-    "one-to-one-what",
-    "service-triage",
-    "venue"
-  ]
+  "faqIds": ["service-triage", "two-dogs"]
 }

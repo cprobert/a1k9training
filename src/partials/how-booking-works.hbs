@@ -25,14 +25,18 @@
   a question nobody on that page has asked.
 
   A @container wrapper, not a media query: the list is 4-up in a course page's
-  full-width form card and 2-up in a narrow one, and the breakpoint that
-  decides that is the wrapper's own width, not the viewport's.
+  full-width form card and 2-up on a phone, and the breakpoint that decides
+  that is the wrapper's own width, not the viewport's. The card's own padding
+  leaves ~293px of container inside a 375px viewport, so the two-column step
+  is @3xs (16rem) rather than the @md it was as a standalone card — and the
+  text is text-sm, because this is a supporting strip inside a form now, not
+  a panel of its own.
 --}}
 <section class="@container mb-6 border-y border-sand-200 py-5">
   <h3 class="mb-4 font-display text-lg text-ink-900">How booking works</h3>
 
   {{#if session}}
-    <ol class="grid list-none gap-5 pl-0 @md:grid-cols-3">
+    <ol class="grid list-none gap-x-4 gap-y-5 pl-0 text-sm @3xs:grid-cols-2 @xl:grid-cols-3">
       <li>
         <span class="badge">Step 1</span>
         <p class="mt-2 mb-0">Send the form with your dog&rsquo;s details, or ring Gaynor if it is easier.</p>
@@ -47,7 +51,7 @@
       </li>
     </ol>
   {{else}}
-    <ol class="grid list-none gap-5 pl-0 @md:grid-cols-2 @3xl:grid-cols-4">
+    <ol class="grid list-none gap-x-4 gap-y-5 pl-0 text-sm @3xs:grid-cols-2 @3xl:grid-cols-4">
       <li>
         <span class="badge">Step 1</span>
         <p class="mt-2 mb-0">Send the enquiry form with your dog&rsquo;s name and age.</p>

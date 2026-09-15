@@ -212,14 +212,34 @@ Every check is a pass/fail row (never stops at the first failure):
 
   `FAQPage` is asserted **both ways**: required on `/faqs/`, and forbidden
   on the consultation pages. The markup deliberately lives on that one URL
-  — #26 consolidated it there when the hub was built, since Google
-  restricted FAQ rich results to well-known government and health sites in
-  August 2023 and seven copies of the same answers earned nothing while
-  splitting the set an answer engine reads. This check used to require a
-  `FAQPage` on the consultation pages, which was right when it was written
-  in #23 (the shared FAQ partial carried its own block then) and silently
-  wrong afterwards. Inverting it, rather than deleting it, is what keeps
-  the consolidation from being undone by accident.
+  — #26 consolidated it there when the hub was built. This check used to
+  require a `FAQPage` on the consultation pages, which was right when it was
+  written in #23 (the shared FAQ partial carried its own block then) and
+  silently wrong afterwards. Inverting it, rather than deleting it, is what
+  keeps the consolidation from being undone by accident.
+
+  The reason for centralising is housekeeping, not rich results. Google
+  restricted FAQ rich results to authoritative government and health sites
+  in August 2023 and **discontinued them entirely in May 2026**, so this
+  markup earns no Google FAQ rich result and is not a route to one; Google
+  has also said no special markup is needed for AI Overviews or AI Mode. It
+  is kept because `FAQPage` is a valid schema.org type, costs nothing, and
+  one authoritative machine-readable copy is cleaner for anything consuming
+  structured data than the same 32 answers on seven URLs. No claim is made
+  about duplication harming answer-engine retrieval — there is no good
+  evidence for one.
+
+  Only the **markup** is centralised. The inline, human-readable FAQ blocks
+  on course and consultation pages stay: page-specific Q&A earns its place
+  for a reader mid-enquiry and for relevance, marked up or not.
+
+  A third assertion rides with the first: on `/faqs/`, every `mainEntity`
+  question **and** its answer must appear in the page's own visible text.
+  Structured data that describes content the page does not show is the one
+  failure here that review cannot catch — the page looks right — so a
+  controller dropping an id or a template hiding a section fails the gate
+  instead of shipping. A collapsed `<details>` counts as visible: it is in
+  the DOM and reachable.
 - **Browser pass** (Playwright, `--pages` default `/`, `/courses/`,
   `/courses/bronze-obedience`, `/behavioural-consultations/dog-on-dog-aggression`,
   `/find-us/`, at 375×812 and 1440×900): no same-origin console errors or
@@ -253,6 +273,7 @@ finding the preview URL and running this) and automatically by
 | `qa:serve` | `node qa/serve.mjs` — pass `-- <dir> <port>` |
 | `qa:snapshot` | `node qa/snapshot.mjs` — pass `-- <siteDir> <label>` |
 | `qa:lh` | `node qa/lighthouse.mjs` — pass `-- <siteDir> <label> [--pages=...] [--runs=N]` |
+| `qa:test` | `node --test qa/*.test.mjs` — unit tests for the harness's own pure helpers |
 | `qa:axe` | `node qa/axe.mjs` — pass `-- <siteDir> <label>` |
 | `qa:compare` | `node qa/compare.mjs` — pass `-- <label>` |
 | `qa:no-bootstrap` | `node qa/no-bootstrap.mjs` — pass `-- <siteDir>` |

@@ -43,10 +43,14 @@ export function registerSchemaHelpers(kiss) {
     url: `${kiss.config.siteUrl}/`,
   }
 
-  // FAQPage JSON-LD, for src/partials/faqs.hbs — used on /courses/ and every
-  // course page that carries a `faqs` field (see src/models/courses/*.json).
-  // `this` inside faqs.hbs is already the plain [{q, a}] array the faqMapper/
-  // course controllers load, so the helper just reshapes it.
+  // FAQPage JSON-LD. Used by src/pages/faqs.hbs and nowhere else: since #26
+  // the markup is centralised on /faqs/, one authoritative copy of all 32
+  // answers, rather than repeated on every page that renders the inline FAQ
+  // accordion. (It was called from src/partials/faqs.hbs before that, which
+  // is why it once appeared on the course and consultation pages.)
+  // The argument is the plain [{q, a}] array faqLib.js resolves, so the
+  // helper only reshapes it; `a` may contain markup, which is fine in an
+  // acceptedAnswer's text.
   kiss.handlebars.registerHelper('faqPage', (faqs) => ({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

@@ -1,7 +1,13 @@
 {{!-- A page's inline FAQ block: the handful of questions that page's own
       visitors ask most, resolved from src/models/faqs/*.json by their ids (see
-      src/controllers/faqLib.js). The FAQPage JSON-LD deliberately lives on
-      /faqs/ alone, so the same answer is not marked up on seven pages. --}}
+      src/controllers/faqLib.js).
+
+      This content is deliberately here and should stay: page-specific Q&A is
+      useful to a reader at the moment of enquiry, and useful for relevance and
+      answer-engine retrieval, whether or not it is marked up. What does NOT
+      belong here is the FAQPage JSON-LD -- that lives on /faqs/ alone, so the
+      site has one authoritative machine-readable copy instead of seven. See
+      the comment in src/pages/faqs.hbs. --}}
 <div class="page-header">
   <h2>Frequently Asked Questions</h2>
 </div>

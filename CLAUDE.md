@@ -40,8 +40,10 @@ kiss copies/hashes assets, under `build`, `check` and `dev` alike. Edit
 `src/styles/site.css`; never `src/assets/css/site.css` (generated,
 gitignored).
 
-There is no lint or test script configured, and no eslint/prettier config in
-the repo. The committed JS is nonetheless Prettier-formatted with
+There is no lint script and no eslint/prettier config in the repo. The only
+tests are `npm run qa:test` (`node --test qa/*.test.mjs`) — unit tests for
+the pure helpers in the QA harness, not for the site, which is verified by
+building and inspecting the output as below. The committed JS is nonetheless Prettier-formatted with
 `--no-semi --single-quote` (verify with
 `npx prettier@3 --no-semi --single-quote --check router.js 'src/**/*.js'`) —
 with two files that predate the convention and still fail it:
@@ -85,6 +87,14 @@ triggered on `deployment_status`, an event nothing here ever emits.
   `qa/baseline/pre-migration/` keeps the original Bootstrap-site records.
 - `qa/no-bootstrap.mjs` fails if any Bootstrap 3 class/idiom shows up in the
   built output — the guard against regressing the migration.
+- `qa/preview.mjs` checks `FAQPage` JSON-LD **both ways**: required on
+  `/faqs/`, forbidden on the pages that render the inline FAQ accordion. The
+  markup is centralised on that one URL by design; only the markup, though —
+  the human-readable Q&A blocks elsewhere stay, and are not an SEO liability.
+  It also checks that every question and answer in that JSON-LD is actually
+  visible on the page (`qa/faq-parity.mjs`, unit-tested by `qa:test`), since
+  markup describing content the page does not show is the one defect a human
+  review cannot see.
 - `qa/axe.mjs` scans every page at 375/1440px; group violations by impact.
   It does **not** catch non-text contrast (e.g. a `:focus-visible` ring) —
   that needs a manual WCAG ratio check against the actual token values in

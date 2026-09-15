@@ -25,6 +25,7 @@
 import { chromium } from 'playwright'
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
+import { faqEntriesNotRendered } from './faq-parity.mjs'
 
 const CHROME_PATH =
   process.env.CHROME_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
@@ -433,18 +434,31 @@ for (const loc of sitemapLocs) {
 //    check is what the deploy under test actually serves at that path.
 // ======================================================================
 
-// FAQPage lives on /faqs/ and nowhere else, deliberately. Until #26 the
-// shared FAQ partial (src/partials/faqs.hbs) carried its own FAQPage block,
-// so every course and consultation page rendering the accordion emitted one
-// — and this check was written then, requiring it on the consultation pages.
-// #26 built the /faqs/ hub and consolidated the markup onto that one URL:
-// Google restricted FAQ rich results to well-known government and health
-// sites in August 2023, so seven copies earned nothing and split the answer
-// set an answer engine reads. The comment in src/pages/faqs.hbs and the one
-// atop src/partials/faqs.hbs both record the decision.
+// FAQPage JSON-LD lives on /faqs/ and nowhere else, deliberately. Until #26
+// the shared FAQ partial (src/partials/faqs.hbs) carried its own FAQPage
+// block, so every course and consultation page rendering the accordion
+// emitted one — and this check was written then, requiring it on the
+// consultation pages. #26 built the /faqs/ hub and consolidated the markup
+// onto that one URL.
 //
-// So the assertion is inverted rather than dropped: /faqs/ must carry it,
-// and a page that shows FAQs inline must NOT — which guards the
+// The reason is housekeeping, not rich results. Google restricted FAQ rich
+// results to authoritative government and health sites in August 2023 and
+// discontinued them entirely in May 2026, so FAQPage markup earns no
+// Google FAQ rich result for this site and is not a mechanism for getting
+// one. It is kept because it is a valid schema.org type, costs nothing,
+// and one authoritative machine-readable copy is cleaner for crawlers and
+// other consumers of structured data than the same 32 answers repeated
+// across seven URLs. No claim is made here about what duplication does to
+// an answer engine's retrieval — there is no good evidence for one, and
+// Google has said no special markup is needed for AI Overviews or AI Mode.
+//
+// Note this is about the MARKUP only. The human-readable inline FAQ blocks
+// on the course and consultation pages stay exactly where they are: they
+// are page-specific, useful to a reader at the moment of enquiry, and
+// nothing here asks for them to be thinned out.
+//
+// So the assertion is inverted rather than dropped: /faqs/ must carry the
+// markup, and a page that shows FAQs inline must NOT — which guards the
 // consolidation against being quietly undone, where simply deleting the
 // check would have left it unguarded.
 const FAQ_REQUIRED = 'require'
@@ -507,6 +521,7 @@ for (const { pathname, faq } of structuredDataPaths()) {
   }
 
   const problems = []
+  const notes = []
   const parsed = []
   scripts.forEach((raw, i) => {
     try {
@@ -530,18 +545,41 @@ for (const { pathname, faq } of structuredDataPaths()) {
     }
   }
 
-  const hasFaq = parsed.some((o) => o?.['@type'] === 'FAQPage')
-  if (faq === FAQ_REQUIRED && !hasFaq) {
+  const faqObject = parsed.find((o) => o?.['@type'] === 'FAQPage')
+  if (faq === FAQ_REQUIRED && !faqObject) {
     problems.push('no FAQPage object')
   }
-  if (faq === FAQ_FORBIDDEN && hasFaq) {
+  if (faq === FAQ_FORBIDDEN && faqObject) {
     problems.push('FAQPage present — it belongs on /faqs/ alone (see qa/preview.mjs)')
+  }
+
+  // Structured data must describe what the page actually shows. A question
+  // marked up but not rendered is the one failure mode that matters here:
+  // it is invisible in review (the page looks right) and it is exactly what
+  // schema.org asks you not to do. Compared against the page's own visible
+  // text, so a Q&A that stops being rendered — a controller dropping an id,
+  // a template change hiding a section — fails rather than going unnoticed.
+  if (faq === FAQ_REQUIRED && faqObject) {
+    const { total, unrendered } = faqEntriesNotRendered(html, faqObject)
+    if (total === 0) {
+      problems.push('FAQPage has no mainEntity entries')
+    } else if (unrendered.length) {
+      problems.push(
+        `${unrendered.length} of ${total} FAQ entries are marked up but not rendered — ` +
+          unrendered.slice(0, 3).join('; ') +
+          (unrendered.length > 3 ? `; and ${unrendered.length - 3} more` : '')
+      )
+    } else {
+      notes.push(`${total} FAQ entries, all rendered on the page`)
+    }
   }
 
   row(
     `Structured data: ${target}`,
     problems.length === 0,
-    problems.length === 0 ? `${scripts.length} ld+json script(s) ok` : problems.join('; '),
+    problems.length === 0
+      ? [`${scripts.length} ld+json script(s) ok`, ...notes].join('; ')
+      : problems.join('; '),
   )
 }
 

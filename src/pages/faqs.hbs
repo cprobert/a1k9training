@@ -5,8 +5,18 @@
 {{{stringify (breadcrumbList (breadcrumb))}}}
 </script>
 {{!-- The site's only FAQPage block. Course and consultation pages show the same
-      answers inline, but the machine-readable copy lives here, on one URL, so
-      search and answer engines have a single canonical set to read. --}}
+      answers inline as human-readable content, which stays; only the JSON-LD is
+      centralised here, so there is one authoritative machine-readable copy
+      rather than the same answers marked up on seven URLs.
+
+      Not an SEO mechanism: Google restricted FAQ rich results to authoritative
+      government and health sites in August 2023 and withdrew them altogether in
+      May 2026, and says no special markup is needed for AI Overviews or AI Mode.
+      It is kept because FAQPage is a valid schema.org type that other consumers
+      of structured data can read, and one clean copy costs nothing.
+
+      Every question and answer here must also be visible on this page --
+      qa/preview.mjs checks that, not just that the block exists. --}}
 <script type="application/ld+json">
 {{{stringify (faqPage model.allFaqs)}}}
 </script>

@@ -66,9 +66,16 @@ npm run qa:preview -- <url>     # verify a DEPLOYED site: real headers, redirect
 ```
 
 After opening a PR, run `/pr-verify` (`.claude/skills/pr-verify/SKILL.md`): it
-finds the Netlify deploy-preview URL on the PR's commit status and runs
-`qa:preview` against it. `.github/workflows/preview-qa.yml` does the same
-automatically as the `Preview QA` check.
+finds the Netlify deploy preview and runs `qa:preview` against it.
+`.github/workflows/preview-qa.yml` does the same automatically as the
+`Preview QA` check, on every PR push.
+
+**Netlify reports here as check runs, never as commit statuses or GitHub
+deployments.** `commits/<sha>/status` is always empty on this repo, so the
+preview URL comes from the `details_url` on one of Netlify's three check
+runs (`Header rules - a1k9-training` and friends) — that is where the site
+slug lives. The `Preview QA` workflow went unrun for months because it
+triggered on `deployment_status`, an event nothing here ever emits.
 
 - `qa/snapshot.mjs` + `qa/compare.mjs` gate against `qa/baseline/content.json`
   (a snapshot of the last merged master build; refresh it by building master

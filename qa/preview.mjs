@@ -433,6 +433,30 @@ for (const loc of sitemapLocs) {
 //    check is what the deploy under test actually serves at that path.
 // ======================================================================
 
+// FAQPage lives on /faqs/ and nowhere else, deliberately. Until #26 the
+// shared FAQ partial (src/partials/faqs.hbs) carried its own FAQPage block,
+// so every course and consultation page rendering the accordion emitted one
+// — and this check was written then, requiring it on the consultation pages.
+// #26 built the /faqs/ hub and consolidated the markup onto that one URL:
+// Google restricted FAQ rich results to well-known government and health
+// sites in August 2023, so seven copies earned nothing and split the answer
+// set an answer engine reads. The comment in src/pages/faqs.hbs and the one
+// atop src/partials/faqs.hbs both record the decision.
+//
+// So the assertion is inverted rather than dropped: /faqs/ must carry it,
+// and a page that shows FAQs inline must NOT — which guards the
+// consolidation against being quietly undone, where simply deleting the
+// check would have left it unguarded.
+const FAQ_REQUIRED = 'require'
+const FAQ_FORBIDDEN = 'forbid'
+const FAQ_IGNORED = 'ignore'
+
+function faqExpectationFor(pathname) {
+  if (pathname === '/faqs/') return FAQ_REQUIRED
+  if (pathname.startsWith('/behavioural-consultations/')) return FAQ_FORBIDDEN
+  return FAQ_IGNORED
+}
+
 function structuredDataPaths() {
   const out = []
   const seen = new Set()
@@ -443,16 +467,20 @@ function structuredDataPaths() {
     } catch {
       continue // not a parseable URL, skip
     }
-    if (pathname === '/' || pathname.startsWith('/behavioural-consultations/')) {
+    if (
+      pathname === '/' ||
+      pathname === '/faqs/' ||
+      pathname.startsWith('/behavioural-consultations/')
+    ) {
       if (seen.has(pathname)) continue
       seen.add(pathname)
-      out.push({ pathname, requireFaq: pathname !== '/' })
+      out.push({ pathname, faq: faqExpectationFor(pathname) })
     }
   }
   return out
 }
 
-for (const { pathname, requireFaq } of structuredDataPaths()) {
+for (const { pathname, faq } of structuredDataPaths()) {
   const target = `${baseUrl}${pathname}`
   let html = ''
   let status = null
@@ -502,9 +530,12 @@ for (const { pathname, requireFaq } of structuredDataPaths()) {
     }
   }
 
-  if (requireFaq) {
-    const hasFaq = parsed.some((o) => o?.['@type'] === 'FAQPage')
-    if (!hasFaq) problems.push('no FAQPage object')
+  const hasFaq = parsed.some((o) => o?.['@type'] === 'FAQPage')
+  if (faq === FAQ_REQUIRED && !hasFaq) {
+    problems.push('no FAQPage object')
+  }
+  if (faq === FAQ_FORBIDDEN && hasFaq) {
+    problems.push('FAQPage present — it belongs on /faqs/ alone (see qa/preview.mjs)')
   }
 
   row(

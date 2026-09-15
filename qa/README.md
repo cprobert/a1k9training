@@ -203,12 +203,23 @@ Every check is a pass/fail row (never stops at the first failure):
   `https://www.a1k9training.co.uk/...` URL even when `<url>` is a deploy
   preview — this row is therefore always a production reachability/redirect
   check, whichever host you point the script at.
-- **Structured data**: on `/` and every sitemap path under
+- **Structured data**: on `/`, `/faqs/` and every sitemap path under
   `/behavioural-consultations/`, fetched from **the host under test**
   (`<url>` + that path — unlike the row above, since the point here is what
-  the deploy actually serves): every ld+json block parses, the
+  the deploy actually serves): every ld+json block parses, and the
   `LocalBusiness` object carries a `location` array of ≥ 2 entries each
-  with `address.postalCode`, and the consultation pages carry a `FAQPage`.
+  with `address.postalCode`.
+
+  `FAQPage` is asserted **both ways**: required on `/faqs/`, and forbidden
+  on the consultation pages. The markup deliberately lives on that one URL
+  — #26 consolidated it there when the hub was built, since Google
+  restricted FAQ rich results to well-known government and health sites in
+  August 2023 and seven copies of the same answers earned nothing while
+  splitting the set an answer engine reads. This check used to require a
+  `FAQPage` on the consultation pages, which was right when it was written
+  in #23 (the shared FAQ partial carried its own block then) and silently
+  wrong afterwards. Inverting it, rather than deleting it, is what keeps
+  the consolidation from being undone by accident.
 - **Browser pass** (Playwright, `--pages` default `/`, `/courses/`,
   `/courses/bronze-obedience`, `/behavioural-consultations/dog-on-dog-aggression`,
   `/find-us/`, at 375×812 and 1440×900): no same-origin console errors or

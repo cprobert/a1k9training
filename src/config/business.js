@@ -99,6 +99,11 @@ export const business = {
     venueNote:
       'Outdoors at the Training Grounds; indoors at Llys Nini when it is wet',
     bring: 'A collar, a lead and treats your dog likes',
+    // Gaynor, 2026-09-18: the Facilities page "Shop" card went, but she wants
+    // it known she sells leads and collars. Shown under `bring`, the one place
+    // a reader is already thinking about what their dog wears to class.
+    equipmentNote:
+      'Gaynor sells high quality leads and collars if you need them',
     eligibilityNote:
       'For insurance reasons XL Bully dogs, and dogs legally required to be muzzled, cannot join a class',
   },

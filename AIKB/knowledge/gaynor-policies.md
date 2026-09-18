@@ -435,6 +435,13 @@ below is that file's segment number.
   "My approach is touch training and treat orientated, then going on to not
   touching the lead and doing body language and voice command." [seg 171]
 
+- **No shop, but Gaynor sells high quality leads and collars** (2026-09-18,
+  WhatsApp feedback on the About pages, relayed by Courtenay). "Take off
+  shop. But it would be helpful to mention somewhere on the site that I sell
+  high quality leads and collars. I can supply photos." The Facilities
+  "Shop" card is gone; `business.courses.equipmentNote` puts the line under
+  "Bring" on every course page. Photos pending.
+
 - **No clicker training** (2026-09-18, Gaynor's WhatsApp feedback on the
   Courses page and her yes to a follow-up, relayed by Courtenay). Removed
   from the Courses page puppy card, the Puppy Socialisation page and the

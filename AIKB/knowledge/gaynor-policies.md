@@ -88,8 +88,11 @@ below is that file's segment number.
   Step 4 (every course but Puppy): "The balance to be paid on the first
   week of attending." These replaced the reply-channel advice in step 2 and
   "balance in cash, no instalments, no multi-dog discount" plus the WhatsApp
-  note in step 4. The cash/instalment/discount policy below still stands;
-  it is just no longer in the booking strip.
+  note in step 4. The cash/instalment/discount policy below still stands,
+  but Gaynor would "rather leave it out" of the site (2026-09-18): don't
+  restate it on course pages or in llms.txt. Still on the site, pending her
+  say: the two-dogs FAQ's "no discount" answer (its question asks) and the
+  Puppy booking strip's "in cash" / "no multi-dog discount".
 
 - **Reply channels: email or text preferred over phoning.** If you haven't
   heard back after a few days, ring or text again — some enquiries reach

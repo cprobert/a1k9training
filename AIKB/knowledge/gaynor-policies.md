@@ -423,6 +423,11 @@ below is that file's segment number.
   "My approach is touch training and treat orientated, then going on to not
   touching the lead and doing body language and voice command." [seg 171]
 
+- **No clicker training** (2026-09-18, Gaynor's WhatsApp feedback on the
+  Courses page and her yes to a follow-up, relayed by Courtenay). Removed
+  from the Courses page puppy card, the Puppy Socialisation page and the
+  Junior page ("touch training" stays); don't reintroduce it.
+
 - **Prong collars:** not something Gaynor has encountered — no site
   statement is needed either way.
   "I've never heard of a prong collar before." [seg 170]

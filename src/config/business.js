@@ -95,8 +95,7 @@ export const business = {
     joinBy: 'You can join up to week two',
     deposit: '£50',
     depositNote: 'non-refundable, by bank transfer',
-    balance:
-      'Balance in cash on the first week. No instalments, no multi-dog discount',
+    balance: 'The balance to be paid on the first week of attending',
     venueNote:
       'Outdoors at the Training Grounds; indoors at Llys Nini when it is wet',
     bring: 'A collar, a lead and treats your dog likes',

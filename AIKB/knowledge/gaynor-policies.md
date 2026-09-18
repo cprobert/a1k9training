@@ -82,6 +82,15 @@ below is that file's segment number.
   79] "To ask them to watch out for the WhatsApp, which will start closer to
   the time of the course date start." [seg 80]
 
+- **Course booking steps 2 and 4, in Gaynor's wording** (2026-09-18,
+  WhatsApp feedback on the Bronze page, relayed by Courtenay). Step 2:
+  "Gaynor replies to your email with all the information you will need."
+  Step 4 (every course but Puppy): "The balance to be paid on the first
+  week of attending." These replaced the reply-channel advice in step 2 and
+  "balance in cash, no instalments, no multi-dog discount" plus the WhatsApp
+  note in step 4. The cash/instalment/discount policy below still stands;
+  it is just no longer in the booking strip.
+
 - **Reply channels: email or text preferred over phoning.** If you haven't
   heard back after a few days, ring or text again — some enquiries reach
   A1K9 (the protection-dog business) first and take longer to be forwarded.

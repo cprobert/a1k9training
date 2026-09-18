@@ -12,8 +12,8 @@
   src/config/business.js, so a changed fact reaches all nine pages at once.
 
   "Next course starts" degrades nextStart -> schedule -> startNote ->
-  courses.cycleNote and is never blank: Platinum has no fixed date (its dates
-  are agreed with the group at Gold graduation) and a blank row reads as an
+  courses.cycleNote and is never blank: Platinum has no fixed date (a course
+  runs when enough people want to take it) and a blank row reads as an
   omission.
 
   `schedule` is computed per build by src/controllers/course.js from the

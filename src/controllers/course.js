@@ -13,8 +13,8 @@ const HORIZON = 12
 
 // The start dates for one course record, already written the way the page says
 // them. A record opts in by carrying `startDay` ("sunday"/"saturday") and
-// `startTime`; Platinum has neither, because its dates are agreed with the
-// group at Gold graduation, and it keeps its `startNote` instead.
+// `startTime`; Platinum has neither, because it runs only when enough people
+// want to take it, and it keeps its `startNote` instead.
 //
 // A record carrying a literal `nextStart` string gets no schedule at all —
 // that is the manual override for a block that is cancelled or moved, and it

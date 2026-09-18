@@ -1,5 +1,5 @@
 ---
-subject-hash: c5f5d03fea003ca386cb43a2fec3651650bd90ed
+subject-hash: 54dd450dc6c08338ef4f2cd1c2a3eaaac8862b86
 ---
 
 ## What it does
@@ -23,7 +23,7 @@ A build-time date is still only right on the day it was built, and this site bui
 - An unknown id throws, naming the id and the course record — a typo fails the build instead of shipping a course page with a silently missing answer.
 - `faqIds` order is the order on the page; the first entries should be what that course's own enquirers ask most.
 - `src/controllers/behavioural-consultations.js` is the same controller for the consultation records; change both or neither — except for `schedule`, which is a course idea and deliberately does not exist there.
-- A record opts into the rolling date by carrying `startDay` (`"sunday"`/`"saturday"`) and `startTime`; a record with neither gets no `schedule` at all. Platinum is the one such course — its dates are agreed with the group at Gold graduation, so it keeps `startNote`.
+- A record opts into the rolling date by carrying `startDay` (`"sunday"`/`"saturday"`) and `startTime`; a record with neither gets no `schedule` at all. Platinum is the one such course — a course runs only when enough people want to take it, so it keeps `startNote`.
 - **A literal `nextStart` on a record still wins.** A record carrying one is given no `schedule` at all, so it beats the rolling date in the markup *and* gets no data attributes for the script to overwrite. That is the manual override for a block that is cancelled or moved: type the real date onto the one record, and delete it again when the timetable is back on the anchor. The better fix for a whole-timetable slip is to move `courses.anchorSunday` instead.
 - The horizon is twelve starts, about sixteen months. Past the end of that list the script stops and leaves the build-time text, which will by then be a date in the past — so the anchor still wants a look every year or so, just not every six weeks. Deploying anything at all re-stamps a fresh twelve.
 - The client-side half is ~40 lines in `src/assets/js/site.js` under "Rolling course start dates". It compares UTC midnights, like the helper, so neither DST Sunday can move a date; it is the only place the `,` separator is parsed, and `src/helpers/format.js`'s `join` helper is the only place it is written.

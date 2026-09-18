@@ -46,7 +46,9 @@ below is that file's segment number.
   afternoons.** Confirmed directly.
   "Yes." [seg 70], confirming Courtenay's summary at [seg 69].
 
-- **Platinum is not open to direct entry.** It is the highest, all-off-lead,
+- **Platinum is not open to direct entry** — *superseded 2026-09-18, see
+  Skipping levels below: direct entry is allowed at the right obedience
+  level.* It is the highest, all-off-lead,
   distance-control stage; a class only runs when enough Gold graduates want
   to move up, and it's arranged with the group at Gold graduation.
   "People don't come in on a Platinum. They have to work their way up to
@@ -145,8 +147,9 @@ below is that file's segment number.
   before they come into class." [seg 73]
 
 - **Restarting after a gap of months or years: normally Bronze.** Can start
-  higher if the previous standard has been kept up — worth a short
-  conversation with Gaynor first.
+  higher if the previous standard has been kept up. (2026-09-18: Gaynor
+  asked for the FAQ answer to end there, without the "ring for a chat" or
+  the one-to-one-after-Platinum lines.)
   "Certainly they come back in. Normally they come back in on bronze. If the
   person thinks they're at a higher level, they can come in at a higher
   level as well." [seg 182]
@@ -210,6 +213,17 @@ below is that file's segment number.
   already do, not a formal assessment.
   "Speak to them... meet up with [them], ask them what they can do with
   their dog and then I'll know them." [seg 217–219]
+  **Amended 2026-09-18** (Gaynor's written feedback on the FAQ page, then her
+  WhatsApp reply to a follow-up, both relayed by Courtenay): the answer to
+  "can we go straight to Silver / Gold / Platinum?" is **yes, if at the
+  right obedience level** — Platinum included.
+  "Anyone can join any of the groups provided their dog is at the right
+  level." "Platinum course dates are dictated by having enough people
+  wanting to go to the course, it just depends on the demand for the
+  course." (WhatsApp, 2026-09-18)
+  The Silver, Gold and Platinum "Who it's for" lines now read "<previous
+  level> graduates, or dogs already at that level"; Platinum's start note
+  says it runs on demand rather than being agreed at Gold graduation.
 
 ## Puppy Socialisation
 
@@ -404,8 +418,9 @@ confirmed; quote them as policy, not as Gaynor's verbatim words:
 - **Bronze minimum age — 12 months and over.** Segment 215's "anything
   over two and a half months" is a mis-hearing of "twelve months"; the
   site's Bronze minimum stands.
-- **Platinum's day — no fixed day.** Deliberately unstated: dates and day
-  are agreed with each group at Gold graduation. The At a glance block
+- **Platinum's day — no fixed day.** Deliberately unstated: a course runs
+  when there is enough demand (Gaynor, 2026-09-18; this replaces "agreed
+  with each group at Gold graduation"). The At a glance block
   shows no "When" row for Platinum; do not restore "Saturday afternoons".
 - **The £50 deposit — confirmed.** Non-refundable, by bank transfer, none
   for Puppy Socialisation.

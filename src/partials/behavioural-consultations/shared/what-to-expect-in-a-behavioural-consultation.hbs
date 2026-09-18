@@ -6,8 +6,15 @@
     diagnosis of your dog's aggression problem.
   </p>
   <p>
+    {{!-- Gaynor, 2026-09-18: a dog-on-person consultation tests with A1K9
+          staff, not A1K9 dogs, so the record says which it is. --}}
+    {{#if (eq model.aggressionTowards "people")}}
+    Then she will test your dog for aggressive behaviour towards people using A1K9 staff if necessary, enabling her
+    to observe your dog's conduct which again aids in diagnosis.
+    {{else}}
     Then she will test your dog for its aggressive behaviour towards other dogs using A1K9 dogs as stooge dogs if
-    necessary, enabling her to observe your dog's conduct which again aids in diagnosis. Gaynor will then work with your
+    necessary, enabling her to observe your dog's conduct which again aids in diagnosis.
+    {{/if}} Gaynor will then work with your
     dog to evaluate what is the best way to rehabilitate him/her.
   </p>
   <p>
@@ -16,11 +23,6 @@
   <p>
     Once this is established, Gaynor will then show you the techniques and skills required to use whatever equipment
     she thinks would be best to rehabilitate your dog.
-  </p>
-  <p>
-    Gaynor may ask you to attend a behavioural modification programme or stay in touch via email or telephone, to
-    enable her to monitor your progress. After the consultation she will write a full report and send a copy to your vet
-    unless you request otherwise.
   </p>
   <p class="mb-0">
     While you're waiting to be seen, try not to confront your dog over whatever the problem is: if he's picked

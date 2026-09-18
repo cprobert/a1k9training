@@ -300,6 +300,34 @@ below is that file's segment number.
   **Replaces:** the site's former line, "One-to-one and behavioural
   consultations are arranged to suit you… prices when you get in touch."
 
+- **Aggression consultations are always at A1K9, never at home** (added
+  2026-09-18, Gaynor's WhatsApp feedback on the consultation pages, relayed
+  by Courtenay). Applies to both dog-on-dog and dog-on-person aggression;
+  the £130 home visit remains for other behavioural work.
+  "Any dog aggression consultation must be done at A1K9 training grounds.
+  (too dangerous at home)"
+
+- **Booking a session: form, reply, phone call** (2026-09-18, same
+  source). Step 1, send the form (unchanged). "Step two. Gaynor will reply
+  to your email giving you all the information you need. Step 3. Phone
+  Gaynor to have a chat about the problem you are having with your dog and
+  make an appointment if deemed necessary."
+
+- **"What to expect" ends at the equipment demonstration** (2026-09-18,
+  same source). The site no longer says Gaynor may put you on a
+  rehabilitation programme or monitor you by email/phone, nor that she
+  writes a full report for your vet after an ordinary consultation. (The
+  insurance-referral route's written report, in the `cons-referral` FAQ, is
+  a separate statement and stands.)
+
+- **Dog-on-person consultations test with A1K9 staff, not A1K9 dogs**
+  (2026-09-18, same source). "She will test your dog for aggressive
+  behaviour towards people using a1k9 staff if necessary."
+
+- **Aggression experience: over 20 years** (2026-09-18, same source),
+  replacing "15 years" on the aggression pages. Given for the dog-on-person
+  page; applied to the identical sentence on the dog-on-dog page too.
+
 - **Usually seen within about a week of enquiring.**
   "I normally work one week ahead." [seg 251]
 

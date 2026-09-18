@@ -6,6 +6,9 @@
   furniture now rather than FAQ answers. Two shapes, chosen by the model's
   `glance`: "course" for the six group courses, "session" for one-to-one work
   and behaviour consultations, which are priced per visit and have no dates.
+  A session record carrying `atA1K9Only` (the two aggression consultations:
+  Gaynor will not do aggression work at a client's home) swaps the "At your
+  home" price for a "Where" cell saying so.
 
   Per-page values come from the model (`ages`, `when`, `price`, `schedule`,
   `nextStart`, `startNote`, `askVetDate`); everything shared comes from
@@ -50,6 +53,12 @@
         </dd>
       </div>
 
+      {{#if model.atA1K9Only}}
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Where</dt>
+        <dd class="mt-1 mb-0">Always at A1K9. An aggression consultation is too dangerous to do at home.</dd>
+      </div>
+      {{else}}
       <div>
         <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">At your home</dt>
         <dd class="mt-1 mb-0">
@@ -57,6 +66,7 @@
           <span class="text-ink-600">{{config.business.sessions.travelNote}}</span>
         </dd>
       </div>
+      {{/if}}
 
       <div>
         <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">How soon</dt>

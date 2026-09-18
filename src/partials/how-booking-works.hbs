@@ -18,7 +18,10 @@
     {{> "how-booking-works" session=true}}
       one-to-one and consultation pages (model.glance === "session") — three
       steps, no deposit and no balance: those are course facts and do not
-      apply to a single session
+      apply to a single session. Steps 2 and 3 are Gaynor's own wording
+      (2026-09-18): she replies by email, then you ring her, and an
+      appointment follows only if she thinks one is needed — so the strip
+      promises no time and no venue
 
   /contact/ renders the form with `steps=false` and so gets none of this: a
   general enquiry is not a booking yet, and the four steps would be answering
@@ -43,11 +46,11 @@
       </li>
       <li>
         <span class="badge">Step 2</span>
-        <p class="mt-2 mb-0">She comes back with a time. {{config.business.sessions.lead}}. Email, text or WhatsApp are all fine; if you have not heard, ring or text again.</p>
+        <p class="mt-2 mb-0">Gaynor will reply to your email giving you all the information you need.</p>
       </li>
       <li>
         <span class="badge">Step 3</span>
-        <p class="mt-2 mb-0">{{config.business.sessions.length}} with Gaynor, at A1K9 ({{config.business.sessions.atA1K9}}) or at your home ({{config.business.sessions.atHome}}, {{config.business.sessions.travelNote}}).</p>
+        <p class="mt-2 mb-0">Phone Gaynor on <a href="tel:{{config.business.telephone}}" class="font-medium text-brand-700 underline underline-offset-4 hover:text-brand-800">{{config.business.telephoneDisplay}}</a> to have a chat about the problem you are having with your dog, and make an appointment if it is needed.</p>
       </li>
     </ol>
   {{else}}

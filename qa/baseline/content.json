@@ -1,6 +1,6 @@
 {
   "label": "baseline",
-  "generated": "2026-09-18T12:08:34.880Z",
+  "generated": "2026-09-18T12:28:57.770Z",
   "siteDir": "C:\\Code\\kiss\\a1k9training\\docs",
   "pages": {
     "/": {
@@ -219,13 +219,13 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 236207,
+      "totalBytes": 236237,
       "bytesByType": {
         "document": 30752,
-        "stylesheet": 68056,
         "image": 110920,
-        "font": 13558,
-        "script": 12921
+        "stylesheet": 68086,
+        "script": 12921,
+        "font": 13558
       }
     },
     "/404": {
@@ -303,10 +303,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 113670,
+      "totalBytes": 113700,
       "bytesByType": {
         "document": 19135,
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "font": 13558,
         "script": 12921
       }
@@ -341,7 +341,7 @@
           "text": "Explore"
         }
       ],
-      "visibleText": "Skip to content\nGaynor Probert\nMenu\nHome\n›\nAbout Us\nGaynor's Philosophy\nGaynor believes these free runs help to make the dogs social and well balanced.\nGaynor Probert - My Philosophy\nGaynor believes that dogs have been both her teacher and her students and that there is no better way to learn than to observe dogs when they are running free and able to express themselves dog to dog in a natural way.\nIt takes skill and experience to run a pack of dogs that are meeting for the first time and Gaynor is fortunate enough to have experienced dogs in this way for over 15 years, with a wide variety of breeds even though she is a German Shepherd specialist.\nThe way that dogs will accept other dogs is amazing to see. They quickly settle down and learn the rules as taught by the other dogs. Even aggressive dogs that are on a behavioural rehabilitation programme can successfully integrate without too much issue.\nDogs do not feel pity for dogs that have had a bad start with their previous owners; they teach the rules for safety and harmony and live in the moment.\nEvery week at the beginning and the end of the classes the dogs are allowed to experience running free and playing with their new furry friends to expend their energy and this helps them to be calmer and more well balanced.\nNext: About Facilities\nTalk to Gaynor\n07798 500390\nOr send a message and she will get back to you.\nWhere we train\nTwo venues near Swansea, South Wales: the A1K9 Training Grounds at Pontarddulais, and Llys Nini Animal Centre at Penllergaer when the weather is against us. See both on the map.\nExplore\nDog training courses\nBehavioural consultations\nAbout Gaynor and the team\nFrequently asked questions\n© 2026 Gaynor Probert\nBack to top",
+      "visibleText": "Skip to content\nGaynor Probert\nMenu\nHome\n›\nAbout Us\nGaynor's Philosophy\nGaynor believes these free runs help to make the dogs social and well balanced.\nGaynor Probert - My Philosophy\nGaynor believes that dogs have been both her teacher and her students and that there is no better way to learn than to observe dogs when they are running free and able to express themselves dog to dog in a natural way.\nIt takes skill and experience to run a pack of dogs that are meeting for the first time and Gaynor is fortunate enough to have experienced dogs in this way for over 20 years, with a wide variety of breeds even though she is a German Shepherd specialist.\nThe way that dogs will accept other dogs is amazing to see. They quickly settle down and learn the rules as taught by the other dogs. Even aggressive dogs that are on a behavioural rehabilitation programme can successfully integrate without too much issue.\nDogs do not feel pity for dogs that have had a bad start with their previous owners; they teach the rules for safety and harmony and live in the moment.\nEvery week at the beginning and the end of the classes the dogs are allowed to experience running free and playing with their new furry friends to expend their energy and this helps them to be calmer and more well balanced.\nNext: About Facilities\nTalk to Gaynor\n07798 500390\nOr send a message and she will get back to you.\nWhere we train\nTwo venues near Swansea, South Wales: the A1K9 Training Grounds at Pontarddulais, and Llys Nini Animal Centre at Penllergaer when the weather is against us. See both on the map.\nExplore\nDog training courses\nBehavioural consultations\nAbout Gaynor and the team\nFrequently asked questions\n© 2026 Gaynor Probert\nBack to top",
       "internalLinks": [
         "/about",
         "/",
@@ -402,10 +402,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 263906,
+      "totalBytes": 263936,
       "bytesByType": {
         "document": 21420,
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 147951,
         "font": 13558,
         "script": 12921
@@ -576,10 +576,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 291427,
+      "totalBytes": 291457,
       "bytesByType": {
         "document": 24135,
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 172757,
         "font": 13558,
         "script": 12921
@@ -751,10 +751,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 217133,
+      "totalBytes": 217163,
       "bytesByType": {
         "document": 31308,
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 91290,
         "font": 13558,
         "script": 12921
@@ -843,10 +843,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 175247,
+      "totalBytes": 175277,
       "bytesByType": {
         "document": 22010,
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 58702,
         "font": 13558,
         "script": 12921
@@ -984,10 +984,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 184311,
+      "totalBytes": 184341,
       "bytesByType": {
+        "stylesheet": 68086,
         "image": 56242,
-        "stylesheet": 68056,
         "font": 13558,
         "document": 33534,
         "script": 12921
@@ -1181,9 +1181,9 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 221214,
+      "totalBytes": 221244,
       "bytesByType": {
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 90135,
         "font": 13558,
         "document": 36544,
@@ -1378,9 +1378,9 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 223877,
+      "totalBytes": 223907,
       "bytesByType": {
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 92907,
         "font": 13558,
         "document": 36435,
@@ -1588,13 +1588,13 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 669530,
+      "totalBytes": 669072,
       "bytesByType": {
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 107376,
         "font": 13558,
-        "document": 28845,
-        "script": 451649,
+        "document": 28359,
+        "script": 451647,
         "xhr": 46
       }
     },
@@ -1660,7 +1660,7 @@
           "text": "Explore"
         }
       ],
-      "visibleText": "Skip to content\nGaynor Probert\nMenu\nHome\n›\nCourses\nOur Dog Training Courses\nDogs love to learn and experience new things and our dog training courses are an excellent way to spend quality time with your canine companion while teaching them new and exciting things.\nThere is also the added bonus that your dog will make new furry friends and be allowed to play and run off lead with them.\nGaynor Probert offers a range of courses every weekend at A1K9 Behaviour and Training Academy\nShe holds courses to suit all levels of ability. Gaynor has the specialist knowledge and techniques to help you to overcome any problems you may have when you train your dog.\nPuppy Socialisation\nGood socialisation is the best way to ensure a friendly, well-adjusted puppy.\nClicker training is one of the ways we teach puppies, it's fun and all the family can join in.\nRead more\nJunior Course\nDeveloped for young dogs between 6 and 12 months and suitable for all breeds, the Junior course is the first step on our training ladder and a natural progression from puppy classes.\nRead more\nBronze Obedience\nThe two main objectives of this course is to teach you the owner, how to train your dog to walk on a lead without pulling and to get your dog to come back to you when they are called.\nRead more\nSilver Obedience\nThis course teaches you the next stage of dog training, cementing what you have learned and teaching you hands free training.\nRead more\nGold Obedience\nThe Gold obedience course is for the enthusiastic dog owner to teach their dog off lead obedience and to respond to their commands when there are distractions around.\nRead more\nPlatinum Obedience\nThis obedience course is for the real enthusiast, taking your skills to the highest level, with distance control and off lead obedience and agility.\nRead more\nOne to One\nThis is a bespoke training session with the experienced and qualified dog trainer and behaviourist, Gaynor Probert who is the CFBA Practitioner of the year 2014. She will work on the aspects of dog training that you are finding difficult to resolve your problems.\nRead more\nFrequently Asked Questions\nQ1: My dog is X months old: Puppy, Junior or Bronze? Can we go up early, or skip Junior if we've done classes elsewhere?\n▾\nQ2: Do I need a group course, a one to one, or a behaviour consultation?\n▾\nQ3: We've just adopted a rescue dog, or have an older dog that has never been trained. Can we join, and is it too late?\n▾\nQ4: We have two dogs (or littermates). Can they both come, does each need a handler, and is there a discount?\n▾\nQ5: Can we join a course that's already started, and what if we miss a week?\n▾\nAll questions and answers →\nNext: Puppy Socialisation\nTalk to Gaynor\n07798 500390\nOr send a message and she will get back to you.\nWhere we train\nTwo venues near Swansea, South Wales: the A1K9 Training Grounds at Pontarddulais, and Llys Nini Animal Centre at Penllergaer when the weather is against us. See both on the map.\nExplore\nDog training courses\nBehavioural consultations\nAbout Gaynor and the team\nFrequently asked questions\n© 2026 Gaynor Probert\nBack to top",
+      "visibleText": "Skip to content\nGaynor Probert\nMenu\nHome\n›\nCourses\nOur Dog Training Courses\nDogs love to learn and experience new things and our dog training courses are an excellent way to spend quality time with your canine companion while teaching them new and exciting things.\nThere is also the added bonus that your dog will make new furry friends and be allowed to play and run off lead with them.\nGaynor Probert offers a range of courses every weekend at A1K9 Behaviour and Training Academy\nShe holds courses to suit all levels of ability. Gaynor has the specialist knowledge and techniques to help you to overcome any problems you may have when you train your dog.\nPuppy Socialisation\nGood socialisation is the best way to ensure a friendly, well-adjusted puppy, and it's fun and all the family can join in.\nRead more\nJunior Course\nDeveloped for young dogs between 6 and 12 months and suitable for all breeds, the Junior course is the first step on our training ladder and a natural progression from puppy classes.\nRead more\nBronze Obedience\nThe two main objectives of this course is to teach you the owner, how to train your dog to walk on a lead without pulling and to get your dog to come back to you when they are called.\nRead more\nSilver Obedience\nThis course teaches you the next stage of dog training, cementing what you have learned and teaching you hands free training.\nRead more\nGold Obedience\nThe Gold obedience course is for the enthusiastic dog owner to teach their dog off lead obedience and to respond to their commands when there are distractions around.\nRead more\nPlatinum Obedience\nThis obedience course is for the real enthusiast, taking your skills to the highest level, with distance control and off lead obedience and agility.\nRead more\nOne to One\nThis is a bespoke training session with the experienced and qualified dog trainer and behaviourist, Gaynor Probert who is the CFBA Practitioner of the year 2014. She will work on the aspects of dog training that you are finding difficult to resolve your problems.\nRead more\nFrequently Asked Questions\nQ1: My dog is X months old: Puppy, Junior or Bronze? Can we go up early, or skip Junior if we've done classes elsewhere?\n▾\nQ2: Do I need a group course, a one to one, or a behaviour consultation?\n▾\nQ3: We've just adopted a rescue dog, or have an older dog that has never been trained. Can we join, and is it too late?\n▾\nQ4: We have two dogs (or littermates). Can they both come, does each need a handler, and is there a discount?\n▾\nQ5: Can we join a course that's already started, and what if we miss a week?\n▾\nAll questions and answers →\nNext: Puppy Socialisation\nTalk to Gaynor\n07798 500390\nOr send a message and she will get back to you.\nWhere we train\nTwo venues near Swansea, South Wales: the A1K9 Training Grounds at Pontarddulais, and Llys Nini Animal Centre at Penllergaer when the weather is against us. See both on the map.\nExplore\nDog training courses\nBehavioural consultations\nAbout Gaynor and the team\nFrequently asked questions\n© 2026 Gaynor Probert\nBack to top",
       "internalLinks": [
         "/courses",
         "/",
@@ -1790,10 +1790,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 244310,
+      "totalBytes": 244271,
       "bytesByType": {
-        "document": 31925,
-        "stylesheet": 68056,
+        "document": 31856,
+        "stylesheet": 68086,
         "image": 117850,
         "font": 13558,
         "script": 12921
@@ -2021,12 +2021,12 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 205077,
+      "totalBytes": 205107,
       "bytesByType": {
-        "stylesheet": 68056,
+        "document": 39415,
+        "stylesheet": 68086,
         "image": 71127,
         "font": 13558,
-        "document": 39415,
         "script": 12921
       }
     },
@@ -2286,11 +2286,11 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 282149,
+      "totalBytes": 282179,
       "bytesByType": {
         "document": 37407,
+        "stylesheet": 68086,
         "image": 150207,
-        "stylesheet": 68056,
         "font": 13558,
         "script": 12921
       }
@@ -2542,10 +2542,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 234224,
+      "totalBytes": 234254,
       "bytesByType": {
         "document": 39994,
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 99695,
         "font": 13558,
         "script": 12921
@@ -2754,11 +2754,11 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 280464,
+      "totalBytes": 280494,
       "bytesByType": {
         "document": 33290,
+        "stylesheet": 68086,
         "image": 152639,
-        "stylesheet": 68056,
         "font": 13558,
         "script": 12921
       }
@@ -3018,12 +3018,12 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 233695,
+      "totalBytes": 233725,
       "bytesByType": {
-        "document": 35707,
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 103453,
         "font": 13558,
+        "document": 35707,
         "script": 12921
       }
     },
@@ -3264,9 +3264,9 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 265480,
+      "totalBytes": 265510,
       "bytesByType": {
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 128751,
         "font": 13558,
         "document": 42194,
@@ -3530,9 +3530,9 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 249902,
+      "totalBytes": 249932,
       "bytesByType": {
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "image": 116928,
         "font": 13558,
         "document": 38439,
@@ -3637,10 +3637,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 155990,
+      "totalBytes": 156020,
       "bytesByType": {
         "document": 61455,
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "font": 13558,
         "script": 12921
       }
@@ -3713,10 +3713,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 112707,
+      "totalBytes": 112737,
       "bytesByType": {
         "document": 18172,
-        "stylesheet": 68056,
+        "stylesheet": 68086,
         "font": 13558,
         "script": 12921
       }

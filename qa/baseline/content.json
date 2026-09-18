@@ -1,7 +1,7 @@
 {
   "label": "baseline",
-  "generated": "2026-09-15T20:37:26.533Z",
-  "siteDir": "C:\\Code\\kiss\\a1k9training\\qa\\.baseline-site",
+  "generated": "2026-09-18T10:42:37.622Z",
+  "siteDir": "C:\\Code\\kiss\\a1k9training\\docs",
   "pages": {
     "/": {
       "title": "Dog Behaviour and Trainer South Wales | A1K9 Training",
@@ -221,10 +221,10 @@
       "thirdPartyFailedRequests": [],
       "totalBytes": 236207,
       "bytesByType": {
-        "document": 30752,
         "stylesheet": 68056,
         "image": 110920,
         "font": 13558,
+        "document": 30752,
         "script": 12921
       }
     },
@@ -306,8 +306,8 @@
       "totalBytes": 113670,
       "bytesByType": {
         "document": 19135,
-        "font": 13558,
         "stylesheet": 68056,
+        "font": 13558,
         "script": 12921
       }
     },
@@ -701,8 +701,8 @@
         {
           "src": "/images/about/gaynor-probert-canine-and-feline-practitioner-of-the-year-2014-v1.webp",
           "alt": "Gaynor Probert receiving the Canine and Feline Practitioner of the Year 2014 award",
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "naturalWidth": 300,
+          "naturalHeight": 400,
           "renderedWidth": 298,
           "loading": "lazy",
           "hasDimensionAttrs": true
@@ -751,11 +751,11 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 217133,
+      "totalBytes": 238349,
       "bytesByType": {
         "document": 31308,
+        "image": 112506,
         "stylesheet": 68056,
-        "image": 91290,
         "font": 13558,
         "script": 12921
       }
@@ -848,8 +848,8 @@
         "document": 22010,
         "stylesheet": 68056,
         "image": 58702,
-        "font": 13558,
-        "script": 12921
+        "script": 12921,
+        "font": 13558
       }
     },
     "/behavioural-consultations/": {
@@ -961,8 +961,8 @@
         {
           "src": "/images/consultations/behavioural-assessment-v1.webp",
           "alt": "Gaynor Probert assessing a dog's behaviour on the table during a group consultation session",
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "naturalWidth": 900,
+          "naturalHeight": 641,
           "renderedWidth": 341,
           "loading": "lazy",
           "hasDimensionAttrs": true
@@ -993,10 +993,10 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 184637,
+      "totalBytes": 280086,
       "bytesByType": {
         "stylesheet": 68056,
-        "image": 56242,
+        "image": 151691,
         "font": 13558,
         "document": 33860,
         "script": 12921
@@ -1192,11 +1192,11 @@
       "thirdPartyFailedRequests": [],
       "totalBytes": 221355,
       "bytesByType": {
-        "stylesheet": 68056,
-        "image": 90135,
-        "font": 13558,
         "document": 36685,
-        "script": 12921
+        "image": 90135,
+        "stylesheet": 68056,
+        "script": 12921,
+        "font": 13558
       }
     },
     "/behavioural-consultations/dog-on-person-aggression": {
@@ -1389,10 +1389,10 @@
       "thirdPartyFailedRequests": [],
       "totalBytes": 224028,
       "bytesByType": {
-        "document": 36586,
         "stylesheet": 68056,
         "image": 92907,
         "font": 13558,
+        "document": 36586,
         "script": 12921
       }
     },
@@ -1488,8 +1488,8 @@
         {
           "src": "/images/find-us/llys-nini-cafe-exterior-v1.webp",
           "alt": "Caffi Nini, the on-site cafe at Llys Nini Animal Centre",
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "naturalWidth": 900,
+          "naturalHeight": 675,
           "renderedWidth": 164,
           "loading": "lazy",
           "hasDimensionAttrs": true
@@ -1497,8 +1497,8 @@
         {
           "src": "/images/find-us/llys-nini-cafe-interior-v1.webp",
           "alt": "Inside Caffi Nini, serving drinks and snacks at Llys Nini Animal Centre",
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "naturalWidth": 900,
+          "naturalHeight": 675,
           "renderedWidth": 164,
           "loading": "lazy",
           "hasDimensionAttrs": true
@@ -1597,14 +1597,14 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 669041,
+      "totalBytes": 900141,
       "bytesByType": {
         "stylesheet": 68056,
-        "image": 107376,
+        "image": 336796,
         "font": 13558,
-        "document": 28359,
-        "script": 451646,
-        "xhr": 46
+        "document": 29992,
+        "script": 451647,
+        "xhr": 92
       }
     },
     "/courses/": {
@@ -1758,8 +1758,8 @@
         {
           "src": "/images/courses/silver-v1.1.webp",
           "alt": "Dog practising hands-free training during a Silver Obedience session",
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "naturalWidth": 460,
+          "naturalHeight": 250,
           "renderedWidth": 341,
           "loading": "lazy",
           "hasDimensionAttrs": true
@@ -1767,8 +1767,8 @@
         {
           "src": "/images/courses/gold-v1.webp",
           "alt": "Dog responding to commands off lead with distractions during a Gold Obedience session",
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "naturalWidth": 460,
+          "naturalHeight": 250,
           "renderedWidth": 341,
           "loading": "lazy",
           "hasDimensionAttrs": true
@@ -1776,8 +1776,8 @@
         {
           "src": "/images/courses/platinum-v1.webp",
           "alt": "Dog performing advanced off-lead agility during a Platinum Obedience session",
-          "naturalWidth": 0,
-          "naturalHeight": 0,
+          "naturalWidth": 460,
+          "naturalHeight": 250,
           "renderedWidth": 341,
           "loading": "lazy",
           "hasDimensionAttrs": true
@@ -1799,11 +1799,11 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 244310,
+      "totalBytes": 303504,
       "bytesByType": {
         "document": 31925,
         "stylesheet": 68056,
-        "image": 117850,
+        "image": 177044,
         "font": 13558,
         "script": 12921
       }
@@ -2032,10 +2032,10 @@
       "thirdPartyFailedRequests": [],
       "totalBytes": 205077,
       "bytesByType": {
-        "font": 13558,
+        "document": 39415,
         "stylesheet": 68056,
         "image": 71127,
-        "document": 39415,
+        "font": 13558,
         "script": 12921
       }
     },
@@ -2129,7 +2129,7 @@
           "text": "Explore"
         }
       ],
-      "visibleText": "Skip to content\nGaynor Probert\nMenu\nHome\n›\nCourses\n›\nGold Obedience\nGOLD OBEDIENCE COURSE\nThe Gold obedience course is for the enthusiastic dog owner to teach their dog off lead obedience and to respond to their commands when there are distractions around. We also teach new skills to keep your dog interested and enthusiastic.\nAsk about this course\nFocusing When There Are Distractions\nAt a glance\nWHO IT’S FOR\nSilver graduates\nPRICE\n£129.99\n6-week course, 1 hour a week\nWHEN\nSaturday afternoons\nNEXT COURSE STARTS\nSaturday 10 October, 1:00pm\nWHERE\nOutdoors at the Training Grounds; indoors at Llys Nini when it is wet.\nA1K9 Training Grounds, Pontarddulais\nLlys Nini Animal Centre (RSPCA), Penllergaer\nMaps and directions\nCLASS SIZE\nAbout ten dogs, never more than twelve. You can join up to week two.\nBRING\nA collar, a lead and treats your dog likes.\nFor insurance reasons XL Bully dogs, and dogs legally required to be muzzled, cannot join a class.\nThis class is mainly focused on off lead obedience, to a high standard.\nGaynor adds something different, to keep things interesting. She teaches you how to get your dog to use his sense of smell to find his toy.\nYou Will Learn\nOff lead heel work.\nIn this course Gaynor teaches you how to incentivise your dog to stay at your side when you are walking the dog off lead.\nThree minute stay.\nWe continue to practice your dog staying in the same position, aiming now for a three minute stay with people walking around to create a distraction.\nRecall with distraction.\nWe improve the recall by calling your dog back to you when there are lots of distractions, such as other dogs running around and people walking about.\nLeft finish.\nWhen the dog returns back to you and into the present position, Gaynor will then show you how to get the dog to come around you and back into the heel position. This is called the left finish.\nRecall back to heel.\nGaynor will also show you how to recall your dog back to the heelwork position when you are on the move.\nStand\nIt is in this class she teaches you how to get your dog to do a new position and that is the stand. Once your dog knows this we practice sit, down, and stand. Then we teach you the running down.\nFind the toy.\nTo keep your dog interested and motivated she adds a new exercise, teaching you how to get your dog to find his toy when it is amongst others.\nIt is a proven fact that your dog's sense of smell when detecting sweat is a million times better than ours. Your dog will welcome the opportunity to show off his superior sense of smell.\nAgility\nWeather permitting, the dogs continue to enjoy the agility course.\nAs always the dogs run off lead at the beginning and the end of every class for them to socialise.\nDuring this course you will have taught your dog to focus on you when there are distractions around him.\nYou will have taught new disciplines and taken his education to a much higher level.\nLinda with Bella\nA HUGE thank you to Gaynor and her assistants at A1K9. I have just come back from a walk in our local park with Bella, our 15-month-old GSD. This sounds like a normal activity - and it is, but it wasn't for us.\nMonths of weekly training in Gaynor's classes, from Puppy through to Platinum and beyond, has transformed me and my dog. We have gone from a dog that I couldn't control, one that wouldn't listen to me and one that ran off barking at other people and other dogs TO an obedient, well behaved dog that for the first time today I had the confidence to let off the lead in the park. She listened to me, she socialised beautifully, she came back to heel when I called her. I cannot thank Gaynor enough for this. It has been 10 months of hard work and lots of practice in between lessons, but it has paid off.\nTotally recommend this training with Gaynor at A1K9. Thanks guys and see you Saturday, from a very happy Linda and family xxx\nFrequently Asked Questions\nQ1: Can we go straight into Silver, Gold or Platinum without the earlier courses?\n▾\nQ2: How do the awards work, what if we don't pass, and where do we pick up after a gap?\n▾\nQ3: My dog isn't aggressive, just over-excited: barks and pulls to get to other dogs. Is a class right for him?\n▾\nAll questions and answers →\nAsk about Gold Obedience\nTell Gaynor a little about your dog and she will come back to you with whether this is the right course to start on.\nHow booking works\nSTEP 1\nSend the enquiry form with your dog’s name and age.\nSTEP 2\nGaynor replies with the dates and the details. Email, text or WhatsApp are all fine; if you have not heard, ring or text again, as some enquiries reach A1K9 first and take longer to get to her.\nSTEP 3\nConfirm your place with a £50 deposit: non-refundable, by bank transfer.\nSTEP 4\nBalance in cash on the first week. No instalments, no multi-dog discount. A WhatsApp group starts nearer the course.\nAbout you\nYour name\nEmail\nMobile number\nSo Gaynor can add you to the class WhatsApp group.\nHow should Gaynor reply?\nEmail\nText or WhatsApp\nPhone call\nAbout your dog\nYour dog’s name\nYour dog’s age\nRoughly is fine. It decides which course suits.\nAnything else?\nSend enquiry\nOr call Gaynor on 07798 500390.\nWhere Gold Obedience fits\nPuppy\nJunior\nBronze\nSilver\nGold\nPlatinum\nJunior through to Platinum is a step-by-step progression: each course prepares your dog for the next. Puppy Socialisation is a standalone class, so your puppy does not need it before starting Junior.\nSuccessful participants of this course are invited to graduate to our:\nNext: Platinum Obedience\nWould you rather train privately? Gaynor also offers one to one sessions.\nTalk to Gaynor\n07798 500390\nOr send a message and she will get back to you.\nWhere we train\nTwo venues near Swansea, South Wales: the A1K9 Training Grounds at Pontarddulais, and Llys Nini Animal Centre at Penllergaer when the weather is against us. See both on the map.\nExplore\nDog training courses\nBehavioural consultations\nAbout Gaynor and the team\nFrequently asked questions\n© 2026 Gaynor Probert\nBack to top",
+      "visibleText": "Skip to content\nGaynor Probert\nMenu\nHome\n›\nCourses\n›\nGold Obedience\nGOLD OBEDIENCE COURSE\nThe Gold obedience course is for the enthusiastic dog owner to teach their dog off lead obedience and to respond to their commands when there are distractions around. We also teach new skills to keep your dog interested and enthusiastic.\nAsk about this course\nFocusing When There Are Distractions\nAt a glance\nWHO IT’S FOR\nSilver graduates, or dogs already at that level\nPRICE\n£129.99\n6-week course, 1 hour a week\nWHEN\nSaturday afternoons\nNEXT COURSE STARTS\nSaturday 10 October, 1:00pm\nWHERE\nOutdoors at the Training Grounds; indoors at Llys Nini when it is wet.\nA1K9 Training Grounds, Pontarddulais\nLlys Nini Animal Centre (RSPCA), Penllergaer\nMaps and directions\nCLASS SIZE\nAbout ten dogs, never more than twelve. You can join up to week two.\nBRING\nA collar, a lead and treats your dog likes.\nFor insurance reasons XL Bully dogs, and dogs legally required to be muzzled, cannot join a class.\nThis class is mainly focused on off lead obedience, to a high standard.\nGaynor adds something different, to keep things interesting. She teaches you how to get your dog to use his sense of smell to find his toy.\nYou Will Learn\nOff lead heel work.\nIn this course Gaynor teaches you how to incentivise your dog to stay at your side when you are walking the dog off lead.\nThree minute stay.\nWe continue to practice your dog staying in the same position, aiming now for a three minute stay with people walking around to create a distraction.\nRecall with distraction.\nWe improve the recall by calling your dog back to you when there are lots of distractions, such as other dogs running around and people walking about.\nLeft finish.\nWhen the dog returns back to you and into the present position, Gaynor will then show you how to get the dog to come around you and back into the heel position. This is called the left finish.\nRecall back to heel.\nGaynor will also show you how to recall your dog back to the heelwork position when you are on the move.\nStand\nIt is in this class she teaches you how to get your dog to do a new position and that is the stand. Once your dog knows this we practice sit, down, and stand. Then we teach you the running down.\nFind the toy.\nTo keep your dog interested and motivated she adds a new exercise, teaching you how to get your dog to find his toy when it is amongst others.\nIt is a proven fact that your dog's sense of smell when detecting sweat is a million times better than ours. Your dog will welcome the opportunity to show off his superior sense of smell.\nAgility\nWeather permitting, the dogs continue to enjoy the agility course.\nAs always the dogs run off lead at the beginning and the end of every class for them to socialise.\nDuring this course you will have taught your dog to focus on you when there are distractions around him.\nYou will have taught new disciplines and taken his education to a much higher level.\nLinda with Bella\nA HUGE thank you to Gaynor and her assistants at A1K9. I have just come back from a walk in our local park with Bella, our 15-month-old GSD. This sounds like a normal activity - and it is, but it wasn't for us.\nMonths of weekly training in Gaynor's classes, from Puppy through to Platinum and beyond, has transformed me and my dog. We have gone from a dog that I couldn't control, one that wouldn't listen to me and one that ran off barking at other people and other dogs TO an obedient, well behaved dog that for the first time today I had the confidence to let off the lead in the park. She listened to me, she socialised beautifully, she came back to heel when I called her. I cannot thank Gaynor enough for this. It has been 10 months of hard work and lots of practice in between lessons, but it has paid off.\nTotally recommend this training with Gaynor at A1K9. Thanks guys and see you Saturday, from a very happy Linda and family xxx\nFrequently Asked Questions\nQ1: Can we go straight into Silver, Gold or Platinum without the earlier courses?\n▾\nQ2: How do the awards work, what if we don't pass, and where do we pick up after a gap?\n▾\nQ3: My dog isn't aggressive, just over-excited: barks and pulls to get to other dogs. Is a class right for him?\n▾\nAll questions and answers →\nAsk about Gold Obedience\nTell Gaynor a little about your dog and she will come back to you with whether this is the right course to start on.\nHow booking works\nSTEP 1\nSend the enquiry form with your dog’s name and age.\nSTEP 2\nGaynor replies with the dates and the details. Email, text or WhatsApp are all fine; if you have not heard, ring or text again, as some enquiries reach A1K9 first and take longer to get to her.\nSTEP 3\nConfirm your place with a £50 deposit: non-refundable, by bank transfer.\nSTEP 4\nBalance in cash on the first week. No instalments, no multi-dog discount. A WhatsApp group starts nearer the course.\nAbout you\nYour name\nEmail\nMobile number\nSo Gaynor can add you to the class WhatsApp group.\nHow should Gaynor reply?\nEmail\nText or WhatsApp\nPhone call\nAbout your dog\nYour dog’s name\nYour dog’s age\nRoughly is fine. It decides which course suits.\nAnything else?\nSend enquiry\nOr call Gaynor on 07798 500390.\nWhere Gold Obedience fits\nPuppy\nJunior\nBronze\nSilver\nGold\nPlatinum\nJunior through to Platinum is a step-by-step progression: each course prepares your dog for the next. Puppy Socialisation is a standalone class, so your puppy does not need it before starting Junior.\nSuccessful participants of this course are invited to graduate to our:\nNext: Platinum Obedience\nWould you rather train privately? Gaynor also offers one to one sessions.\nTalk to Gaynor\n07798 500390\nOr send a message and she will get back to you.\nWhere we train\nTwo venues near Swansea, South Wales: the A1K9 Training Grounds at Pontarddulais, and Llys Nini Animal Centre at Penllergaer when the weather is against us. See both on the map.\nExplore\nDog training courses\nBehavioural consultations\nAbout Gaynor and the team\nFrequently asked questions\n© 2026 Gaynor Probert\nBack to top",
       "internalLinks": [
         "/courses/gold-obedience",
         "/",
@@ -2295,12 +2295,12 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 282563,
+      "totalBytes": 282149,
       "bytesByType": {
-        "document": 37821,
+        "document": 37407,
+        "font": 13558,
         "stylesheet": 68056,
         "image": 150207,
-        "font": 13558,
         "script": 12921
       }
     },
@@ -2553,10 +2553,10 @@
       "thirdPartyFailedRequests": [],
       "totalBytes": 234224,
       "bytesByType": {
-        "font": 13558,
+        "document": 39994,
         "stylesheet": 68056,
         "image": 99695,
-        "document": 39994,
+        "font": 13558,
         "script": 12921
       }
     },
@@ -2766,9 +2766,9 @@
       "totalBytes": 280365,
       "bytesByType": {
         "document": 33191,
-        "font": 13558,
         "stylesheet": 68056,
         "image": 152639,
+        "font": 13558,
         "script": 12921
       }
     },
@@ -2862,7 +2862,7 @@
           "text": "Explore"
         }
       ],
-      "visibleText": "Skip to content\nGaynor Probert\nMenu\nHome\n›\nCourses\n›\nPlatinum Obedience\nPLATINUM COURSE\nThis obedience course is for the real enthusiast, taking your skills to the highest level, with distance control and off lead obedience and agility.\nAsk about this course\nTraining to the Highest Standards\nAt a glance\nWHO IT’S FOR\nGold graduates, by invitation\nPRICE\n£129.99\n6-week course, 1 hour a week\nNEXT COURSE STARTS\nDates are agreed with the group at Gold graduation\nWHERE\nOutdoors at the Training Grounds; indoors at Llys Nini when it is wet.\nA1K9 Training Grounds, Pontarddulais\nLlys Nini Animal Centre (RSPCA), Penllergaer\nMaps and directions\nCLASS SIZE\nAbout ten dogs, never more than twelve. You can join up to week two.\nBRING\nA collar, a lead and treats your dog likes.\nFor insurance reasons XL Bully dogs, and dogs legally required to be muzzled, cannot join a class.\nCongratulations, you have passed your Gold test.\nIn this course Gaynor will teach you how to get your dog to do the following disciplines:\nChange of pace advanced.\nHeelwork and change of pace are practised while weaving between other people and their dogs.\nThrough a Door\nGoing through a door in a controlled manner is now practised off lead.\nStop and drop\nGaynor will show you how to get your dog to stop and drop. It is also known as the emergency down. If ever you think your dog is running into trouble, you can use the emergency down.\nOut of sight down.\nIn this class we will practice down stay, sit stay, and stand stay, plus stay while the handler goes out of sight for 4 minutes.\nAdvanced recall\nRecall is also done with maximum distraction.\nAdvanced recall to heel.\nRecall to heel is practised with all the dogs doing this at the same time.\nDistance control\nChange of position is done from a distance.\nAdvanced scent work\nGaynor adds more of a challenge to the scent work when she hides the article and then your dog is commanded to find it.\nAgility\nThe agility is done off lead as now you are able to have full control of your dog.\nIn this course you will have taught your dog off lead control including distance commands.\nAll sorts of control under lots of different circumstances; this is obedience at the highest level.\nAs we said at the beginning, a well behaved dog is a joy to live with and when you have completed your courses with Gaynor Probert at A1K9 Behaviour and Training Academy, you can demonstrate that your dog can behave in the home, in public places and in the presence of other dogs in a manner that will reflect credit on you and your dog.\nDogs that have been trained and have good manners are more likely to be accepted in hotels or kennels and can be looked after by others should the need arise.\nThe dog's life is not curtailed because he does not behave.\nYour dog can live a full and happy life, being with you and sharing your life wherever you are.\nGlenda and Bryn\nA big thank you to Gaynor for all the patient help and advice she has given in training me and our Working Cocker Spaniel Bryn. We started in puppy classes where he was affectionately(!!?) known as \"The Pocket Rocket\" and often seen as a black dot in the distance but Gaynor's support and expertise has seen our (continuing) progress through the ranks to the Platinum group.\nThanks again Gaynor! Your training means that Bryn can enjoy the freedom of a full and active life and it's a pleasure to be out and about with him. You made us work hard but we've had a lot of fun too.\nGlenda\nFrequently Asked Questions\nQ1: Can we go straight into Silver, Gold or Platinum without the earlier courses?\n▾\nQ2: How do the awards work, what if we don't pass, and where do we pick up after a gap?\n▾\nAll questions and answers →\nAsk about Platinum Obedience\nTell Gaynor a little about your dog and she will come back to you with whether this is the right course to start on.\nHow booking works\nSTEP 1\nSend the enquiry form with your dog’s name and age.\nSTEP 2\nGaynor replies with the dates and the details. Email, text or WhatsApp are all fine; if you have not heard, ring or text again, as some enquiries reach A1K9 first and take longer to get to her.\nSTEP 3\nConfirm your place with a £50 deposit: non-refundable, by bank transfer.\nSTEP 4\nBalance in cash on the first week. No instalments, no multi-dog discount. A WhatsApp group starts nearer the course.\nAbout you\nYour name\nEmail\nMobile number\nSo Gaynor can add you to the class WhatsApp group.\nHow should Gaynor reply?\nEmail\nText or WhatsApp\nPhone call\nAbout your dog\nYour dog’s name\nYour dog’s age\nRoughly is fine. It decides which course suits.\nAnything else?\nSend enquiry\nOr call Gaynor on 07798 500390.\nWhere Platinum Obedience fits\nPuppy\nJunior\nBronze\nSilver\nGold\nPlatinum\nJunior through to Platinum is a step-by-step progression: each course prepares your dog for the next. Puppy Socialisation is a standalone class, so your puppy does not need it before starting Junior.\nPlatinum is the highest of our group courses. To keep developing, Gaynor works one to one with dogs and owners on whatever they want to take further.\nOne to One training\nTalk to Gaynor\n07798 500390\nOr send a message and she will get back to you.\nWhere we train\nTwo venues near Swansea, South Wales: the A1K9 Training Grounds at Pontarddulais, and Llys Nini Animal Centre at Penllergaer when the weather is against us. See both on the map.\nExplore\nDog training courses\nBehavioural consultations\nAbout Gaynor and the team\nFrequently asked questions\n© 2026 Gaynor Probert\nBack to top",
+      "visibleText": "Skip to content\nGaynor Probert\nMenu\nHome\n›\nCourses\n›\nPlatinum Obedience\nPLATINUM COURSE\nThis obedience course is for the real enthusiast, taking your skills to the highest level, with distance control and off lead obedience and agility.\nAsk about this course\nTraining to the Highest Standards\nAt a glance\nWHO IT’S FOR\nGold graduates, or dogs already at that level\nPRICE\n£129.99\n6-week course, 1 hour a week\nNEXT COURSE STARTS\nRuns when enough people want to take it. Get in touch to register your interest\nWHERE\nOutdoors at the Training Grounds; indoors at Llys Nini when it is wet.\nA1K9 Training Grounds, Pontarddulais\nLlys Nini Animal Centre (RSPCA), Penllergaer\nMaps and directions\nCLASS SIZE\nAbout ten dogs, never more than twelve. You can join up to week two.\nBRING\nA collar, a lead and treats your dog likes.\nFor insurance reasons XL Bully dogs, and dogs legally required to be muzzled, cannot join a class.\nCongratulations, you have passed your Gold test.\nIn this course Gaynor will teach you how to get your dog to do the following disciplines:\nChange of pace advanced.\nHeelwork and change of pace are practised while weaving between other people and their dogs.\nThrough a Door\nGoing through a door in a controlled manner is now practised off lead.\nStop and drop\nGaynor will show you how to get your dog to stop and drop. It is also known as the emergency down. If ever you think your dog is running into trouble, you can use the emergency down.\nOut of sight down.\nIn this class we will practice down stay, sit stay, and stand stay, plus stay while the handler goes out of sight for 4 minutes.\nAdvanced recall\nRecall is also done with maximum distraction.\nAdvanced recall to heel.\nRecall to heel is practised with all the dogs doing this at the same time.\nDistance control\nChange of position is done from a distance.\nAdvanced scent work\nGaynor adds more of a challenge to the scent work when she hides the article and then your dog is commanded to find it.\nAgility\nThe agility is done off lead as now you are able to have full control of your dog.\nIn this course you will have taught your dog off lead control including distance commands.\nAll sorts of control under lots of different circumstances; this is obedience at the highest level.\nAs we said at the beginning, a well behaved dog is a joy to live with and when you have completed your courses with Gaynor Probert at A1K9 Behaviour and Training Academy, you can demonstrate that your dog can behave in the home, in public places and in the presence of other dogs in a manner that will reflect credit on you and your dog.\nDogs that have been trained and have good manners are more likely to be accepted in hotels or kennels and can be looked after by others should the need arise.\nThe dog's life is not curtailed because he does not behave.\nYour dog can live a full and happy life, being with you and sharing your life wherever you are.\nGlenda and Bryn\nA big thank you to Gaynor for all the patient help and advice she has given in training me and our Working Cocker Spaniel Bryn. We started in puppy classes where he was affectionately(!!?) known as \"The Pocket Rocket\" and often seen as a black dot in the distance but Gaynor's support and expertise has seen our (continuing) progress through the ranks to the Platinum group.\nThanks again Gaynor! Your training means that Bryn can enjoy the freedom of a full and active life and it's a pleasure to be out and about with him. You made us work hard but we've had a lot of fun too.\nGlenda\nFrequently Asked Questions\nQ1: Can we go straight into Silver, Gold or Platinum without the earlier courses?\n▾\nQ2: How do the awards work, what if we don't pass, and where do we pick up after a gap?\n▾\nAll questions and answers →\nAsk about Platinum Obedience\nTell Gaynor a little about your dog and she will come back to you with whether this is the right course to start on.\nHow booking works\nSTEP 1\nSend the enquiry form with your dog’s name and age.\nSTEP 2\nGaynor replies with the dates and the details. Email, text or WhatsApp are all fine; if you have not heard, ring or text again, as some enquiries reach A1K9 first and take longer to get to her.\nSTEP 3\nConfirm your place with a £50 deposit: non-refundable, by bank transfer.\nSTEP 4\nBalance in cash on the first week. No instalments, no multi-dog discount. A WhatsApp group starts nearer the course.\nAbout you\nYour name\nEmail\nMobile number\nSo Gaynor can add you to the class WhatsApp group.\nHow should Gaynor reply?\nEmail\nText or WhatsApp\nPhone call\nAbout your dog\nYour dog’s name\nYour dog’s age\nRoughly is fine. It decides which course suits.\nAnything else?\nSend enquiry\nOr call Gaynor on 07798 500390.\nWhere Platinum Obedience fits\nPuppy\nJunior\nBronze\nSilver\nGold\nPlatinum\nJunior through to Platinum is a step-by-step progression: each course prepares your dog for the next. Puppy Socialisation is a standalone class, so your puppy does not need it before starting Junior.\nPlatinum is the highest of our group courses. To keep developing, Gaynor works one to one with dogs and owners on whatever they want to take further.\nOne to One training\nTalk to Gaynor\n07798 500390\nOr send a message and she will get back to you.\nWhere we train\nTwo venues near Swansea, South Wales: the A1K9 Training Grounds at Pontarddulais, and Llys Nini Animal Centre at Penllergaer when the weather is against us. See both on the map.\nExplore\nDog training courses\nBehavioural consultations\nAbout Gaynor and the team\nFrequently asked questions\n© 2026 Gaynor Probert\nBack to top",
       "internalLinks": [
         "/courses/platinum-obedience",
         "/",
@@ -3027,13 +3027,13 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 234095,
+      "totalBytes": 233695,
       "bytesByType": {
-        "document": 36107,
-        "font": 13558,
+        "document": 35707,
         "stylesheet": 68056,
         "image": 103453,
-        "script": 12921
+        "script": 12921,
+        "font": 13558
       }
     },
     "/courses/puppy-socialisation": {
@@ -3355,7 +3355,7 @@
           "text": "Explore"
         }
       ],
-      "visibleText": "Skip to content\nGaynor Probert\nMenu\nHome\n›\nCourses\n›\nSilver Obedience\nSILVER OBEDIENCE COURSE\nThe Silver obedience course is to reinforce what you have already learned and to teach you how to use body language and signals to develop your training techniques. You will also be learning new skills and practising them with greater distractions.\nAsk about this course\nDevelop Your Training Techniques\nAt a glance\nWHO IT’S FOR\nBronze graduates\nPRICE\n£129.99\n6-week course, 1 hour a week\nWHEN\nSaturday afternoons\nNEXT COURSE STARTS\nSaturday 10 October, 2:00pm\nWHERE\nOutdoors at the Training Grounds; indoors at Llys Nini when it is wet.\nA1K9 Training Grounds, Pontarddulais\nLlys Nini Animal Centre (RSPCA), Penllergaer\nMaps and directions\nCLASS SIZE\nAbout ten dogs, never more than twelve. You can join up to week two.\nBRING\nA collar, a lead and treats your dog likes.\nFor insurance reasons XL Bully dogs, and dogs legally required to be muzzled, cannot join a class.\nNow you are ready to continue to develop your dog training skills. Cementing what you have already learned, and preparing your dog for off lead obedience.\nYou will be mastering new and exciting disciplines, with greater distractions.\nYou Will Learn\nChange of pace\nGaynor will teach you how to train your dog to go at the same pace as you, as you change from normal, fast, and slow paces while you are on the move. Changing the pace that you walk increases the dog's interest in what you are doing.\nRecall with distraction\nRecall is reinforced, this time with the distraction of other people, with their dogs on lead walking around you. Problem solving is done as we go, giving guidance and advice as it is needed. When you have called the dog back to you, Gaynor will show you how to get the dog to sit in front facing you. This makes it easy to put the dog's lead on when it is time to go home. This is called the present.\nRecall is like a muscle, the more you exercise it the stronger it becomes.\nRetrieving an article.\nThis exercise is one that your dog will love. Gaynor will show you how to get the dog interested enough in an article to retrieve it. Then guide you how to encourage him to return to you and release the article. This is a great way to exercise your dog. It is a very positive way to play with your dog that he will never tire of. Once he likes this, you can use it as a positive reward to teach him many other things.\nStay\nWaiting is a natural part of a dog's life.\nTeaching your dog to stay is an extension of this; patience will be rewarded with your dog remaining in the same position and relaxing. We will aim for a one minute stay in this class.\nInstant down\nOnce shown the right techniques, you will be able to get your dog to drop into the down position. It is also the beginning of teaching your dog the safety down when off lead.\nAgility\nAgility courses are great fun, and dogs love the activity.\nDogs need to be over 12 months of age to complete a full agility course.\nYounger dogs can enjoy some of the obstacles, such as going through the tunnels and controlled walking over raised walkways and learning to go through the weave poles.\nOver the six week silver course you will have prepared your dog for off lead obedience, have more control over your dog in different situations, and continued your dog's socialisation.\nKeith and Magic\nHello Gaynor and everyone at A1k9\nWe have always grown up with a dog so when our last German Shepherd passed away at the age of 5 due to lymphoma, we were devastated. The house seemed empty and we just sat around looking at each other. After a while we decided we would have another German Shepherd and we bought this black bundle of fluff. We fell in love with him but as he grew, we found that he had a mind of his own and wanted to have his own way, we found it difficult to get him to do what we wanted. We thought we were feeding him the wrong diet which could be making him hyperactive but we were wrong - the simple truth was that he needed more discipline.\nWe phoned A1K9 and explained the situation to a very pleasant lady called Gaynor and she suggested that we attend training classes. WHAT A LIFE SAVER. After going to classes regularly, handler and dog have improved greatly. We still attend classes and find that he is learning something new all the time. When Magic goes off and does his own thing the rest of the class see the funny side but he's learning to be a good boy now.\nWe would like to say thank you to Gaynor and her assistants for their patience and understanding with Magic and handler. Lots of thanks to you all\nMagic, Keith and Annette\nFrequently Asked Questions\nQ1: Can we go straight into Silver, Gold or Platinum without the earlier courses?\n▾\nQ2: How do the awards work, what if we don't pass, and where do we pick up after a gap?\n▾\nQ3: My dog isn't aggressive, just over-excited: barks and pulls to get to other dogs. Is a class right for him?\n▾\nAll questions and answers →\nAsk about Silver Obedience\nTell Gaynor a little about your dog and she will come back to you with whether this is the right course to start on.\nHow booking works\nSTEP 1\nSend the enquiry form with your dog’s name and age.\nSTEP 2\nGaynor replies with the dates and the details. Email, text or WhatsApp are all fine; if you have not heard, ring or text again, as some enquiries reach A1K9 first and take longer to get to her.\nSTEP 3\nConfirm your place with a £50 deposit: non-refundable, by bank transfer.\nSTEP 4\nBalance in cash on the first week. No instalments, no multi-dog discount. A WhatsApp group starts nearer the course.\nAbout you\nYour name\nEmail\nMobile number\nSo Gaynor can add you to the class WhatsApp group.\nHow should Gaynor reply?\nEmail\nText or WhatsApp\nPhone call\nAbout your dog\nYour dog’s name\nYour dog’s age\nRoughly is fine. It decides which course suits.\nAnything else?\nSend enquiry\nOr call Gaynor on 07798 500390.\nWhere Silver Obedience fits\nPuppy\nJunior\nBronze\nSilver\nGold\nPlatinum\nJunior through to Platinum is a step-by-step progression: each course prepares your dog for the next. Puppy Socialisation is a standalone class, so your puppy does not need it before starting Junior.\nSuccessful participants of this course are invited to graduate to our:\nNext: Gold Obedience\nWould you rather train privately? Gaynor also offers one to one sessions.\nTalk to Gaynor\n07798 500390\nOr send a message and she will get back to you.\nWhere we train\nTwo venues near Swansea, South Wales: the A1K9 Training Grounds at Pontarddulais, and Llys Nini Animal Centre at Penllergaer when the weather is against us. See both on the map.\nExplore\nDog training courses\nBehavioural consultations\nAbout Gaynor and the team\nFrequently asked questions\n© 2026 Gaynor Probert\nBack to top",
+      "visibleText": "Skip to content\nGaynor Probert\nMenu\nHome\n›\nCourses\n›\nSilver Obedience\nSILVER OBEDIENCE COURSE\nThe Silver obedience course is to reinforce what you have already learned and to teach you how to use body language and signals to develop your training techniques. You will also be learning new skills and practising them with greater distractions.\nAsk about this course\nDevelop Your Training Techniques\nAt a glance\nWHO IT’S FOR\nBronze graduates, or dogs already at that level\nPRICE\n£129.99\n6-week course, 1 hour a week\nWHEN\nSaturday afternoons\nNEXT COURSE STARTS\nSaturday 10 October, 2:00pm\nWHERE\nOutdoors at the Training Grounds; indoors at Llys Nini when it is wet.\nA1K9 Training Grounds, Pontarddulais\nLlys Nini Animal Centre (RSPCA), Penllergaer\nMaps and directions\nCLASS SIZE\nAbout ten dogs, never more than twelve. You can join up to week two.\nBRING\nA collar, a lead and treats your dog likes.\nFor insurance reasons XL Bully dogs, and dogs legally required to be muzzled, cannot join a class.\nNow you are ready to continue to develop your dog training skills. Cementing what you have already learned, and preparing your dog for off lead obedience.\nYou will be mastering new and exciting disciplines, with greater distractions.\nYou Will Learn\nChange of pace\nGaynor will teach you how to train your dog to go at the same pace as you, as you change from normal, fast, and slow paces while you are on the move. Changing the pace that you walk increases the dog's interest in what you are doing.\nRecall with distraction\nRecall is reinforced, this time with the distraction of other people, with their dogs on lead walking around you. Problem solving is done as we go, giving guidance and advice as it is needed. When you have called the dog back to you, Gaynor will show you how to get the dog to sit in front facing you. This makes it easy to put the dog's lead on when it is time to go home. This is called the present.\nRecall is like a muscle, the more you exercise it the stronger it becomes.\nRetrieving an article.\nThis exercise is one that your dog will love. Gaynor will show you how to get the dog interested enough in an article to retrieve it. Then guide you how to encourage him to return to you and release the article. This is a great way to exercise your dog. It is a very positive way to play with your dog that he will never tire of. Once he likes this, you can use it as a positive reward to teach him many other things.\nStay\nWaiting is a natural part of a dog's life.\nTeaching your dog to stay is an extension of this; patience will be rewarded with your dog remaining in the same position and relaxing. We will aim for a one minute stay in this class.\nInstant down\nOnce shown the right techniques, you will be able to get your dog to drop into the down position. It is also the beginning of teaching your dog the safety down when off lead.\nAgility\nAgility courses are great fun, and dogs love the activity.\nDogs need to be over 12 months of age to complete a full agility course.\nYounger dogs can enjoy some of the obstacles, such as going through the tunnels and controlled walking over raised walkways and learning to go through the weave poles.\nOver the six week silver course you will have prepared your dog for off lead obedience, have more control over your dog in different situations, and continued your dog's socialisation.\nKeith and Magic\nHello Gaynor and everyone at A1k9\nWe have always grown up with a dog so when our last German Shepherd passed away at the age of 5 due to lymphoma, we were devastated. The house seemed empty and we just sat around looking at each other. After a while we decided we would have another German Shepherd and we bought this black bundle of fluff. We fell in love with him but as he grew, we found that he had a mind of his own and wanted to have his own way, we found it difficult to get him to do what we wanted. We thought we were feeding him the wrong diet which could be making him hyperactive but we were wrong - the simple truth was that he needed more discipline.\nWe phoned A1K9 and explained the situation to a very pleasant lady called Gaynor and she suggested that we attend training classes. WHAT A LIFE SAVER. After going to classes regularly, handler and dog have improved greatly. We still attend classes and find that he is learning something new all the time. When Magic goes off and does his own thing the rest of the class see the funny side but he's learning to be a good boy now.\nWe would like to say thank you to Gaynor and her assistants for their patience and understanding with Magic and handler. Lots of thanks to you all\nMagic, Keith and Annette\nFrequently Asked Questions\nQ1: Can we go straight into Silver, Gold or Platinum without the earlier courses?\n▾\nQ2: How do the awards work, what if we don't pass, and where do we pick up after a gap?\n▾\nQ3: My dog isn't aggressive, just over-excited: barks and pulls to get to other dogs. Is a class right for him?\n▾\nAll questions and answers →\nAsk about Silver Obedience\nTell Gaynor a little about your dog and she will come back to you with whether this is the right course to start on.\nHow booking works\nSTEP 1\nSend the enquiry form with your dog’s name and age.\nSTEP 2\nGaynor replies with the dates and the details. Email, text or WhatsApp are all fine; if you have not heard, ring or text again, as some enquiries reach A1K9 first and take longer to get to her.\nSTEP 3\nConfirm your place with a £50 deposit: non-refundable, by bank transfer.\nSTEP 4\nBalance in cash on the first week. No instalments, no multi-dog discount. A WhatsApp group starts nearer the course.\nAbout you\nYour name\nEmail\nMobile number\nSo Gaynor can add you to the class WhatsApp group.\nHow should Gaynor reply?\nEmail\nText or WhatsApp\nPhone call\nAbout your dog\nYour dog’s name\nYour dog’s age\nRoughly is fine. It decides which course suits.\nAnything else?\nSend enquiry\nOr call Gaynor on 07798 500390.\nWhere Silver Obedience fits\nPuppy\nJunior\nBronze\nSilver\nGold\nPlatinum\nJunior through to Platinum is a step-by-step progression: each course prepares your dog for the next. Puppy Socialisation is a standalone class, so your puppy does not need it before starting Junior.\nSuccessful participants of this course are invited to graduate to our:\nNext: Gold Obedience\nWould you rather train privately? Gaynor also offers one to one sessions.\nTalk to Gaynor\n07798 500390\nOr send a message and she will get back to you.\nWhere we train\nTwo venues near Swansea, South Wales: the A1K9 Training Grounds at Pontarddulais, and Llys Nini Animal Centre at Penllergaer when the weather is against us. See both on the map.\nExplore\nDog training courses\nBehavioural consultations\nAbout Gaynor and the team\nFrequently asked questions\n© 2026 Gaynor Probert\nBack to top",
       "internalLinks": [
         "/courses/silver-obedience",
         "/",
@@ -3530,12 +3530,12 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 250316,
+      "totalBytes": 249902,
       "bytesByType": {
+        "document": 38439,
         "stylesheet": 68056,
         "image": 116928,
         "font": 13558,
-        "document": 38853,
         "script": 12921
       }
     },
@@ -3637,12 +3637,12 @@
       "failedRequests": [],
       "thirdPartyConsoleErrors": [],
       "thirdPartyFailedRequests": [],
-      "totalBytes": 156733,
+      "totalBytes": 155858,
       "bytesByType": {
+        "document": 61323,
         "stylesheet": 68056,
-        "font": 13558,
-        "document": 62198,
-        "script": 12921
+        "script": 12921,
+        "font": 13558
       }
     },
     "/thanks/": {

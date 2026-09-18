@@ -119,26 +119,6 @@
                 class and no group to be added to. --}}
           <p class="mt-1 mb-0 text-sm text-ink-500">{{#if model.enquiryKind}}So Gaynor can reach you quickly.{{else}}So Gaynor can add you to the class WhatsApp group.{{/if}}</p>
         </div>
-
-        {{!-- Replies go out by email, text or WhatsApp; asking which saves the
-              round trip where a message sits unread in the wrong channel. A
-              role="radiogroup" rather than a nested <fieldset>, so the group
-              carries an accessible name without a second legend competing
-              visually with "About you". --}}
-        <div role="radiogroup" aria-labelledby="enquiry-reply-by-label" class="sm:col-span-2">
-          <span id="enquiry-reply-by-label" class="block font-medium">How should Gaynor reply?</span>
-          <div class="mt-2 flex flex-wrap gap-x-6 gap-y-2">
-            <label class="inline-flex items-center gap-2 font-normal">
-              <input type="radio" name="reply-by" value="Email" required class="size-4"> Email
-            </label>
-            <label class="inline-flex items-center gap-2 font-normal">
-              <input type="radio" name="reply-by" value="Text or WhatsApp" required class="size-4"> Text or WhatsApp
-            </label>
-            <label class="inline-flex items-center gap-2 font-normal">
-              <input type="radio" name="reply-by" value="Phone call" required class="size-4"> Phone call
-            </label>
-          </div>
-        </div>
       </div>
     </fieldset>
 

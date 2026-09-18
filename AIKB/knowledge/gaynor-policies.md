@@ -326,7 +326,12 @@ below is that file's segment number.
 
 - **Aggression experience: over 20 years** (2026-09-18, same source),
   replacing "15 years" on the aggression pages. Given for the dog-on-person
-  page; applied to the identical sentence on the dog-on-dog page too.
+  page; applied to the identical sentence on the dog-on-dog page and the
+  About page's pack-experience line too. No longer typed: the pages use
+  `{{experienceYears}}`, computed at build time from
+  `business.experienceSince` = 2006 ("I was dog training in 2006", unsure
+  how much earlier, so it is a floor) and rounded down to a multiple of 5.
+  It reads "over 25 years" from 2031 without anyone editing it.
 
 - **Usually seen within about a week of enquiring.**
   "I normally work one week ahead." [seg 251]

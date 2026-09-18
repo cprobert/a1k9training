@@ -66,6 +66,12 @@ export const business = {
     linkedin: 'https://www.linkedin.com/in/gaynor-probert-b869581a/',
   },
   locations: LOCATIONS,
+  // The year Gaynor's experience is counted from, for the "over N years" the
+  // About and aggression pages state ({{experienceYears}}, src/helpers/
+  // experience.js). A floor, not a start date: Gaynor was dog training by
+  // 2006 and is not sure how much earlier (2026-09-18), so the figure can
+  // only understate. It was hand-typed "15 years" for over a decade.
+  experienceSince: 2006,
   // The facts every course page states as furniture, rather than answering one
   // enquiry at a time. Data, not copy: short strings the partials frame into
   // sentences (src/partials/at-a-glance.hbs, src/partials/how-booking-works.hbs).

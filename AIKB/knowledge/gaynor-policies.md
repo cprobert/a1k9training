@@ -90,9 +90,10 @@ below is that file's segment number.
   "balance in cash, no instalments, no multi-dog discount" plus the WhatsApp
   note in step 4. The cash/instalment/discount policy below still stands,
   but Gaynor would "rather leave it out" of the site (2026-09-18): don't
-  restate it on course pages or in llms.txt. Still on the site, pending her
-  say: the two-dogs FAQ's "no discount" answer (its question asks). The
-  Puppy booking strip's "in cash" / "no multi-dog discount" came out 2026-09-18.
+  restate it on course pages or in llms.txt. Exception, by her choice
+  (2026-09-18): the two-dogs FAQ keeps its "no discount for a second dog"
+  answer, since its question asks. The Puppy booking strip's "in cash" /
+  "no multi-dog discount" came out 2026-09-18.
 
 - **Reply channels: email or text preferred over phoning.** If you haven't
   heard back after a few days, ring or text again — some enquiries reach

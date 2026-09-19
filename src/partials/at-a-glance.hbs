@@ -1,0 +1,151 @@
+{{!--
+  "At a glance" — the facts a visitor used to have to ask for.
+
+  Gaynor answers the same handful of questions by contact form over and over
+  (price, day, next start, venue, class size, what to bring), so they are page
+  furniture now rather than FAQ answers. Two shapes, chosen by the model's
+  `glance`: "course" for the six group courses, "session" for one-to-one work
+  and behaviour consultations, which are priced per visit and have no dates.
+  A session record carrying `atA1K9Only` (the two aggression consultations:
+  Gaynor will not do aggression work at a client's home) swaps the "At your
+  home" price for a "Where" cell saying so.
+
+  Per-page values come from the model (`ages`, `when`, `price`, `schedule`,
+  `nextStart`, `startNote`, `askVetDate`); everything shared comes from
+  src/config/business.js, so a changed fact reaches all nine pages at once.
+
+  "Next course starts" degrades nextStart -> schedule -> startNote ->
+  courses.cycleNote and is never blank: Platinum has no fixed date (a course
+  runs when enough people want to take it) and a blank row reads as an
+  omission.
+
+  `schedule` is computed per build by src/controllers/course.js from the
+  timetable anchor in src/config/business.js, so the date is right six weeks
+  from now without anyone retyping it. When it reports a `current` course the
+  row says so, because a visitor reading in week one can still join at week
+  two and should not be sent away to wait six weeks. A literal `nextStart`
+  on a record beats it — that is the manual override for a cancelled or
+  moved block, and a record carrying one is given no `schedule` at all, so
+  the override holds in the browser too.
+
+  The `<dd>` also carries the next twelve starts as data attributes, and
+  src/assets/js/site.js re-picks the right one on load. The site builds on
+  push, not on a schedule, so without that a page deployed in October would
+  still name an October date in December. The text rendered here is the
+  default that a crawler and a reader without JavaScript see, and it is left
+  alone once the list runs out.
+
+  Rendered in `main`, never inside a layout hero — the hero caption box styles
+  every descendant with arbitrary-variant selectors and would repaint the links
+  and text inside this card (see CLAUDE.md).
+--}}
+<section class="mb-8 rounded-card border border-sand-200 bg-white p-6 sm:p-8">
+  <h2 class="mb-5 font-display text-xl text-ink-900">At a glance</h2>
+
+  {{#if (eq model.glance "session")}}
+
+    <dl class="grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">At A1K9</dt>
+        <dd class="mt-1 mb-0">
+          <span class="text-lg font-medium text-brand-700">{{config.business.sessions.atA1K9}}</span><br>
+          <span class="text-ink-600">{{config.business.sessions.length}}</span>
+        </dd>
+      </div>
+
+      {{#if model.atA1K9Only}}
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Where</dt>
+        <dd class="mt-1 mb-0">Always at A1K9. An aggression consultation is too dangerous to do at home.</dd>
+      </div>
+      {{else}}
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">At your home</dt>
+        <dd class="mt-1 mb-0">
+          <span class="text-lg font-medium text-brand-700">{{config.business.sessions.atHome}}</span><br>
+          <span class="text-ink-600">{{config.business.sessions.travelNote}}</span>
+        </dd>
+      </div>
+      {{/if}}
+
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">How soon</dt>
+        <dd class="mt-1 mb-0">{{config.business.sessions.lead}}</dd>
+      </div>
+
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Good to know</dt>
+        <dd class="mt-1 mb-0">{{config.business.sessions.note}}.</dd>
+      </div>
+    </dl>
+
+  {{else}}
+
+    <dl class="grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+      {{#if model.ages}}
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Who it&rsquo;s for</dt>
+        <dd class="mt-1 mb-0">{{model.ages}}</dd>
+      </div>
+      {{/if}}
+
+      {{#if model.price}}
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Price</dt>
+        <dd class="mt-1 mb-0">
+          <span class="text-lg font-medium text-brand-700">{{model.price}}</span>
+          {{#if model.priceNote}}<br><span class="text-ink-600">{{model.priceNote}}</span>{{/if}}
+        </dd>
+      </div>
+      {{/if}}
+
+      {{#if model.when}}
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">When</dt>
+        <dd class="mt-1 mb-0">{{model.when}}</dd>
+      </div>
+      {{/if}}
+
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Next course starts</dt>
+        <dd class="mt-1 mb-0"{{#if model.schedule}} data-schedule-starts="{{join model.schedule.upcoming}}" data-schedule-time="{{model.schedule.time}}"{{/if}}>
+          {{#if model.nextStart}}{{model.nextStart}}{{else}}{{#if model.schedule}}{{#if model.schedule.current}}Started {{model.schedule.current}}. You can still join on week two. The next course starts {{model.schedule.next}}.{{else}}{{model.schedule.next}}{{/if}}{{else}}{{#if model.startNote}}{{model.startNote}}{{else}}{{config.business.courses.cycleNote}}{{/if}}{{/if}}{{/if}}
+        </dd>
+      </div>
+
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Where</dt>
+        <dd class="mt-1 mb-0">
+          {{config.business.courses.venueNote}}.
+          <ul class="mt-1 mb-0 list-none space-y-0.5 pl-0 text-sm text-ink-600">
+            {{#each config.business.locations}}
+              <li>{{name}}, {{address.addressLocality}}</li>
+            {{/each}}
+          </ul>
+          <a href="{{link "contact" canonical=true}}" class="text-sm font-medium text-brand-700 underline underline-offset-4">Maps and directions</a>
+        </dd>
+      </div>
+
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Class size</dt>
+        <dd class="mt-1 mb-0">
+          {{config.business.courses.classSize}}.
+          <span class="text-ink-600">{{config.business.courses.joinBy}}.</span>
+        </dd>
+      </div>
+
+      <div>
+        <dt class="text-sm font-semibold tracking-wide text-ink-500 uppercase">Bring</dt>
+        <dd class="mt-1 mb-0">
+          {{config.business.courses.bring}}{{#if model.askVetDate}}, and your vet card to the first class{{/if}}.
+          <span class="text-ink-600">{{config.business.courses.equipmentNote}}.</span>
+        </dd>
+      </div>
+    </dl>
+
+    <p class="mt-6 mb-0 border-t border-sand-200 pt-4 text-sm text-ink-600">
+      {{config.business.courses.eligibilityNote}}.
+    </p>
+
+  {{/if}}
+</section>

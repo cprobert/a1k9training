@@ -10,6 +10,9 @@
   "level": 5,
   "rung": "Platinum",
   "heading": "Training to the Highest Standards",
+  "glance": "course",
+  "ages": "Gold graduates, or dogs already at that level",
+  "startNote": "Runs when enough people want to take it. Get in touch to register your interest",
   "price": "£129.99",
   "priceNote": "6-week course, 1 hour a week",
   "components": {
@@ -17,10 +20,5 @@
     "details": "courses/platinum/you-will-learn",
     "testimonial": "courses/platinum/testimonial"
   },
-  "faqIds": [
-    "platinum-skip",
-    "platinum-after",
-    "booking-required",
-    "what-to-bring"
-  ]
+  "faqIds": ["skip-levels", "awards-returning"]
 }

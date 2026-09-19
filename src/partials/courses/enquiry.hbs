@@ -30,6 +30,23 @@
   email from the <label>'s text, so that markup arrived as "Your name
   required". The `required` attribute already conveys the same thing to a
   screen reader, and the two optional fields say so in their own help text.
+
+  "How booking works" is rendered here rather than by the pages, as a strip
+  between the lead paragraph and the first fieldset. As its own card above the
+  form it read as a thing to get past before you could ask; inside the form's
+  card the steps are part of the act of enquiring. The shape comes from the
+  model — `glance === "session"` for the one-to-one and consultation pages,
+  which have no deposit and no balance — so a page that renders this partial
+  gets the right steps without passing anything.
+
+  {{> "courses/enquiry" steps=false}} suppresses the strip. /contact/ does
+  that: a general enquiry is not a booking yet. The parameter defaults to
+  showing the steps, so the course and consultation pages say nothing.
+
+  /contact/ renders this same form too, which is why the wording bends on
+  `model.enquiryKind` and `model.crumb` rather than naming a course: one
+  Netlify form, one inbox, one field set, and the hidden `course`/`subject`
+  pair is what tells the enquiries apart.
 --}}
 <section id="enquire" class="mt-10 scroll-mt-24 rounded-card border border-sand-200 bg-white p-6 sm:p-8">
   <h2 class="mb-2 font-display text-xl text-ink-900">Ask about {{model.crumb}}</h2>
@@ -38,10 +55,18 @@
     {{#if model.enquiryLead}}
       {{model.enquiryLead}}
     {{else}}
-      Tell Gaynor a little about your dog and she will come back to you with dates, prices and
+      Tell Gaynor a little about your dog and she will come back to you with
       whether this is the right course to start on.
     {{/if}}
   </p>
+
+  {{#unless (eq steps false)}}
+    {{#if (eq model.glance "session")}}
+      {{> "how-booking-works" session=true}}
+    {{else}}
+      {{> "how-booking-works" noDeposit=model.noDeposit price=model.price}}
+    {{/if}}
+  {{/unless}}
 
   <form name="course-enquiry" method="POST" action="{{link "thanks" canonical=true}}" data-netlify="true"
     netlify-honeypot="bot-field" data-enquiry class="grid gap-6">
@@ -55,8 +80,12 @@
           fallback; /js/site.js rewrites it on submit to include the sender's
           name, because Gmail threads messages sharing a subject and a
           course-only subject would collapse every enquiry about the same
-          course, from different people, into one conversation. --}}
-    <input type="hidden" name="subject" value="Course enquiry: {{model.crumb}}">
+          course, from different people, into one conversation. The prefix is
+          the model's `enquiryKind` where it has one (the consultation pages
+          render this same form), so one inbox still sorts at a glance — and
+          site.js re-derives that prefix from this value rather than repeating
+          the literal. --}}
+    <input type="hidden" name="subject" value="{{#if model.enquiryKind}}{{model.enquiryKind}}{{else}}Course enquiry{{/if}}: {{model.crumb}}">
 
     <p class="hidden">
       <label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field"></label>
@@ -86,7 +115,9 @@
           <label for="enquiry-mobile" class="block font-medium">Mobile number</label>
           <input id="enquiry-mobile" name="mobile" type="tel" autocomplete="tel" required
             class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2">
-          <p class="mt-1 mb-0 text-sm text-ink-500">So Gaynor can add you to the class WhatsApp group.</p>
+          {{!-- The consultation pages render this same form, where there is no
+                class and no group to be added to. --}}
+          <p class="mt-1 mb-0 text-sm text-ink-500">{{#if model.enquiryKind}}So Gaynor can reach you quickly.{{else}}So Gaynor can add you to the class WhatsApp group.{{/if}}</p>
         </div>
       </div>
     </fieldset>
@@ -109,8 +140,30 @@
           </label>
           <input id="enquiry-dog-age" name="dog-age" type="text" placeholder="e.g. 7 months" required
             class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2">
-          <p class="mt-1 mb-0 text-sm text-ink-500">Roughly is fine. It decides which course suits.</p>
+          <p class="mt-1 mb-0 text-sm text-ink-500">Roughly is fine.{{#unless model.enquiryKind}} It decides which course suits.{{/unless}}</p>
         </div>
+
+        {{!-- Puppy Socialisation only: the vet decides when a puppy can mix,
+              and practices differ, so the date is the one thing Gaynor needs
+              before she can offer a class. Everywhere else the field is a
+              hidden empty twin — Netlify fixes a form's field set from ONE
+              parsed instance at deploy time and silently drops names it did
+              not see there, so every instance of this form must declare the
+              same names or the field goes missing site-wide. --}}
+        {{#if model.askVetDate}}
+        <div class="sm:col-span-2">
+          <label for="enquiry-vet-date" class="block font-medium">
+            When your vet says your puppy can mix with other dogs
+          </label>
+          <input id="enquiry-vet-date" name="vet-date" type="text" placeholder="e.g. 20 October, or not sure yet"
+            class="mt-1 w-full rounded-md border border-sand-300 bg-white px-3 py-2">
+          <p class="mt-1 mb-0 text-sm text-ink-500">
+            Optional. Ask your vet (some say a week after a jab, some two), then bring the vet card to the first class.
+          </p>
+        </div>
+        {{else}}
+        <input type="hidden" name="vet-date" value="">
+        {{/if}}
       </div>
     </fieldset>
 
@@ -121,7 +174,7 @@
     </div>
 
     <div>
-      <button type="submit" class="btn btn-primary btn-lg">Send enquiry</button>
+      <button type="submit" class="btn btn-accent btn-lg">Send enquiry</button>
       <p class="mt-3 mb-0 text-sm text-ink-500">
         Or call Gaynor on
         <a href="tel:{{config.business.telephone}}" class="font-medium text-brand-700 underline underline-offset-4">{{config.business.telephoneDisplay}}</a>.

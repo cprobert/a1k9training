@@ -3,3 +3,11 @@
 - Gaynor Probert is a practitioner with the Canine and Feline Behaviour Association, a full member of the British Institute of Professional Dog Trainers, a Master Trainer with the Guild of Dog Trainers, and a member of the National Training Inspectorate for Professional Dog Users.
 - Vet referrals: see the Behavioural Consultations page for how referrals work.
 - Every course page ends with the course it leads on to; the Courses page carries the general FAQ (booking, payment, children, what to bring, weather).
+- Group courses run in rolling six-week blocks, back to back with no gap. Junior and Bronze are Sunday afternoons; Silver and Gold are Saturday afternoons; Puppy Socialisation is every Sunday at 3:00pm. Platinum has no fixed timetable: a course runs when enough people want to take it. Any group course, Platinum included, can be joined directly by a dog already at that level.
+- Class size is about ten dogs, never more than twelve. You can join a course already running up to week two, if there is space; after that, wait for the next course.
+- The deposit is £50, non-refundable, by bank transfer (except Puppy Socialisation, which has no deposit). The balance is paid on the first week of attending.
+- One-to-one sessions and behavioural consultations are £90 for one hour at A1K9, or £130 for a home visit plus travel if any distance away. Aggression consultations (dog on dog or dog on person) are only ever held at A1K9, never at home. One session is usually enough (there is no package of sessions), and clients are normally seen within about a week.
+- A puppy can start Puppy Socialisation once its own vet says it is ready to mix with other dogs; there is no fixed vaccination count, and no proof is needed before the first class: just bring the vet card along to it.
+- For insurance reasons, XL Bully dogs and any dog legally required to be muzzled and kept on lead in public cannot join a class.
+- The main catchment area is Swansea, Neath, Port Talbot and Ammanford, down towards Carmarthen and Cross Hands; some clients also travel from Caerphilly and Cardiff.
+- Gaynor does not run standalone agility, gundog, CaniCross or protection classes (agility is folded into Silver/Gold for dogs over twelve months). Protection work and the five-week residential obedience course are run by A1K9 Protection, a separate business, not by Gaynor.

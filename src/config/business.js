@@ -66,6 +66,58 @@ export const business = {
     linkedin: 'https://www.linkedin.com/in/gaynor-probert-b869581a/',
   },
   locations: LOCATIONS,
+  // The year Gaynor's experience is counted from, for the "over N years" the
+  // About and aggression pages state ({{experienceYears}}, src/helpers/
+  // experience.js). A floor, not a start date: Gaynor was dog training by
+  // 2006 and is not sure how much earlier (2026-09-18), so the figure can
+  // only understate. It was hand-typed "15 years" for over a decade.
+  experienceSince: 2006,
+  // The facts every course page states as furniture, rather than answering one
+  // enquiry at a time. Data, not copy: short strings the partials frame into
+  // sentences (src/partials/at-a-glance.hbs, src/partials/how-booking-works.hbs).
+  // Sourced from the 2026-09-14 interview with Gaynor.
+  courses: {
+    cycleNote:
+      'Courses run back to back in six-week blocks; the next starts the week after the last ends',
+    // The timetable itself, as data rather than a date typed onto five models
+    // and retyped every six weeks. `anchorSunday` is one real start Sunday;
+    // every later start is that date plus a whole number of `blockWeeks`, and
+    // the Saturday courses (Silver, Gold) start the day before the shared
+    // Sunday. src/helpers/schedule.js does the arithmetic,
+    // src/controllers/course.js formats it onto each course page.
+    //
+    // When the pattern actually breaks — a cancelled block, a week off over
+    // Christmas — move this anchor to the next Sunday courses really do start,
+    // or override one course with a literal `nextStart` on its model.
+    blockWeeks: 6,
+    anchorSunday: '2026-10-11',
+    classSize: 'About ten dogs, never more than twelve',
+    joinBy: 'You can join up to week two',
+    deposit: '£50',
+    depositNote: 'non-refundable, by bank transfer',
+    balance: 'The balance to be paid on the first week of attending',
+    venueNote:
+      'Outdoors at the Training Grounds; indoors at Llys Nini when it is wet',
+    bring: 'A collar, a lead and treats your dog likes',
+    // Gaynor, 2026-09-18: the Facilities page "Shop" card went, but she wants
+    // it known she sells leads and collars. Shown under `bring`, the one place
+    // a reader is already thinking about what their dog wears to class.
+    equipmentNote:
+      'Gaynor sells high quality leads and collars if you need them',
+    eligibilityNote:
+      'For insurance reasons XL Bully dogs, and dogs legally required to be muzzled, cannot join a class',
+  },
+  // One-to-one sessions and behaviour consultations. `atA1K9` is read twice —
+  // by the visitor in the at-a-glance block, and by the `offers` JSON-LD in
+  // src/helpers/schema.js — which is why it lives here rather than in a model.
+  sessions: {
+    atA1K9: '£90',
+    atHome: '£130',
+    travelNote: 'plus travel if you are any distance away',
+    length: 'One hour',
+    lead: 'Usually within about a week',
+    note: 'One session is normally enough. Two dogs from the same home can share it at no extra charge',
+  },
   // The card a shared link shows: og:image on every page. Not a page's hero
   // photo, which each platform centre-crops to whatever it likes, but a
   // purpose-made 1200x630 cut by scripts/social-card.mjs from

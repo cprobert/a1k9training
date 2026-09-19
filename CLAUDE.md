@@ -192,6 +192,7 @@ Every custom helper, one module per kind, each exporting a
 | `schema.js` | `localBusiness`, `faqPage`, `serviceSchema`, `personSchema`, `breadcrumbList` | schema.org JSON-LD, serialised by `{{{stringify ...}}}` |
 | `navigation.js` | `breadcrumb` | derives the trail from the page being rendered |
 | `courses.js` | `courseLadder` | reads `src/models/courses/*.json` to build the progression |
+| `experience.js` | `experienceYears` | "over N years" from `business.experienceSince`, computed at build time (unit-tested by `qa/experience.test.mjs`) |
 | `link.js` | — | `makeLinkTo(kiss)`, shared by the two above |
 
 Register on `kiss.handlebars`, never the global `handlebars` module: kiss

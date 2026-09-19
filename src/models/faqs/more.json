@@ -1,0 +1,46 @@
+{
+  "faqs": [
+    {
+      "id": "pat-therapy-dogs",
+      "group": "choosing",
+      "searchOnly": true,
+      "q": "Do your courses count towards a PAT, therapy or assistance dog assessment?",
+      "a": "Not specifically: nothing here is written for a PAT, therapy or assistance dog assessment, and no course leads to one. What the courses do teach, a calmer dog and controlled, well-mannered greetings with people, is a genuine help towards that kind of work, even though it isn't what they're designed for."
+    },
+    {
+      "id": "wheelchair-access",
+      "group": "practical",
+      "searchOnly": true,
+      "q": "Is the training suitable for a wheelchair user, and are there toilets at the venues?",
+      "a": "Training happens mostly outdoors in fields, with a climb up rough, uneven ground, so the Training Grounds venue is not suitable for a wheelchair user. The indoor venue, used when the weather is too wet to train outside, is level. Both venues have toilets."
+    },
+    {
+      "id": "prong-slip-collars",
+      "group": "choosing",
+      "searchOnly": true,
+      "q": "What's your training approach, and do you use prong or slip collars?",
+      "a": "Gaynor's approach is touch training and treat orientated to begin with, moving on to working without the lead through body language and voice command. Prong collars don't feature in her classes. Bring whatever lead and collar you have and she will advise what suits your dog. Good training equipment is also sold at the training grounds, where you are shown how to use it."
+    },
+    {
+      "id": "residential-board-and-train",
+      "group": "choosing",
+      "searchOnly": true,
+      "q": "Do you offer residential, board-and-train or daily training?",
+      "a": "No, Gaynor doesn't offer residential training, board-and-train or any form of daily training. A five-week residential obedience course does exist, but it's run separately by A1K9 Protection, not by Gaynor. See a1k9.co.uk."
+    },
+    {
+      "id": "toilet-crate-chewing",
+      "group": "puppy",
+      "searchOnly": true,
+      "q": "Do you cover toilet training, crate training or chewing in puppy socialisation?",
+      "a": "Yes, it's covered in class, and you can ask about anything you're dealing with while you're there."
+    },
+    {
+      "id": "children-handling",
+      "group": "puppy",
+      "searchOnly": true,
+      "q": "Can children handle the dog in class?",
+      "a": "At Puppy Socialisation, children join in fully, whatever their age. In the obedience courses they come along and watch and help out, and from about twelve years old they can take a turn handling the dog themselves."
+    }
+  ]
+}

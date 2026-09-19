@@ -1,0 +1,87 @@
+{{!--
+  "How booking works" — the sequence Gaynor described, so nobody has to ask
+  what happens after they press Send.
+
+  It is not a card of its own any more. It used to sit above the enquiry form
+  as a second panel, which read as a thing to get past before you could ask;
+  it now renders INSIDE the form's card, between the lead paragraph and the
+  first fieldset, so the steps are part of the act of enquiring rather than a
+  preamble to it. Hence no border, no background and no margins of its own —
+  just a hairline rule top and bottom to separate it from the prose above and
+  the fields below.
+
+  src/partials/courses/enquiry.hbs is now the only caller, and it picks the
+  shape from the model rather than the page doing it:
+
+    {{> "how-booking-works" noDeposit=model.noDeposit price=model.price}}
+      course page   — four steps, deposit step keyed off the model
+    {{> "how-booking-works" session=true}}
+      one-to-one and consultation pages (model.glance === "session") — three
+      steps, no deposit and no balance: those are course facts and do not
+      apply to a single session. Steps 2 and 3 are Gaynor's own wording
+      (2026-09-18): she replies by email, then you ring her, and an
+      appointment follows only if she thinks one is needed — so the strip
+      promises no time and no venue
+
+  /contact/ renders the form with `steps=false` and so gets none of this: a
+  general enquiry is not a booking yet, and the four steps would be answering
+  a question nobody on that page has asked.
+
+  A @container wrapper, not a media query: the list is 4-up in a course page's
+  full-width form card and 2-up on a phone, and the breakpoint that decides
+  that is the wrapper's own width, not the viewport's. The card's own padding
+  leaves ~293px of container inside a 375px viewport, so the two-column step
+  is @3xs (16rem) rather than the @md it was as a standalone card — and the
+  text is text-sm, because this is a supporting strip inside a form now, not
+  a panel of its own.
+--}}
+<section class="@container mb-6 border-y border-sand-200 py-5">
+  <h3 class="mb-4 font-display text-lg text-ink-900">How booking works</h3>
+
+  {{#if session}}
+    <ol class="grid list-none gap-x-4 gap-y-5 pl-0 text-sm @3xs:grid-cols-2 @xl:grid-cols-3">
+      <li>
+        <span class="badge">Step 1</span>
+        <p class="mt-2 mb-0">Send the form with your dog&rsquo;s details, or ring Gaynor if it is easier.</p>
+      </li>
+      <li>
+        <span class="badge">Step 2</span>
+        <p class="mt-2 mb-0">Gaynor will reply to your email giving you all the information you need.</p>
+      </li>
+      <li>
+        <span class="badge">Step 3</span>
+        <p class="mt-2 mb-0">Phone Gaynor on <a href="tel:{{config.business.telephone}}" class="font-medium text-brand-700 underline underline-offset-4 hover:text-brand-800">{{config.business.telephoneDisplay}}</a> to have a chat about the problem you are having with your dog, and make an appointment if it is needed.</p>
+      </li>
+    </ol>
+  {{else}}
+    <ol class="grid list-none gap-x-4 gap-y-5 pl-0 text-sm @3xs:grid-cols-2 @3xl:grid-cols-4">
+      <li>
+        <span class="badge">Step 1</span>
+        <p class="mt-2 mb-0">Send the enquiry once you have filled in all the details.</p>
+      </li>
+      <li>
+        <span class="badge">Step 2</span>
+        <p class="mt-2 mb-0">Gaynor replies to your email with all the information you will need.</p>
+      </li>
+      <li>
+        <span class="badge">Step 3</span>
+        {{#if noDeposit}}
+          <p class="mt-2 mb-0">No deposit for Puppy Socialisation: pay {{price}} at the first class.</p>
+        {{else}}
+          <p class="mt-2 mb-0">
+            Confirm your place with a {{config.business.courses.deposit}} deposit:
+            {{config.business.courses.depositNote}}.
+          </p>
+        {{/if}}
+      </li>
+      <li>
+        <span class="badge">Step 4</span>
+        {{#if noDeposit}}
+          <p class="mt-2 mb-0">A WhatsApp group will start near the start date of the course.</p>
+        {{else}}
+          <p class="mt-2 mb-0">{{config.business.courses.balance}}.</p>
+        {{/if}}
+      </li>
+    </ol>
+  {{/if}}
+</section>

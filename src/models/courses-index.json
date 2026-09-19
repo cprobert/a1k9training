@@ -2,11 +2,10 @@
   "image": "/images/courses/classes-v1.1.webp",
   "caption": "left",
   "faqIds": [
-    "course-prices",
     "which-course",
     "service-triage",
-    "booking-required",
-    "venue",
-    "vaccinations"
+    "rescue-start",
+    "two-dogs",
+    "join-late"
   ]
 }

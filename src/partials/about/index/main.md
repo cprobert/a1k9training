@@ -2,7 +2,7 @@
 
 Gaynor believes that dogs have been both her teacher and her students and that there is no better way to learn than to observe dogs when they are running free and able to express themselves dog to dog in a natural way.
 
-It takes skill and experience to run a pack of dogs that are meeting for the first time and Gaynor is fortunate enough to have experienced dogs in this way for over 15 years, with a wide variety of breeds even though she is a German Shepherd specialist.
+It takes skill and experience to run a pack of dogs that are meeting for the first time and Gaynor is fortunate enough to have experienced dogs in this way for {{experienceYears}}, with a wide variety of breeds even though she is a German Shepherd specialist.
 
 The way that dogs will accept other dogs is amazing to see. They quickly settle down and learn the rules as taught by the other dogs. Even aggressive dogs that are on a behavioural rehabilitation programme can successfully integrate without too much issue.
 

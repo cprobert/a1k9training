@@ -8,15 +8,20 @@
   "caption": "right",
   "crumb": "Dog-on-Dog Aggression",
   "heading": "Behavioural Consultations for Dog on Dog Aggression",
+  "glance": "session",
+  "atA1K9Only": true,
+  "aggressionTowards": "dogs",
+  "enquiryKind": "Consultation enquiry",
+  "enquiryLead": "Tell Gaynor what your dog is doing and she will reply with all the information you need.",
   "components": {
     "intro": "behavioural-consultations/dog-on-dog-aggression/intro",
     "details": "behavioural-consultations/dog-on-dog-aggression/details"
   },
   "faqIds": [
-    "cons-dog-aggression",
-    "cons-what-happens",
+    "cons-too-late",
+    "cons-two-dogs-fight",
+    "cons-stay-safe",
     "cons-referral",
-    "cons-where",
-    "cons-too-late"
+    "cons-baby-anxieties"
   ]
 }

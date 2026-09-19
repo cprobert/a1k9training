@@ -1,0 +1,16 @@
+{
+  "faqs": [
+    {
+      "id": "skip-levels",
+      "group": "advanced",
+      "q": "Can we go straight into Silver, Gold or Platinum without the earlier courses?",
+      "a": "Yes, if your dog is already at the right obedience level. Gaynor judges that with a conversation, asking what your dog can already do, rather than a formal assessment."
+    },
+    {
+      "id": "awards-returning",
+      "group": "advanced",
+      "q": "How do the awards work, what if we don't pass, and where do we pick up after a gap?",
+      "a": "Each week you learn something new, and in week six Gaynor reviews everything from the course. Get it all right and you earn that course's rosette; not quite, and you get an \"achievement\" rosette instead. You can still move up, and pick up the full rosette once you've got it on the next course. Coming back after a gap of months or years, most dogs restart on Bronze, but if you have kept up the training you can start at a higher level."
+    }
+  ]
+}

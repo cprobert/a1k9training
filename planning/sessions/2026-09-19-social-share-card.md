@@ -69,4 +69,24 @@ merge.
 
 ## Pulse log
 
+- **2026-09-19, card committed (`8166127`), PR #30 open.** Criteria 1–4 met:
+  `social-card-v1.jpg` 1200×630 JPEG, 96KB, from the committed script and
+  design; `business.socialCard` read by both; all 20 pages carry the four
+  `og:image*` tags (spot-checked home, FAQs, a course, One to One); check ok,
+  20 pages, 0 failed, no broken links; `qa:test` passes. Eyeball (card) met:
+  the operator saw three renders. The first, photo on the right, had Gaynor
+  looking off the card's edge with her face outside a centred square crop,
+  so the photo moved left. The operator then asked to "push the
+  consultations and classes", was shown a list version and two mixes, and
+  chose "Dog training classes & behaviour consultations". Open: the
+  post-deploy share check. Decision: continue to the preview.
+
 ---
+- **2026-09-19, preview.** QA compare against master's baseline: OK, no
+  gating issues, 0 navigation errors, so no baseline refresh is needed (the
+  tags are head-only). Netlify preview for #30 up; `preview-qa` passed. On the
+  preview, `/images/social-card-v1.jpg` is 200 `image/jpeg`, 96KB,
+  `max-age=31536000`, and pages carry all four `og:image*` tags. The
+  `og:image` URL is on the production domain (siteUrl), so the share test only
+  means anything after merge. Decision: ready to close once merged and the
+  Sharing Debugger shows the card.

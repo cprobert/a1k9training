@@ -321,6 +321,15 @@ suffix (`hero-v1.webp` → `hero-v2.webp`, the convention every image already
 follows), and update the references; the old file can stay or go. The same
 applies to the self-hosted font (`buenard-700-v1.woff2`).
 
+**The social share card** (`og:image` on every page) is
+`src/assets/images/social-card-v1.jpg`, cut at 1200×630 by
+`scripts/social-card.mjs` from `planning/design/social-card.html`. To change
+it: edit the design, bump the `-vN` in `business.socialCard.path`
+(`src/config/business.js`, which also holds the size and alt text the tags
+read), run the script with `CHROME_PATH` set as for the QA harness, look at
+the result, commit. It is not a build step. After deploy, rescrape a page in
+Facebook's Sharing Debugger, or links already shared keep the old card.
+
 **Adding an image:** drop the original into `src/assets/images/...`, run
 `npm run images:optimise`, then reference the `.webp` it writes with the
 `width`/`height` it records in `qa/images.json`.

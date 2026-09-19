@@ -118,4 +118,21 @@ export const business = {
     lead: 'Usually within about a week',
     note: 'One session is normally enough. Two dogs from the same home can share it at no extra charge',
   },
+  // The card a shared link shows: og:image on every page. Not a page's hero
+  // photo, which each platform centre-crops to whatever it likes, but a
+  // purpose-made 1200x630 cut by scripts/social-card.mjs from
+  // planning/design/social-card.html. Edit the design, re-run the script, look
+  // at the result, commit it, and bump the -vN suffix: images are cached for a
+  // year and never overwritten in place.
+  //
+  // The size lives here because two things must agree on it: the og:image
+  // width/height tags (a scraper told the wrong size renders a blurred or
+  // letterboxed card) and the viewport the script shoots at, which imports
+  // this object.
+  socialCard: {
+    path: 'images/social-card-v1.jpg',
+    width: 1200,
+    height: 630, // 1.905:1, the ratio Facebook, LinkedIn and X all crop least
+    alt: 'Gaynor Probert being kissed by a Labrador, beside her name: dog training classes and behaviour consultations in Swansea and South Wales',
+  },
 }

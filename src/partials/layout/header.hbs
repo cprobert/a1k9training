@@ -8,10 +8,14 @@
 <link rel="canonical" href="{{canonical}}">
 
 {{!--
-  Open Graph / Twitter. og:image and the JSON-LD image below both go through
-  the heroImage helper (router.js): model.image on every inner page, the
-  home page's own hardcoded hero (layout-video.hbs) as the one fallback,
-  since the home page's model carries no image of its own.
+  Open Graph / Twitter: what a link pasted into Facebook, WhatsApp or LinkedIn
+  previews as. Title, description and URL are the page's own, so sharing a
+  course page previews that course. The image is one purpose-made 1200x630
+  card for every page (business.socialCard, cut by scripts/social-card.mjs),
+  not the page's hero: platforms crop a hero to whatever they like, and the
+  width/height tags must state the file's real size or the card renders
+  blurred or letterboxed. absUrl because scrapers ignore a relative image.
+  The LocalBusiness JSON-LD below still names the page's hero via heroImage.
 --}}
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{title}}">
@@ -19,8 +23,11 @@
   <meta property="og:description" content="{{description}}">
 {{/if}}
 <meta property="og:url" content="{{canonical}}">
-<meta property="og:image" content="{{absUrl (heroImage model)}}">
-<meta property="og:site_name" content="A1K9 Behaviour and Training Academy">
+<meta property="og:image" content="{{absUrl (asset config.business.socialCard.path)}}">
+<meta property="og:image:width" content="{{config.business.socialCard.width}}">
+<meta property="og:image:height" content="{{config.business.socialCard.height}}">
+<meta property="og:image:alt" content="{{config.business.socialCard.alt}}">
+<meta property="og:site_name" content="{{config.business.name}}">
 <meta name="twitter:card" content="summary_large_image">
 
 {{!--

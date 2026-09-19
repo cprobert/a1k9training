@@ -1,0 +1,92 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>A1K9 social card</title>
+<!--
+  The source for src/assets/images/social-card-v1.jpg, the Open Graph image
+  every page shares. Rendered to a 1200x630 JPEG by scripts/social-card.mjs.
+  Kept in the repo so the card can be re-cut when the photograph or the
+  wording changes, rather than being a binary nobody can edit.
+
+  A split, not a photograph with a caption over it: the home hero is 1600x787
+  (about 2:1), and the thing worth keeping is two faces, Gaynor's and the
+  Labrador's, which sit side by side in its right-hand two thirds. Full-bleed
+  in a 1.9:1 frame with a caption band, the band lands on Gaynor. A photo panel
+  wide enough to hold both faces, with the words on the site's own green
+  beside it, keeps them whole.
+
+  Colours are the site's @theme tokens (src/styles/site.css): brand-800
+  ground, accent-500 rule, sand-100 text. The name is Buenard, the site's
+  display face, so a shared link and the page it opens look like one thing.
+-->
+<style>
+  @font-face {
+    font-family: 'Buenard';
+    src: url('/fonts/buenard-700-v1.woff2') format('woff2');
+    font-weight: 700;
+    font-display: block; /* block, not swap: the shot must not catch a fallback */
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  .card {
+    display: grid;
+    grid-template-columns: 700px 500px;
+    width: 1200px;
+    height: 630px;
+    background: #173c28; /* brand-800 */
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    color: #f3efe7; /* sand-100 */
+  }
+  .words {
+    padding: 3.5rem 3rem 3rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .rule { height: 6px; width: 96px; background: #e3a010; margin-bottom: 2rem; } /* accent-500 */
+  .name {
+    font-family: 'Buenard', Georgia, serif;
+    font-weight: 700;
+    font-size: 84px;
+    line-height: 0.98;
+    color: #fff;
+  }
+  .what {
+    margin-top: 1.75rem;
+    font-size: 32px;
+    line-height: 1.3;
+  }
+  .where {
+    margin-top: auto;
+    padding-top: 2rem;
+    font-size: 22px;
+    line-height: 1.5;
+    color: #d8e8de; /* brand-100 */
+  }
+  .where strong {
+    display: block;
+    font-size: 25px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .shot {
+    width: 700px;
+    height: 630px;
+    object-fit: cover;
+    /* Scaled to 630 high the photograph is ~1281 wide, so `cover` keeps 700px
+       of it. 64% keeps the Labrador's head and Gaynor's whole face; the dog's
+       back and the sky are what go. The photo is on the LEFT on purpose:
+       Gaynor looks up and to the right, so on the left she looks into the
+       card towards her name rather than off its edge, and her face lands near
+       the card's centre, which is what a square thumbnail crop keeps. */
+    object-position: 64% center;
+  }
+</style>
+<div class="card">
+  <img class="shot" src="/images/gaynor-probert-home-v1.1.webp" alt="" />
+  <div class="words">
+    <div class="rule"></div>
+    <div class="name">Gaynor<br />Probert</div>
+    <div class="what">Dog training classes &amp;<br />behaviour consultations</div>
+    <div class="where"><strong>Swansea &middot; South Wales</strong>a1k9training.co.uk</div>
+  </div>
+</div>

@@ -81,7 +81,6 @@ merge.
   chose "Dog training classes & behaviour consultations". Open: the
   post-deploy share check. Decision: continue to the preview.
 
----
 - **2026-09-19, preview.** QA compare against master's baseline: OK, no
   gating issues, 0 navigation errors, so no baseline refresh is needed (the
   tags are head-only). Netlify preview for #30 up; `preview-qa` passed. On the
@@ -90,3 +89,5 @@ merge.
   `og:image` URL is on the production domain (siteUrl), so the share test only
   means anything after merge. Decision: ready to close once merged and the
   Sharing Debugger shows the card.
+
+---
